@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { MoveUpRight } from "lucide-react";
-import { therapeuticAreas } from "@/data/site";
+import { ArrowRight, MoveUpRight } from "lucide-react";
+import { SPECIALTY_COUNT, therapeuticAreas } from "@/data/site";
 import SectionIntro from "@/components/ui/SectionIntro";
 
 export default function TherapeuticAreas() {
@@ -10,15 +10,18 @@ export default function TherapeuticAreas() {
         <SectionIntro
           eyebrow="What we focus on"
           title="Healthcare across essential therapeutic areas."
-          copy="Our seven core areas, drawn from more than fifteen medical specialties."
+          copy={`Our seven core areas, drawn from ${SPECIALTY_COUNT} medical specialties.`}
         />
         <div className="areas-layout">
           {therapeuticAreas.map((area) => (
             <Link
-              href="/products"
+              href={area.href}
               className={`area-item ${area.className}`}
-              key={area.name}>
-              {area.image && <img src={area.image} alt="" />}
+              key={area.name}
+            >
+              {area.image && (
+                <img src={area.image} alt="" loading="lazy" decoding="async" />
+              )}
               <div className="area-overlay" />
               <div className="area-content">
                 <span>{area.name}</span>
@@ -27,6 +30,12 @@ export default function TherapeuticAreas() {
               <MoveUpRight className="area-arrow" size={20} />
             </Link>
           ))}
+        </div>
+        <div className="areas-cta">
+          <Link href="/products#catalogue">
+            Browse the full product range
+            <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </section>

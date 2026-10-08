@@ -14,7 +14,9 @@ export default function RndCta() {
           <p>{cta.text}</p>
         </div>
         <div className="cta-actions">
-          <Link className="button button-primary" href={`mailto:${contact.email}`}>
+          <Link
+            className="button button-primary"
+            href={`mailto:${contact.email}`}>
             Contact our team
             <ArrowRight size={17} />
           </Link>

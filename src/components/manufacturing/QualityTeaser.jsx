@@ -2,7 +2,10 @@ import ButtonLink from "@/components/ui/ButtonLink";
 import RfReveal from "@/components/ui/RfReveal";
 
 const points = [
-  ["Raw & packaging materials", "Checked against approved specifications before use."],
+  [
+    "Raw & packaging materials",
+    "Checked against approved specifications before use.",
+  ],
   ["In-process checks", "Variation caught early, during manufacture."],
   ["Finished products", "Evaluated before every release decision."],
 ];
@@ -13,7 +16,7 @@ export default function QualityTeaser() {
       <div className="rf-container qt-grid">
         <RfReveal className="qt-copy">
           <span className="rf-eyebrow">Quality</span>
-          <h2>Tested at every stage, from material to medicine.</h2>
+          <h2>Testing from raw material to finished product.</h2>
           <ButtonLink to="/quality">See our quality approach</ButtonLink>
         </RfReveal>
         <div className="qt-list">

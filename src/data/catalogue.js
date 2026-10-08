@@ -12,8 +12,9 @@ export const dosageForms = [
 
 import { productRows, specialtyNames } from "@/data/products-data";
 import { monographData } from "@/data/monographs-data";
+import { formArt } from "@/data/productForms";
 
-export { specialtyNames };
+export { specialtyNames, formArt };
 
 
 // Products shown before "Show more":
@@ -41,14 +42,6 @@ export const categoryCards = [
   ...specialtyNames.map((name) => ({ name, label: labels[name] || name, art: arts[name] || "all", image: photos[name] || null })),
 ];
 
-export const formArt = {
-  Tablet: "tablets",
-  Capsule: "capsules",
-  Injection: "injectables",
-  "Syrup & Liquid": "liquids",
-  "Gel & Topical": "topicals",
-  "Powder & Sachet": "wellness",
-};
 
 // Product photos are self-hosted in /public/images/products.
 const productImage = (id) => (id ? `/images/products/p-${id}.jpg` : null);

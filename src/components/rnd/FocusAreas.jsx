@@ -7,7 +7,10 @@ export default function FocusAreas() {
     <section className="rf rf-section rd-focus" id="focus">
       <div className="rf-container">
         <RfReveal>
-          <RfHeading eyebrow="Our core research focus" title="Where our formulation work concentrates" />
+          <RfHeading
+            eyebrow="Research focus"
+            title="Core areas of formulation work"
+          />
         </RfReveal>
         <div className="rd-focus-grid">
           {focusAreas.map(({ title, text, icon: Icon }, index) => (

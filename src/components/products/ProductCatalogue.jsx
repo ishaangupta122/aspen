@@ -7,9 +7,13 @@ import ProductThumb from "@/components/products/ProductThumb";
 import Illustration from "@/components/products/Illustration";
 import ImagePreview from "@/components/products/ImagePreview";
 import Monograph from "@/components/products/Monograph";
+import Link from "next/link";
 import { smoothScrollTo } from "@/lib/scroll";
+import { slugify } from "@/lib/specialties-slug";
 
-const sorted = [...catalogue].sort((a, b) => a.brand.localeCompare(b.brand) || a.id - b.id);
+const sorted = [...catalogue].sort(
+  (a, b) => a.brand.localeCompare(b.brand) || a.id - b.id,
+);
 
 export default function ProductCatalogue() {
   const [tab, setTab] = useState("All");
@@ -20,7 +24,11 @@ export default function ProductCatalogue() {
   // Scrolls the results bar just below the fixed header.
   const scrollToBar = () => {
     const el = barRef.current;
-    if (el) smoothScrollTo(el.getBoundingClientRect().top + window.scrollY - 112, 450);
+    if (el)
+      smoothScrollTo(
+        el.getBoundingClientRect().top + window.scrollY - 112,
+        450,
+      );
   };
   const pick = (name) => {
     setTab(name);
@@ -39,18 +47,29 @@ export default function ProductCatalogue() {
     const q = params.get("q");
     if (q) {
       setQuery(q);
-      setTimeout(() => document.getElementById("catalogue")?.scrollIntoView({ behavior: "smooth" }), 300);
+      setTimeout(scrollToBar, 350);
     }
   }, []);
 
   const counts = useMemo(() => {
     const c = { All: catalogue.length };
-    categoryCards.slice(1).forEach(({ name }) => (c[name] = catalogue.filter((p) => p.specialties.includes(name)).length));
+    categoryCards
+      .slice(1)
+      .forEach(
+        ({ name }) =>
+          (c[name] = catalogue.filter((p) =>
+            p.specialties.includes(name),
+          ).length),
+      );
     return c;
   }, []);
 
   const trackRef = useRef(null);
-  const [edge, setEdge] = useState({ overflow: false, start: true, end: false });
+  const [edge, setEdge] = useState({
+    overflow: false,
+    start: true,
+    end: false,
+  });
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -68,14 +87,18 @@ export default function ProductCatalogue() {
       window.removeEventListener("resize", update);
     };
   }, []);
-  const slide = (dir) => trackRef.current?.scrollBy({ left: dir * 400, behavior: "smooth" });
+  const slide = (dir) =>
+    trackRef.current?.scrollBy({ left: dir * 400, behavior: "smooth" });
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
     return sorted.filter(
       (p) =>
         (tab === "All" || p.specialties.includes(tab)) &&
-        (!q || `${p.brand} ${p.composition} ${p.category}`.toLowerCase().includes(q)),
+        (!q ||
+          `${p.brand} ${p.composition} ${p.category}`
+            .toLowerCase()
+            .includes(q)),
     );
   }, [tab, query]);
 
@@ -86,76 +109,150 @@ export default function ProductCatalogue() {
           <div className="rf-heading rf-reveal">
             <span className="rf-eyebrow">Product list</span>
             <h2>Products by specialty</h2>
-            <p>Browse our brands by medical specialty, or search the full range.</p>
+            <p>
+              Browse our brands by medical specialty, or search the full range.
+            </p>
           </div>
           {edge.overflow && (
             <div className="pr-arrows">
-              <button type="button" onClick={() => slide(-1)} disabled={edge.start} aria-label="Previous categories">
+              <button
+                type="button"
+                onClick={() => slide(-1)}
+                disabled={edge.start}
+                aria-label="Previous categories"
+              >
                 <ArrowLeft size={20} />
               </button>
-              <button type="button" onClick={() => slide(1)} disabled={edge.end} aria-label="Next categories">
+              <button
+                type="button"
+                onClick={() => slide(1)}
+                disabled={edge.end}
+                aria-label="Next categories"
+              >
                 <ArrowRight size={20} />
               </button>
             </div>
           )}
-
         </div>
 
-        <div className="pr-cats" ref={trackRef} role="tablist" aria-label="Specialty">
+        <div
+          className="pr-cats"
+          ref={trackRef}
+          role="tablist"
+          aria-label="Specialty"
+        >
           {categoryCards.map(({ name, label, art, image }) => (
-            <button key={name} type="button" role="tab" aria-selected={tab === name} className={`pr-cat ${tab === name ? "is-active" : ""}`} onClick={() => pick(name)}>
+            <button
+              key={name}
+              type="button"
+              role="tab"
+              aria-selected={tab === name}
+              className={`pr-cat ${tab === name ? "is-active" : ""}`}
+              onClick={() => pick(name)}
+            >
               <Illustration name={art} image={image} alt="" />
               <span className="pr-cat-label">
                 <strong>{label}</strong>
-                <em>{counts[name]} {counts[name] === 1 ? "product" : "products"}</em>
+                <em>
+                  {counts[name]} {counts[name] === 1 ? "product" : "products"}
+                </em>
               </span>
             </button>
           ))}
         </div>
         <div className="pr-bar" ref={barRef}>
           <div>
-            <h3>{tab === "All" ? "All products" : categoryCards.find((c) => c.name === tab)?.label || tab}</h3>
-            <p>The Aspen range, A–Z by brand.</p>
+            <h3>
+              {tab === "All"
+                ? "All products"
+                : categoryCards.find((c) => c.name === tab)?.label || tab}
+            </h3>
+            <p>
+              The Aspen range, A–Z by brand.
+              {tab !== "All" && (
+                <>
+                  {" "}
+                  <Link className="in-link" href={`/products/${slugify(tab)}`}>
+                    View the full {tab} list
+                  </Link>
+                </>
+              )}
+            </p>
           </div>
           <div className="pr-tools">
-          <label className="pr-search">
-            <Search size={18} />
-            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search brand, salt or category" aria-label="Search products" />
-          </label>
+            <label className="pr-search">
+              <Search size={18} />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search brand, salt or category"
+                aria-label="Search products"
+              />
+            </label>
           </div>
         </div>
 
         <div className="pr-table" role="table">
           <div className="pr-table-in">
-          <div className="pr-thead" role="row">
-            <span>Brand</span>
-            <span>Composition</span>
-            <span>Category</span>
-            <span>Pack</span>
-            <span>Details</span>
-          </div>
-          {rows.slice(0, limit).map((p) => (
-            <div className="pr-row" role="row" key={p.id}>
-              <div className="pr-brand" role="cell">
-                <button type="button" className="pr-brand-btn" onClick={() => setPreview(p)} aria-label={`Preview ${p.brand} image`}>
-                  <ProductThumb product={p} />
-                </button>
-                <div>
-                  <button type="button" className="pr-brand-name" onClick={() => setPreview(p)}>{p.brand}</button>
-                  <span>{p.form}</span>
+            {/* ARIA table roles (not <table>) because rows are CSS grids that also
+              scroll horizontally on small screens; native table semantics are
+              not reliably kept once table elements get display: grid. */}
+            <div className="pr-thead" role="row">
+              <span role="columnheader">Brand</span>
+              <span role="columnheader">Composition</span>
+              <span role="columnheader">Category</span>
+              <span role="columnheader">Pack</span>
+              <span role="columnheader">Details</span>
+            </div>
+            {rows.slice(0, limit).map((p) => (
+              <div className="pr-row" role="row" key={p.id}>
+                <div className="pr-brand" role="cell">
+                  <button
+                    type="button"
+                    className="pr-brand-btn"
+                    onClick={() => setPreview(p)}
+                    aria-label={`Preview ${p.brand} image`}
+                  >
+                    <ProductThumb product={p} />
+                  </button>
+                  <div>
+                    <button
+                      type="button"
+                      className="pr-brand-name"
+                      onClick={() => setPreview(p)}
+                    >
+                      {p.brand}
+                    </button>
+                    <span>{p.form}</span>
+                  </div>
+                </div>
+                <p role="cell" data-label="Composition">
+                  {p.composition}
+                </p>
+                <p role="cell" data-label="Category">
+                  {p.category}
+                </p>
+                <p role="cell" data-label="Pack">
+                  {p.pack}
+                </p>
+                <div role="cell">
+                  <button
+                    type="button"
+                    className="pr-detail-btn"
+                    onClick={() => setOpen(p)}
+                  >
+                    <FileText size={15} /> Monograph
+                  </button>
                 </div>
               </div>
-              <p role="cell" data-label="Composition">{p.composition}</p>
-              <p role="cell" data-label="Category">{p.category}</p>
-              <p role="cell" data-label="Pack">{p.pack}</p>
-              <div role="cell">
-                <button type="button" className="pr-detail-btn" onClick={() => setOpen(p)}>
-                  <FileText size={15} /> Monograph
-                </button>
+            ))}
+            {rows.length === 0 && (
+              <div role="row">
+                <p className="pr-empty" role="cell">
+                  No products match your search.
+                </p>
               </div>
-            </div>
-          ))}
-          {rows.length === 0 && <p className="pr-empty">No products match your search.</p>}
+            )}
           </div>
         </div>
         <div className="pr-more">
@@ -165,12 +262,19 @@ export default function ProductCatalogue() {
           {rows.length > INITIAL_VISIBLE && (
             <div className="pr-more-actions">
               {limit < rows.length && (
-                <button type="button" onClick={() => setLimit((l) => l + INITIAL_VISIBLE)}>
+                <button
+                  type="button"
+                  onClick={() => setLimit((l) => l + INITIAL_VISIBLE)}
+                >
                   Show more
                 </button>
               )}
               {limit > INITIAL_VISIBLE && (
-                <button type="button" className="is-ghost" onClick={() => setLimit(INITIAL_VISIBLE)}>
+                <button
+                  type="button"
+                  className="is-ghost"
+                  onClick={() => setLimit(INITIAL_VISIBLE)}
+                >
                   Show less
                 </button>
               )}

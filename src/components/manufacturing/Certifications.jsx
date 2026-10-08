@@ -13,21 +13,29 @@ export default function Certifications() {
         <RfReveal className="mc-head">
           <div>
             <span className="rf-eyebrow">Certifications</span>
-            <h2>Standards we build around</h2>
+            <h2>Quality and manufacturing standards</h2>
           </div>
         </RfReveal>
         <div className="mc-grid">
           {certifications.map(([name, detail, image], i) => {
             const Icon = icons[i % icons.length];
             return (
-            <RfReveal className="mc-card" key={name}>
-              <span className="mc-num">0{i + 1}</span>
-              <span className="mc-badge">
-                {image ? <img src={image} alt={`${name} certification`} loading="lazy" /> : <Icon size={38} strokeWidth={1.3} />}
-              </span>
-              <strong>{name}</strong>
-              <span className="mc-detail">{detail}</span>
-            </RfReveal>
+              <RfReveal className="mc-card" key={name}>
+                <span className="mc-num">0{i + 1}</span>
+                <span className="mc-badge">
+                  {image ? (
+                    <img
+                      src={image}
+                      alt={`${name} certification`}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <Icon size={38} strokeWidth={1.3} />
+                  )}
+                </span>
+                <strong>{name}</strong>
+                <span className="mc-detail">{detail}</span>
+              </RfReveal>
             );
           })}
         </div>

@@ -8,7 +8,11 @@ export default function QualityStatement() {
       <div className="rf-container">
         <div className="rd-quality">
           <RfReveal className="rd-quality-image">
-            <img src={images.researcher} alt="Researcher working with a microscope" loading="lazy" />
+            <img
+              src={images.researcher}
+              alt="Scientist working in a laminar-flow hood"
+              loading="lazy"
+            />
           </RfReveal>
           <RfReveal className="rd-quality-copy">
             <span className="rf-eyebrow">Quality built into development</span>

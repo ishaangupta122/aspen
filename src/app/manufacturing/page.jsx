@@ -9,16 +9,20 @@ import Certifications from "@/components/manufacturing/Certifications";
 import QualityTeaser from "@/components/manufacturing/QualityTeaser";
 
 export const metadata = pageMetadata({
-  title: "Manufacturing | Aspen Pharmaceuticals",
+  title: "Manufacturing partners & facilities | Aspen Pharmaceuticals",
   description:
-    "How Aspen products are made: established manufacturing partners, and GMP and ISO certifications.",
+    "How Aspen products are made: our established manufacturing partners and facilities, the general production process, and GMP and ISO certifications.",
   path: "/manufacturing",
 });
 
 export default function ManufacturingPage() {
   return (
     <PageShell>
-      <PageBanner title="Manufacturing" crumbs={[{ label: "Manufacturing" }]} />
+      <PageBanner
+        title="Manufactured with established partners"
+        crumbs={[{ label: "Manufacturing" }]}
+        path="/manufacturing"
+      />
       <ProductionLine />
       <Partners />
       <Facilities />

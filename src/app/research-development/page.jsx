@@ -10,16 +10,20 @@ import QualityStatement from "@/components/rnd/QualityStatement";
 import RndCta from "@/components/rnd/RndCta";
 
 export const metadata = pageMetadata({
-  title: "Research & Development | Aspen Pharmaceuticals",
+  title: "Formulation development | Aspen Pharmaceuticals R&D",
   description:
-    "Formulation development at Aspen Pharmaceuticals: science-led innovation and patient-focused design across oral, liquid, injectable, topical and nutraceutical dosage forms.",
+    "Science-led, patient-focused formulation development at Aspen Pharmaceuticals across oral, liquid, injectable, topical and nutraceutical dosage forms.",
   path: "/research-development",
 });
 
 export default function ResearchDevelopmentPage() {
   return (
     <PageShell>
-      <PageBanner title="Research & Development" crumbs={[{ label: "R&D" }]} />
+      <PageBanner
+        title="Science-led formulation development"
+        crumbs={[{ label: "R&D" }]}
+        path="/research-development"
+      />
       <RndIntro />
       <FocusAreas />
       <DosageForms />

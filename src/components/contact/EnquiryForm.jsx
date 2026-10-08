@@ -1,11 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
 import { contact, enquiryTypes } from "@/data/contact";
 import { validateEnquiry } from "@/lib/validateEnquiry";
 
-const empty = { type: enquiryTypes[0], name: "", phone: "", email: "", message: "" };
+const empty = {
+  type: enquiryTypes[0],
+  name: "",
+  phone: "",
+  email: "",
+  message: "",
+};
 
 export default function EnquiryForm() {
   const [values, setValues] = useState(empty);
@@ -31,12 +38,17 @@ export default function EnquiryForm() {
       const res = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, website: event.currentTarget.elements.website.value }),
+        body: JSON.stringify({
+          ...values,
+          website: event.currentTarget.elements.website.value,
+        }),
       });
       if (!res.ok) throw new Error("send failed");
       setSent(true);
     } catch {
-      setFailure(`We couldn’t send your enquiry. Please try again, or email us at ${contact.email}.`);
+      setFailure(
+        `We couldn’t send your enquiry. Please try again, or email us at ${contact.email}.`,
+      );
     } finally {
       setSending(false);
     }
@@ -48,7 +60,8 @@ export default function EnquiryForm() {
         <CheckCircle2 size={44} strokeWidth={1.6} />
         <h2>Thank you, {values.name.split(" ")[0]}.</h2>
         <p>
-          Your {values.type.toLowerCase()} has been noted. Our team will reply to {values.email} within one or two working days.
+          Your {values.type.toLowerCase()} has been noted. Our team will reply
+          to {values.email} within one or two working days.
         </p>
         <button
           type="button"
@@ -70,9 +83,22 @@ export default function EnquiryForm() {
         {label} <i>*</i>
       </label>
       {props.as === "textarea" ? (
-        <textarea id={`ct-${key}`} rows={5} value={values[key]} onChange={set(key)} placeholder={props.placeholder} />
+        <textarea
+          id={`ct-${key}`}
+          rows={5}
+          value={values[key]}
+          onChange={set(key)}
+          placeholder={props.placeholder}
+        />
       ) : (
-        <input id={`ct-${key}`} type={props.type} value={values[key]} onChange={set(key)} placeholder={props.placeholder} autoComplete={props.auto} />
+        <input
+          id={`ct-${key}`}
+          type={props.type}
+          value={values[key]}
+          onChange={set(key)}
+          placeholder={props.placeholder}
+          autoComplete={props.auto}
+        />
       )}
       {errors[key] && <span className="ct-error">{errors[key]}</span>}
     </div>
@@ -80,7 +106,20 @@ export default function EnquiryForm() {
 
   return (
     <form className="ct-form" onSubmit={onSubmit} noValidate>
-      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }} />
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: 1,
+          height: 1,
+          opacity: 0,
+        }}
+      />
 
       <div className="ct-field">
         <label htmlFor="ct-type">
@@ -96,17 +135,44 @@ export default function EnquiryForm() {
         </div>
       </div>
 
-      {field("name", "Full name", { type: "text", placeholder: "Enter your name", auto: "name" })}
+      {field("name", "Full name", {
+        type: "text",
+        placeholder: "Enter your name",
+        auto: "name",
+      })}
       <div className="ct-row">
-        {field("phone", "Phone number", { type: "tel", placeholder: "Enter your phone number", auto: "tel" })}
-        {field("email", "Email address", { type: "email", placeholder: "Enter your email", auto: "email" })}
+        {field("phone", "Phone number", {
+          type: "tel",
+          placeholder: "Enter your phone number",
+          auto: "tel",
+        })}
+        {field("email", "Email address", {
+          type: "email",
+          placeholder: "Enter your email",
+          auto: "email",
+        })}
       </div>
-      {field("message", "Message", { as: "textarea", placeholder: "Tell us about your requirement" })}
+      {field("message", "Message", {
+        as: "textarea",
+        placeholder: "Tell us about your requirement",
+      })}
 
-      {failure && <span className="ct-error" role="alert">{failure}</span>}
-      <button className="button button-primary ct-submit" type="submit" disabled={sending}>
+      {failure && (
+        <span className="ct-error" role="alert">
+          {failure}
+        </span>
+      )}
+      <button
+        className="button button-primary ct-submit"
+        type="submit"
+        disabled={sending}
+      >
         {sending ? "Sending…" : "Submit enquiry"} <ArrowRight size={17} />
       </button>
+      <p className="ct-privacy">
+        We use your details only to respond to your enquiry. See our{" "}
+        <Link href="/privacy">privacy policy</Link>.
+      </p>
     </form>
   );
 }

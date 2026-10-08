@@ -11,24 +11,23 @@ export default function About() {
           <div className="rf-about-main">
             <img
               src={images.doctorNotes}
-              alt="Doctor writing notes at a desk"
+              alt="Two Aspen scientists reviewing laboratory notes"
               loading="lazy"
             />
           </div>
           <div className="rf-about-detail">
             <img
               src={images.pharmacists}
-              alt="Pharmacists working together at a laptop"
+              alt="Scientist checking samples in a stability chamber"
               loading="lazy"
             />
           </div>
-          <div className="rf-since">
-            <span>Established</span>
-            <strong>2010</strong>
-          </div>
         </RfReveal>
         <RfReveal className="rf-about-copy">
-          <RfHeading eyebrow="Who we are" title="Built around the needs of clinicians." />
+          <RfHeading
+            eyebrow="Who we are"
+            title="Built around the needs of clinicians."
+          />
           <p className="rf-lead">
             Aspen Pharmaceuticals is a Ghaziabad-based pharmaceutical company,
             established in 2010, serving healthcare professionals across seven
@@ -38,7 +37,7 @@ export default function About() {
             We combine a focused therapeutic portfolio with responsive field
             service and responsible business practices.
           </p>
-          <RfLink to="/about">Learn More About Aspen</RfLink>
+          <RfLink to="/about">Learn more about Aspen</RfLink>
         </RfReveal>
       </div>
     </section>

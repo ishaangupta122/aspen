@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { dosageForms } from "@/data/rnd";
 
 export default function DosageForms() {
@@ -12,17 +13,28 @@ export default function DosageForms() {
       <div className="rf-container rd-dosage-grid">
         <div className="rd-dosage-intro rf-reveal">
           <div className="rf-heading">
-            <span className="rf-eyebrow">Dosage forms and development priorities</span>
-            <h2>A broad range of dosage forms</h2>
+            <span className="rf-eyebrow">Dosage forms</span>
+            <h2>Dosage forms we develop</h2>
             <p>
-              Our formulation development interests span a broad range of pharmaceutical and
-              nutraceutical dosage forms.
+              Our formulation development spans pharmaceutical and nutraceutical
+              dosage forms.
             </p>
           </div>
-          <p className="rd-hint">Select a category to see its development focus.</p>
+          <p className="rd-hint">
+            Select a category to see its development focus. See these forms in
+            our{" "}
+            <Link className="in-link" href="/products#portfolio">
+              product range by dosage form
+            </Link>
+            .
+          </p>
         </div>
         <div className="rd-dosage-explorer rf-reveal">
-          <div className="rd-tabs" role="tablist" aria-label="Dosage categories">
+          <div
+            className="rd-tabs"
+            role="tablist"
+            aria-label="Dosage categories"
+          >
             {dosageForms.map(({ name, icon: TabIcon }, index) => (
               <button
                 key={name}

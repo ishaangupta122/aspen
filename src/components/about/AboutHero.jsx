@@ -1,5 +1,6 @@
 import { images } from "@/data/site";
 import { intro } from "@/data/about";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 export default function AboutHero() {
   return (
@@ -7,13 +8,17 @@ export default function AboutHero() {
       <div className="ab-hero-orb" />
       <div className="rf-container ab-hero-grid">
         <div className="ab-hero-copy">
-          <p className="eyebrow eyebrow-light">About us</p>
+          <p className="eyebrow eyebrow-light">About Aspen</p>
           <h1>{intro.title}</h1>
           <p className="ab-hero-lead">{intro.lead}</p>
+          <Breadcrumbs crumbs={[{ label: "About" }]} />
         </div>
         <div className="ab-hero-visual">
           <div className="ab-hero-image">
-            <img src={images.about} alt="Pipette dispensing into laboratory test tubes" />
+            <img
+              src={images.about}
+              alt="Pipette dispensing into laboratory test tubes"
+            />
             <div className="image-wash" />
           </div>
           <div className="ab-hero-tag">

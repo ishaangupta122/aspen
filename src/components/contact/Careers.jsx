@@ -2,7 +2,11 @@ import { FlaskConical, HeartPulse, ShieldCheck } from "lucide-react";
 import RfReveal from "@/components/ui/RfReveal";
 import { careers } from "@/data/contact";
 
-const icons = { science: FlaskConical, quality: ShieldCheck, reach: HeartPulse };
+const icons = {
+  science: FlaskConical,
+  quality: ShieldCheck,
+  reach: HeartPulse,
+};
 
 export default function Careers() {
   return (

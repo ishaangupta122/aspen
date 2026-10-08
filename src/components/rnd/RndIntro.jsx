@@ -22,7 +22,10 @@ export default function RndIntro() {
           </ul>
         </RfReveal>
         <RfReveal className="rd-intro-media">
-          <img src={images.capsuleTray} alt="Gloved hands arranging capsules in a laboratory tray" />
+          <img
+            src={images.capsuleTray}
+            alt="Gloved hands arranging capsules in a laboratory tray"
+          />
         </RfReveal>
       </div>
     </section>

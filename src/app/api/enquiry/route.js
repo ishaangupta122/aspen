@@ -31,12 +31,16 @@ export async function POST(request) {
 
   const values = {};
   for (const key of Object.keys(MAX)) {
-    values[key] = typeof data[key] === "string" ? data[key].trim().slice(0, MAX[key]) : "";
+    values[key] =
+      typeof data[key] === "string" ? data[key].trim().slice(0, MAX[key]) : "";
   }
-  if (Object.keys(validateEnquiry(values)).length) return json({ error: "Please check the form and try again." }, 400);
+  if (Object.keys(validateEnquiry(values)).length)
+    return json({ error: "Please check the form and try again." }, 400);
 
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
-  if (rateLimited(ip)) return json({ error: "Too many enquiries. Please try again later." }, 429);
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
+  if (rateLimited(ip))
+    return json({ error: "Too many enquiries. Please try again later." }, 429);
 
   // FormSubmit (https://formsubmit.co) emails the enquiry to ENQUIRY_TO. No account or password needed;
   // the first submission sends a one-time activation email to that inbox. The "email" field becomes the
@@ -47,7 +51,10 @@ export async function POST(request) {
   try {
     const res = await fetch(`${base}/${encodeURIComponent(to)}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
       body: JSON.stringify({
         _subject: `[Website] ${values.type} from ${values.name}`,
         _template: "table",
@@ -60,7 +67,8 @@ export async function POST(request) {
       }),
     });
     const result = await res.json().catch(() => ({}));
-    if (!res.ok || result.success === "false" || result.success === false) throw new Error(result.message || `status ${res.status}`);
+    if (!res.ok || result.success === "false" || result.success === false)
+      throw new Error(result.message || `status ${res.status}`);
     return json({ ok: true });
   } catch (err) {
     console.error("[enquiry] send failed:", err?.message);

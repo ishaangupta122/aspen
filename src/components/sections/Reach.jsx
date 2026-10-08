@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MapPin } from "lucide-react";
 import RfHeading from "@/components/ui/RfHeading";
 import RfReveal from "@/components/ui/RfReveal";
@@ -18,12 +19,15 @@ export default function Reach() {
         <RfReveal className="rf-reach-copy">
           <RfHeading
             eyebrow="Our reach"
-            title="Growing with healthcare across North India."
+            title="Serving healthcare across North India."
           />
           <p>
-            Field teams and distribution partners connect Aspen with healthcare
-            professionals across seven states, helping keep medicines
-            available where clinicians need them.
+            Field teams and{" "}
+            <Link className="in-link" href="/contact">
+              distribution partners
+            </Link>{" "}
+            connect Aspen with healthcare professionals across seven states,
+            helping keep medicines available where clinicians need them.
           </p>
           <div className="rf-reach-stat">
             <strong>7</strong>
@@ -34,7 +38,7 @@ export default function Reach() {
             </span>
           </div>
         </RfReveal>
-        <RfReveal className="rf-map" >
+        <RfReveal className="rf-map">
           <div className="rf-map-grid" />
           <div className="rf-map-route rf-map-route-one" />
           <div className="rf-map-route rf-map-route-two" />
@@ -44,7 +48,10 @@ export default function Reach() {
             <span>North India</span>
           </div>
           {states.map((state, index) => (
-            <div className={`rf-map-point rf-map-point-${index + 1}`} key={state}>
+            <div
+              className={`rf-map-point rf-map-point-${index + 1}`}
+              key={state}
+            >
               <i />
               <span>{state}</span>
             </div>

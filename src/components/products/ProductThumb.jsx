@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Illustration from "@/components/products/Illustration";
-import { formArt } from "@/data/catalogue";
+import { formArt } from "@/data/productForms";
 
 // Product photo with an illustration fallback (used when no photo exists or it fails to load).
 export default function ProductThumb({ product, className = "" }) {
@@ -11,7 +11,15 @@ export default function ProductThumb({ product, className = "" }) {
   return (
     <span className={`pr-thumb ${className}`}>
       {showPhoto ? (
-        <img src={product.image} alt={product.brand} loading="lazy" ref={(el) => el && el.complete && el.naturalWidth === 0 && setFailed(true)} onError={() => setFailed(true)} />
+        <img
+          src={product.image}
+          alt={product.brand}
+          loading="lazy"
+          ref={(el) =>
+            el && el.complete && el.naturalWidth === 0 && setFailed(true)
+          }
+          onError={() => setFailed(true)}
+        />
       ) : (
         <Illustration name={formArt[product.form] || "tablets"} alt="" />
       )}

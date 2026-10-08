@@ -4,7 +4,10 @@ import RfReveal from "@/components/ui/RfReveal";
 
 export default function People() {
   const themes = [
-    ["Science", "Clinical relevance guides what we bring to healthcare professionals."],
+    [
+      "Science",
+      "Clinical relevance guides what we bring to healthcare professionals.",
+    ],
     ["Service", "Responsive support for doctors, distributors and partners."],
     ["People", "Knowledge, accountability, and lasting relationships."],
   ];
@@ -22,7 +25,7 @@ export default function People() {
           <RfReveal className="rf-trust-large">
             <img
               src={images.scientist}
-              alt="Scientist reviewing research in a laboratory"
+              alt="Scientist preparing samples at a laboratory bench"
               loading="lazy"
             />
           </RfReveal>

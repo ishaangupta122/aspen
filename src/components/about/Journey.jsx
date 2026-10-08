@@ -27,9 +27,9 @@ export default function Journey() {
             </figcaption>
           </figure>
           <p>
-            Aspen was founded by <strong>Anup Goyal</strong>, whose experience in pharmaceutical
-            sales and marketing provided a close understanding of clinical needs and the
-            healthcare market.
+            Aspen was founded by <strong>Anup Goyal</strong>, whose experience
+            in pharmaceutical sales and marketing provided a close understanding
+            of clinical needs and the healthcare market.
           </p>
           <p>{journey.paragraphs[1]}</p>
           <p>{journey.paragraphs[2]}</p>

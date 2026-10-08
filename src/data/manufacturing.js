@@ -1,8 +1,15 @@
 export const process = {
   eyebrow: "Manufacturing process",
   title: "A typical tablet production line",
-  caption: "Illustration · Actual processes vary by partner and product",
+  caption: "General overview · Actual processes vary by partner and product",
   stages: ["Compression", "Coating", "Blister packing", "Cartoning"],
+  // General descriptions of each stage; actual processes vary by partner and product.
+  details: [
+    "Powder blends are compressed into tablets of a defined weight, size and hardness.",
+    "A thin film coat is applied to protect the tablet and make it easier to swallow.",
+    "Tablets are sealed into individual cells that protect them from moisture and light.",
+    "Sealed strips are placed in cartons with the patient leaflet, then labelled for dispatch.",
+  ],
 };
 
 // Partner logos and plant photos are self-hosted in /public/images/partners and /public/images/facilities.
@@ -94,7 +101,7 @@ export const methods = {
 };
 
 export const practices = {
-  title: "Reliable Results Through Controlled Practices",
+  title: "Reliable results through controlled practices",
   paragraphs: [
     "The value of a laboratory result depends on the integrity of the process behind it. Effective quality control requires controlled sampling, traceable records, suitable reference standards, equipment calibration and maintenance, and documented review of results.",
     "Unexpected or out-of-specification results require investigation through established procedures. Findings should inform appropriate corrective and preventive actions and support continuous improvement.",
@@ -102,10 +109,10 @@ export const practices = {
 };
 
 export const qcqa = {
-  title: "Quality Control and Quality Assurance",
+  title: "Quality control and quality assurance",
   cards: [
-    ["Quality Control", "Provides the testing and inspection evidence used to assess materials and products."],
-    ["Quality Assurance", "Establishes and oversees the wider system of procedures, documentation, validation, training, investigations and quality review."],
+    ["Quality control", "Provides the testing and inspection evidence used to assess materials and products."],
+    ["Quality assurance", "Establishes and oversees the wider system of procedures, documentation, validation, training, investigations and quality review."],
   ],
   closing:
     "Working together, these functions support consistent pharmaceutical quality. Quality Control must remain independent of production so that testing and acceptance decisions can be made objectively.",

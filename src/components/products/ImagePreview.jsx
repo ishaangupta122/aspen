@@ -17,9 +17,19 @@ export default function ImagePreview({ product, onClose, onMonograph }) {
   }, [onClose]);
 
   return (
-    <div className="pr-overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="ip" role="dialog" aria-modal="true" aria-label={`${product.brand} image`}>
-        <button type="button" className="mg-close" onClick={onClose} aria-label="Close preview">
+    <div
+      className="pr-overlay"
+      onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+      <div
+        className="ip"
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${product.brand} image`}>
+        <button
+          type="button"
+          className="mg-close"
+          onClick={onClose}
+          aria-label="Close preview">
           <X size={18} />
         </button>
         <ProductThumb product={product} className="ip-img" />

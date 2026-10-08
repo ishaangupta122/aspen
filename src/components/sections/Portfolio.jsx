@@ -5,8 +5,18 @@ import FeaturedTrack from "@/components/sections/FeaturedTrack";
 
 // Featured brands from the real catalogue (matched by brand name).
 const featuredBrands = [
-  "ASPACOX-60", "APXMIN -400", "ARIPSON", "AVITOR-10", "ASPAMOR - 30", "ASPENGEL",
-  "TALYGRAM AM", "ATEXPEN-25", "CHYMOSIN", "COBAZEP 5", "TREADY 10", "AHALAC",
+  "ASPACOX-60",
+  "APXMIN-400",
+  "ARIPSON",
+  "AVITOR-10",
+  "ASPAMOR-30",
+  "ASPENGEL",
+  "TALYGRAM AM",
+  "ATEXPEN-25",
+  "CHYMOSIN",
+  "COBAZEP 5",
+  "TREADY 10",
+  "AHALAC",
 ];
 // Long multi-ingredient compositions shortened for the home cards (full detail stays in the catalogue).
 const shortComposition = {
@@ -34,7 +44,7 @@ export default function Portfolio() {
         <div className="portfolio-heading">
           <SectionIntro
             eyebrow="Featured products"
-            title="Featured brands from our range."
+            title="Brands from our portfolio."
             copy="A selection from our range of 250+ products across therapeutic areas."
           />
           <ButtonLink to="/products" variant="text">

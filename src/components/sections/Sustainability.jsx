@@ -9,20 +9,30 @@ export default function Sustainability() {
     <section className="rf rf-section rf-sustain" id="sustainability">
       <div className="rf-container rf-sustain-grid">
         <RfReveal className="rf-sustain-copy">
-          <RfHeading eyebrow="Our responsibility" title="Environment & Sustainability" />
+          <RfHeading
+            eyebrow="Our responsibility"
+            title="Environment & sustainability"
+          />
           <p>
-            Better healthcare should not come at the cost of the environment. We work with responsible manufacturing
-            partners and aim to keep material use, wastage and transport efficiency in view.
+            Better healthcare should not come at the cost of the environment. We
+            work with responsible manufacturing partners and aim to keep
+            material use, wastage and transport efficiency in view.
           </p>
-          <p>
-            We approach this step by step, improving as our business grows.
-          </p>
+          <p>We approach this step by step, improving as our business grows.</p>
         </RfReveal>
         <RfReveal className="rf-sustain-image">
-          <img src={image} alt="Aerial view of a lush green forest" loading="lazy" />
+          <img
+            src={image}
+            alt="Aerial view of a lush green forest"
+            loading="lazy"
+          />
           <div className="rf-sustain-badge">
             <Leaf size={22} strokeWidth={1.6} />
-            <span>Care for people<br />and the planet</span>
+            <span>
+              Care for people
+              <br />
+              and the planet
+            </span>
           </div>
         </RfReveal>
       </div>

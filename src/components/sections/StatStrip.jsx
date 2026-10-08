@@ -3,9 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { FlaskConical, Stethoscope, Waypoints } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
+import { SPECIALTY_COUNT } from "@/data/site";
 
 const stats = [
-  { value: 20, suffix: "", label: "Medical specialties", Icon: Stethoscope },
+  {
+    value: SPECIALTY_COUNT,
+    suffix: "",
+    label: "Medical specialties",
+    Icon: Stethoscope,
+  },
   { value: 250, suffix: "+", label: "Products", Icon: FlaskConical },
   { value: 7, suffix: "", label: "States served", Icon: Waypoints },
 ];

@@ -10,7 +10,10 @@ import { navLinks } from "@/data/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isActive = (href) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/"));
+  const isActive = (href) =>
+    href === "/"
+      ? pathname === "/"
+      : pathname === href || pathname.startsWith(href + "/");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(null);
@@ -24,7 +27,8 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    const onKey = (e) => e.key === "Escape" && (setMenuOpen(false), setOpen(null));
+    const onKey = (e) =>
+      e.key === "Escape" && (setMenuOpen(false), setOpen(null));
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
@@ -38,10 +42,15 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}>
+    <header
+      className={`site-header ${scrolled ? "is-scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}>
       <div className="nav-shell">
         <Logo />
-        <button className="mobile-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation" aria-expanded={menuOpen}>
+        <button
+          className="mobile-menu"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation"
+          aria-expanded={menuOpen}>
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
         <nav className={menuOpen ? "nav-links open" : "nav-links"}>
@@ -52,8 +61,17 @@ export default function Navbar() {
                 key={l.label}
                 onMouseEnter={() => setOpen(l.label)}
                 onMouseLeave={() => setOpen(null)}>
-                <Link href={l.href} onClick={close} className={isActive(l.href) ? "is-active" : undefined}>{l.label}</Link>
-                <button className="nav-chev" onClick={() => setOpen(open === l.label ? null : l.label)} aria-label={`${l.label} menu`} aria-expanded={open === l.label}>
+                <Link
+                  href={l.href}
+                  onClick={close}
+                  className={isActive(l.href) ? "is-active" : undefined}>
+                  {l.label}
+                </Link>
+                <button
+                  className="nav-chev"
+                  onClick={() => setOpen(open === l.label ? null : l.label)}
+                  aria-label={`${l.label} menu`}
+                  aria-expanded={open === l.label}>
                   <ChevronDown size={14} />
                 </button>
                 {open === l.label && (
@@ -67,12 +85,21 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <Link href={l.href} key={l.label} onClick={close} className={isActive(l.href) ? "is-active" : undefined}>
+              <Link
+                href={l.href}
+                key={l.label}
+                onClick={close}
+                className={isActive(l.href) ? "is-active" : undefined}>
                 {l.label}
               </Link>
             ),
           )}
-          <button className="nav-contact" onClick={() => { close(); setLoginOpen(true); }}>
+          <button
+            className="nav-contact"
+            onClick={() => {
+              close();
+              setLoginOpen(true);
+            }}>
             Employee login <ArrowRight size={15} />
           </button>
         </nav>

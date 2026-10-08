@@ -6,16 +6,20 @@ import ProductsOverview from "@/components/products/ProductsOverview";
 import ProductCatalogue from "@/components/products/ProductCatalogue";
 
 export const metadata = pageMetadata({
-  title: "Products | Aspen Pharmaceuticals",
+  title: "Pharmaceutical products by specialty | Aspen Pharmaceuticals",
   description:
-    "Explore Aspen's portfolio of finished dosage forms and browse our products by medical specialty.",
+    "Browse Aspen Pharmaceuticals' range of finished dosage forms by medical specialty, with composition, category and pack details for each brand.",
   path: "/products",
 });
 
 export default function ProductsPage() {
   return (
     <PageShell>
-      <PageBanner title="Products" crumbs={[{ label: "Products" }]} />
+      <PageBanner
+        title="Medicines across essential specialties"
+        crumbs={[{ label: "Products" }]}
+        path="/products"
+      />
       <ProductsOverview />
       <ProductCatalogue />
       <FinalCta />

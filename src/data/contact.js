@@ -26,8 +26,8 @@ export const enquiryTypes = [
 
 // Copy is drawn from the site's own themes (science, quality, reach). Edit freely.
 export const careers = {
-  eyebrow: "Why join Aspen",
-  title: "Driven by science. Inspired by life.",
+  eyebrow: "Careers",
+  title: "Why work with Aspen",
   copy: "Three things shape how we work, and what you can expect from working with us.",
   reasons: [
     {

@@ -37,7 +37,11 @@ export default function AdvancedTablets() {
           <h2>Advanced tablet architectures</h2>
           <p>{tablets.intro}</p>
           <div className="rd-tablets-image">
-            <img src={images.equipment} alt="Gloved hand holding laboratory glassware" loading="lazy" />
+            <img
+              src={images.equipment}
+              alt="Gloved hand holding laboratory glassware"
+              loading="lazy"
+            />
           </div>
         </RfReveal>
         <div className="rd-tablets-list">

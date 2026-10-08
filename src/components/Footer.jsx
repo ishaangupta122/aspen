@@ -10,13 +10,12 @@ const company = [
   ["Contact", "/contact"],
 ];
 
-// [label, specialty name used by the catalogue]
+// [label, specialty page slug]
 const categories = [
-  ["General Medicine", "General Medicine"],
-  ["Neurology", "Neurology"],
-  ["Psychiatry", "Psychiatry"],
-  ["Orthopaedics", "Orthopaedics"],
-  ["Gastro & Hepatology", "Gastroenterology & Hepatology"],
+  ["General Medicine", "general-medicine"],
+  ["Neurology", "neurology"],
+  ["Psychiatry", "psychiatry"],
+  ["Orthopaedics", "orthopaedics"],
 ];
 
 export default function Footer() {
@@ -26,12 +25,13 @@ export default function Footer() {
         <div className="ft-brand">
           <Logo />
           <p>
-            A pharmaceutical company serving healthcare professionals across North India since 2010.
+            A pharmaceutical company serving healthcare professionals across
+            North India since 2010.
           </p>
         </div>
 
         <nav className="ft-col" aria-label="Company">
-          <h4>Company</h4>
+          <h2>Company</h2>
           {company.map(([label, href]) => (
             <Link href={href} key={label}>
               {label}
@@ -40,16 +40,17 @@ export default function Footer() {
         </nav>
 
         <nav className="ft-col" aria-label="Products">
-          <h4>Products</h4>
-          {categories.map(([label, name]) => (
-            <a href={`/products?specialty=${encodeURIComponent(name)}`} key={name}>
+          <h2>Products</h2>
+          {categories.map(([label, slug]) => (
+            <Link href={`/products/${slug}`} key={slug}>
               {label}
-            </a>
+            </Link>
           ))}
+          <Link href="/products">All products</Link>
         </nav>
 
         <div className="ft-col ft-contact">
-          <h4>Contact</h4>
+          <h2>Contact</h2>
           <address>
             Site-2, Loni Rd, Block A, Industrial Area, Sahibabad
             <br />
@@ -63,7 +64,10 @@ export default function Footer() {
 
       <div className="container ft-bottom">
         <span>© 2026 Aspen Pharmaceuticals Pvt. Ltd.</span>
-        <span>Driven by science, inspired by life.</span>
+        <span className="ft-legal">
+          <Link href="/privacy">Privacy policy</Link>
+          <span>Driven by science, inspired by life.</span>
+        </span>
       </div>
     </footer>
   );

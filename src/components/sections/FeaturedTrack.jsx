@@ -11,7 +11,11 @@ export default function FeaturedTrack({ products }) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const update = () => setEdge({ start: el.scrollLeft <= 2, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 2 });
+    const update = () =>
+      setEdge({
+        start: el.scrollLeft <= 2,
+        end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 2,
+      });
     update();
     el.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
@@ -23,14 +27,20 @@ export default function FeaturedTrack({ products }) {
   const slide = (dir) => {
     const el = ref.current;
     const card = el?.querySelector(".fp-card");
-    el?.scrollBy({ left: dir * ((card?.offsetWidth || 280) + 16) * 2, behavior: "smooth" });
+    el?.scrollBy({
+      left: dir * ((card?.offsetWidth || 280) + 16) * 2,
+      behavior: "smooth",
+    });
   };
 
   return (
     <>
       <div className="fp-track" ref={ref}>
         {products.map((p) => (
-          <Link href={`/products?q=${encodeURIComponent(p.brand)}`} className="fp-card" key={p.id}>
+          <Link
+            href={`/products?q=${encodeURIComponent(p.brand)}`}
+            className="fp-card"
+            key={p.id}>
             <div className="fp-media">
               <ProductThumb product={p} className="fp-img" />
             </div>
@@ -44,10 +54,18 @@ export default function FeaturedTrack({ products }) {
         ))}
       </div>
       <div className="fp-nav">
-        <button type="button" onClick={() => slide(-1)} disabled={edge.start} aria-label="Previous products">
+        <button
+          type="button"
+          onClick={() => slide(-1)}
+          disabled={edge.start}
+          aria-label="Previous products">
           <ArrowLeft size={20} />
         </button>
-        <button type="button" onClick={() => slide(1)} disabled={edge.end} aria-label="Next products">
+        <button
+          type="button"
+          onClick={() => slide(1)}
+          disabled={edge.end}
+          aria-label="Next products">
           <ArrowRight size={20} />
         </button>
       </div>

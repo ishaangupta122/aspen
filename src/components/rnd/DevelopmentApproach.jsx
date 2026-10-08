@@ -7,16 +7,19 @@ export default function DevelopmentApproach() {
     <section className="rf rf-section rd-approach" id="approach">
       <div className="rf-container">
         <RfReveal>
-          <RfHeading eyebrow="Our development approach" title="Five stages from concept to evidence" />
+          <RfHeading
+            eyebrow="Our development approach"
+            title="Five stages from concept to evidence"
+          />
         </RfReveal>
         <ol className="rd-stages">
           {stages.map((stage, index) => (
-            <RfReveal className="rd-stage" key={stage.title}>
-              <li>
+            <RfReveal as="li" className="rd-stage" key={stage.title}>
+              <div className="rd-stage-body">
                 <span className="rd-stage-dot">{index + 1}</span>
                 <h3>{stage.title}</h3>
                 <p>{stage.text}</p>
-              </li>
+              </div>
             </RfReveal>
           ))}
         </ol>

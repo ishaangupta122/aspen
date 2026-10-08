@@ -8,7 +8,7 @@ import Practices from "@/components/manufacturing/Practices";
 import QualityCommitment from "@/components/manufacturing/QualityCommitment";
 
 export const metadata = pageMetadata({
-  title: "Quality | Aspen Pharmaceuticals",
+  title: "Quality control & testing | Aspen Pharmaceuticals",
   description:
     "How quality is evaluated for Aspen products, from incoming raw and packing materials to finished dosage forms and stability studies.",
   path: "/quality",
@@ -17,7 +17,11 @@ export const metadata = pageMetadata({
 export default function QualityPage() {
   return (
     <PageShell>
-      <PageBanner title="Quality" crumbs={[{ label: "Quality" }]} />
+      <PageBanner
+        title="Quality at every stage"
+        crumbs={[{ label: "Quality" }]}
+        path="/quality"
+      />
       <QualityIntro />
       <QualityStages />
       <Practices />

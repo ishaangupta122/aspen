@@ -24,7 +24,10 @@ export default function Quality() {
           </div>
         </RfReveal>
         <RfReveal className="rf-quality-copy">
-          <RfHeading eyebrow="How we work" title="Made with quality-focused partners." />
+          <RfHeading
+            eyebrow="How we work"
+            title="Made with quality-focused partners."
+          />
           <p>
             Our products are made with established manufacturing partners whose
             systems, facilities, and practices support consistent quality—from

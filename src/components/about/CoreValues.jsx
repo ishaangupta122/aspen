@@ -8,7 +8,10 @@ export default function CoreValues() {
     <section className="rf rf-section ab-values" id="values">
       <div className="rf-container">
         <RfReveal>
-          <RfHeading eyebrow="Our core values" title="The principles behind every decision." />
+          <RfHeading
+            eyebrow="Our core values"
+            title="The principles behind every decision."
+          />
         </RfReveal>
         <div className="ab-values-grid">
           {values.map(({ title, text, image, alt }, index) => (

@@ -9,7 +9,9 @@ import { prefersReducedMotion } from "@/lib/motion";
 const DURATION = 6500;
 
 function Count({ to, suffix = "", run }) {
-  const n = useCountUp(to, run, { duration: 1400, respectReducedMotion: false });
+  const n = useCountUp(to, run, {
+    duration: 1400,
+  });
   return (
     <>
       {n}
@@ -29,7 +31,7 @@ const slides = [
     ),
     text: "Aspen Pharmaceuticals supports clinical practice with a dependable portfolio and responsible business conduct.",
     image: images.heroTeam,
-    alt: "Aspen scientists reviewing quality documents together in a laboratory",
+    alt: "Aspen analyst reviewing results in a laboratory",
     caption: "Aspen Pharmaceuticals",
     floats: [
       { slot: "a", kind: "stat", value: 2010, label: "Established" },
@@ -80,9 +82,13 @@ export default function HeroCarousel() {
   const [paused, setPaused] = useState(false);
   const [prev, setPrev] = useState(-1);
   const [still, setStill] = useState(false);
+  // Slides 2-3 are lazy in the server HTML (so they are not preloaded), then fetched
+  // right after hydration so they are ready before the first transition.
+  const [warm, setWarm] = useState(false);
 
   useEffect(() => {
     setStill(prefersReducedMotion());
+    setWarm(true);
   }, []);
 
   const go = useCallback(
@@ -90,7 +96,7 @@ export default function HeroCarousel() {
       setPrev(active);
       setActive((i + slides.length) % slides.length);
     },
-    [active]
+    [active],
   );
 
   useEffect(() => {
@@ -140,6 +146,11 @@ export default function HeroCarousel() {
                 className={i === active ? "on" : i === prev ? "prev" : ""}
                 src={s.image}
                 alt={s.alt}
+                width={820}
+                height={546}
+                loading={i === 0 || warm ? undefined : "lazy"}
+                fetchPriority={i === 0 ? "high" : undefined}
+                decoding={i === 0 ? undefined : "async"}
               />
             ))}
             <div className="hc-wash" />
@@ -155,7 +166,11 @@ export default function HeroCarousel() {
                   {f.kind === "stat" ? (
                     <>
                       <strong>
-                        <Count to={f.value} suffix={f.suffix} run={si === active} />
+                        <Count
+                          to={f.value}
+                          suffix={f.suffix}
+                          run={si === active}
+                        />
                       </strong>
                       <span>{f.label}</span>
                     </>
@@ -164,7 +179,7 @@ export default function HeroCarousel() {
                   )}
                 </div>
               </div>
-            ))
+            )),
           )}
           <div className="hc-caption">
             <span className="pulse-dot" />
@@ -185,7 +200,10 @@ export default function HeroCarousel() {
               onClick={() => go(i)}
             >
               <span className="hc-bar">
-                <i className={paused || still ? "paused" : ""} key={i === active ? `a${active}` : `i${i}`} />
+                <i
+                  className={paused || still ? "paused" : ""}
+                  key={i === active ? `a${active}` : `i${i}`}
+                />
               </span>
               <b>0{i + 1}</b>
               {s.tab}
@@ -193,10 +211,18 @@ export default function HeroCarousel() {
           ))}
         </div>
         <div className="hc-arrows">
-          <button type="button" aria-label="Previous slide" onClick={() => go(active - 1)}>
+          <button
+            type="button"
+            aria-label="Previous slide"
+            onClick={() => go(active - 1)}
+          >
             <ArrowLeft size={18} />
           </button>
-          <button type="button" aria-label="Next slide" onClick={() => go(active + 1)}>
+          <button
+            type="button"
+            aria-label="Next slide"
+            onClick={() => go(active + 1)}
+          >
             <ArrowRight size={18} />
           </button>
         </div>

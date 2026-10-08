@@ -1,7 +1,10 @@
 import Link from "next/link";
 import PageShell from "@/components/layout/PageShell";
 
-export const metadata = { title: "Page not found | Aspen Pharmaceuticals", robots: { index: false } };
+export const metadata = {
+  title: "Page not found | Aspen Pharmaceuticals",
+  robots: { index: false },
+};
 
 export default function NotFound() {
   return (

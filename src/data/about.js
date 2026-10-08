@@ -1,6 +1,7 @@
+import { SPECIALTY_COUNT } from "@/data/site";
 
 export const intro = {
-  title: "Driven by Science, Inspired by Life.",
+  title: "Driven by science, inspired by life.",
   lead: "Aspen Pharmaceuticals Pvt. Ltd. is an Indian pharmaceutical company established in 2010, serving healthcare professionals through a relevant therapeutic portfolio and responsive service.",
   foundation: [
     "Our foundation lies in a practical understanding of pharmaceutical care: the needs of clinicians, the importance of medicine availability and the responsibilities that come with serving patients.",
@@ -9,11 +10,11 @@ export const intro = {
 };
 
 export const journey = {
-  title: "From an entrepreneurial venture to a growing pharmaceutical organisation",
+  title: "From entrepreneurial venture to growing organisation",
   facts: [
     ["Company", "Private limited company"],
     ["Headquarters", "Sahibabad, Ghaziabad, Uttar Pradesh"],
-    ["Focus", "15+ medical specialties"],
+    ["Focus", `${SPECIALTY_COUNT} medical specialties`],
     ["Presence", "North India"],
   ],
   paragraphs: [
@@ -33,7 +34,7 @@ export const commitments = [
     key: "engagement",
     image: "clinician",
     alt: "Doctor in consultation",
-    title: "Responsible Engagement with Healthcare Professionals",
+    title: "Responsible engagement with healthcare professionals",
     paragraphs: [
       "Healthcare professionals play a vital role in the appropriate use of medicines. Aspen seeks to support their work through professional engagement, clear product communication and responsive service.",
       "Our approach is guided by respect for clinical judgment and the need for accurate, balanced information. We aim to build long-term relationships through meaningful dialogue and a practical understanding of the challenges faced in everyday clinical practice.",
@@ -44,7 +45,7 @@ export const commitments = [
     key: "presence",
     image: "warehouse",
     alt: "Pharmaceutical supply and distribution",
-    title: "Our Presence and Distribution",
+    title: "Our presence and distribution",
     lead: "Aspen has developed its business presence across:",
     chips: ["Delhi", "Uttar Pradesh", "Punjab", "Haryana", "Himachal Pradesh", "Uttarakhand", "Rajasthan"],
     paragraphs: [
@@ -54,10 +55,10 @@ export const commitments = [
 ];
 
 export const values = [
-  { title: "Patient Focus", image: "patient", alt: "Doctor in consultation with a patient", text: "We weigh the needs of patients and the responsibilities of healthcare in every business decision we make." },
-  { title: "Quality Commitment", image: "blisterPacks", alt: "Tablets in blister packs", text: "We give quality due importance across our products, partnerships and operational processes." },
-  { title: "Integrity", image: "people", alt: "Colleagues in discussion", text: "We act honestly, communicate clearly and uphold responsible business conduct." },
-  { title: "Accountability", image: "documentCheck", alt: "Technician reviewing a checklist", text: "We take ownership of our work and keep improving how we deliver on our commitments." },
+  { title: "Patient focus", image: "patient", alt: "Two scientists discussing results in the laboratory", text: "We weigh the needs of patients and the responsibilities of healthcare in every business decision we make." },
+  { title: "Quality commitment", image: "blisterPacks", alt: "Tablets in blister packs", text: "We give quality due importance across our products, partnerships and operational processes." },
+  { title: "Integrity", image: "people", alt: "Analyst reviewing test results at the bench", text: "We act honestly, communicate clearly and uphold responsible business conduct." },
+  { title: "Accountability", image: "documentCheck", alt: "Quality analyst measuring a tablet", text: "We take ownership of our work and keep improving how we deliver on our commitments." },
 ];
 
 export const direction = {
