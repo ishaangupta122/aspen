@@ -1,15 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, FileText, Search } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import {
   catalogue,
   categoryCards,
   productsFor,
-  INITIAL_VISIBLE,
 } from "@/data/catalogue";
-import Illustration from "@/components/products/Illustration";
-import Monograph from "@/components/products/Monograph";
+import ProductList from "@/components/products/ProductList";
 import Link from "next/link";
 import { smoothScrollTo } from "@/lib/scroll";
 import { slugify } from "@/lib/specialties-slug";
@@ -17,7 +15,6 @@ import { slugify } from "@/lib/specialties-slug";
 export default function ProductCatalogue() {
   const [tab, setTab] = useState("All");
   const [query, setQuery] = useState("");
-  const [open, setOpen] = useState(null);
   const barRef = useRef(null);
   // Scrolls the results bar just below the fixed header.
   const scrollToBar = () => {
@@ -32,8 +29,6 @@ export default function ProductCatalogue() {
     setTab(name);
     requestAnimationFrame(scrollToBar);
   };
-  const [limit, setLimit] = useState(INITIAL_VISIBLE);
-  useEffect(() => setLimit(INITIAL_VISIBLE), [tab, query]);
   // Deep link from the home page: /products?q=BRAND
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -88,15 +83,6 @@ export default function ProductCatalogue() {
   const slide = (dir) =>
     trackRef.current?.scrollBy({ left: dir * 400, behavior: "smooth" });
 
-  const rows = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return productsFor(tab).filter(
-      (p) =>
-        !q ||
-        `${p.brand} ${p.composition} ${p.category}`.toLowerCase().includes(q),
-    );
-  }, [tab, query]);
-
   return (
     <section className="rf rf-section pr-catalogue" id="catalogue">
       <div className="rf-container">
@@ -136,7 +122,7 @@ export default function ProductCatalogue() {
           role="tablist"
           aria-label="Specialty"
         >
-          {categoryCards.map(({ name, label, art, image }) => (
+          {categoryCards.map(({ name, label }) => (
             <button
               key={name}
               type="button"
@@ -145,7 +131,6 @@ export default function ProductCatalogue() {
               className={`pr-cat ${tab === name ? "is-active" : ""}`}
               onClick={() => pick(name)}
             >
-              <Illustration name={art} image={image} alt="" />
               <span className="pr-cat-label">
                 <strong>{label}</strong>
                 <em>
@@ -155,14 +140,19 @@ export default function ProductCatalogue() {
             </button>
           ))}
         </div>
-        <div className="pr-bar" ref={barRef}>
-          <div>
-            <h3>
-              {tab === "All"
-                ? "All products"
-                : categoryCards.find((c) => c.name === tab)?.label || tab}
-            </h3>
-            <p>
+        <ProductList
+          products={productsFor(tab)}
+          query={query}
+          onQuery={setQuery}
+          barRef={barRef}
+          resetKey={tab}
+          title={
+            tab === "All"
+              ? "All products"
+              : categoryCards.find((c) => c.name === tab)?.label || tab
+          }
+          intro={
+            <>
               The Aspen range, A–Z by brand.
               {tab !== "All" && (
                 <>
@@ -172,115 +162,10 @@ export default function ProductCatalogue() {
                   </Link>
                 </>
               )}
-            </p>
-          </div>
-          <div className="pr-tools">
-            <label className="pr-search">
-              <Search size={18} />
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search brand, salt or category"
-                aria-label="Search products"
-              />
-            </label>
-          </div>
-        </div>
-
-        <div className="pr-table" role="table">
-          <div className="pr-table-in">
-            {/* ARIA table roles (not <table>) because rows are CSS grids that also
-              scroll horizontally on small screens; native table semantics are
-              not reliably kept once table elements get display: grid. */}
-            <div className="pr-thead" role="row">
-              <span role="columnheader">Brand</span>
-              <span role="columnheader">Composition</span>
-              <span role="columnheader">Category</span>
-              <span role="columnheader">Pack</span>
-              <span role="columnheader">Details</span>
-            </div>
-            {rows.slice(0, limit).map((p) => (
-              <div className="pr-row" role="row" key={p.id}>
-                <div className="pr-brand" role="cell">
-                  <div>
-                    {p.mono ? (
-                      <button
-                        type="button"
-                        className="pr-brand-name"
-                        onClick={() => setOpen(p)}
-                        title="Open product monograph"
-                      >
-                        {p.brand}
-                      </button>
-                    ) : (
-                      <strong className="pr-brand-plain">{p.brand}</strong>
-                    )}
-                    <span>{p.form}</span>
-                  </div>
-                </div>
-                <p role="cell" data-label="Composition">
-                  {p.composition}
-                </p>
-                <p role="cell" data-label="Category">
-                  {p.category}
-                </p>
-                <p role="cell" data-label="Pack">
-                  {p.pack}
-                </p>
-                <div role="cell">
-                  {p.mono ? (
-                    <button
-                      type="button"
-                      className="pr-detail-btn"
-                      onClick={() => setOpen(p)}
-                    >
-                      <FileText size={15} /> Monograph
-                    </button>
-                  ) : (
-                    <span className="pr-na" aria-label="No monograph">
-                      –
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
-            {rows.length === 0 && (
-              <div role="row">
-                <p className="pr-empty" role="cell">
-                  No products match your search.
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="pr-more">
-          <p className="pr-count">
-            Showing {Math.min(limit, rows.length)} of {rows.length} products
-          </p>
-          {rows.length > INITIAL_VISIBLE && (
-            <div className="pr-more-actions">
-              {limit < rows.length && (
-                <button
-                  type="button"
-                  onClick={() => setLimit((l) => l + INITIAL_VISIBLE)}
-                >
-                  Show more
-                </button>
-              )}
-              {limit > INITIAL_VISIBLE && (
-                <button
-                  type="button"
-                  className="is-ghost"
-                  onClick={() => setLimit(INITIAL_VISIBLE)}
-                >
-                  Show less
-                </button>
-              )}
-            </div>
-          )}
-        </div>
+            </>
+          }
+        />
       </div>
-      {open && <Monograph product={open} onClose={() => setOpen(null)} />}
     </section>
   );
 }

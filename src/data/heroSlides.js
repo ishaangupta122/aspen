@@ -48,7 +48,7 @@ export const heroSlides = [
     eyebrow: "Therapeutic expertise",
     lines: ["Expertise across"],
     accent: "therapeutic areas.",
-    text: "A portfolio of 250+ products across cardiology, neurology, gastroenterology and more, with detailed monographs for many products.",
+    text: "A portfolio of 250+ products across neurology, psychatry, gastroenterology, cardiology and more, with detailed monographs for many products.",
     cta: { label: "Explore our expertise", href: "/products#portfolio" },
     fact: { label: "Expertise", value: "Multiple specialties" },
     facts: ["Multiple specialties", "Cardiology", "Neurology"],

@@ -1,11 +1,8 @@
-import { Award, FlaskConical, Globe2, ShieldCheck } from "lucide-react";
 import RfReveal from "@/components/ui/RfReveal";
 import { certifications } from "@/data/manufacturing";
 
-const icons = [ShieldCheck, Globe2, Award, FlaskConical];
-
 // Each certification is [name, detail, image?]. Add the certificate / mark image path (for example
-// "/certs/eu-gmp.png" in /public) as the third item to show it instead of the icon.
+// "/certs/eu-gmp.png" in /public) as the third item to show it on the card.
 export default function Certifications() {
   return (
     <section className="rf rf-section mc" id="certifications">
@@ -18,21 +15,18 @@ export default function Certifications() {
         </RfReveal>
         <div className="mc-grid">
           {certifications.map(([name, detail, image], i) => {
-            const Icon = icons[i % icons.length];
             return (
               <RfReveal className="mc-card" key={name}>
                 <span className="mc-num">0{i + 1}</span>
-                <span className="mc-badge">
-                  {image ? (
+                {image && (
+                  <span className="mc-badge">
                     <img
                       src={image}
                       alt={`${name} certification`}
                       loading="lazy"
                     />
-                  ) : (
-                    <Icon size={38} strokeWidth={1.3} />
-                  )}
-                </span>
+                  </span>
+                )}
                 <strong>{name}</strong>
                 <span className="mc-detail">{detail}</span>
               </RfReveal>
