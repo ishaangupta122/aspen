@@ -2,8 +2,8 @@ import { Beaker, HeartPulse, Microscope, Sparkles } from "lucide-react";
 
 // All photos are self-hosted in /public/images (downloaded by scripts/fetch-images.mjs; sources listed in scripts/images.json).
 // Number of medical specialties Aspen serves. Single source for every place the
-// site quotes it; keep in sync with `specialtyNames` in products-data.js (20 entries).
-export const SPECIALTY_COUNT = 20;
+// site quotes it; keep in sync with `specialtyNames` in catalogue.js (16 tabs).
+export const SPECIALTY_COUNT = 16;
 
 export const images = {
   hero: "/images/photos/hero-lab-rotary-evaporator.jpg",
@@ -18,8 +18,9 @@ export const images = {
   scientist: "/images/photos/aspen-scientist-at-bench.jpg",
   researcher: "/images/photos/aspen-microbiology-hood.jpg",
   // Section-specific photos
-  doctorNotes: "/images/photos/aspen-scientists-reviewing-notes.jpg",
-  pharmacists: "/images/photos/aspen-stability-chamber-check.jpg",
+  formulation: "/images/photos/aspen-raw-material-sampling.jpg",
+  qualityTeam: "/images/photos/aspen-vblender-operator.jpg",
+  isolator: "/images/photos/aspen-aseptic-isolator-operator.jpg",
   // Home hero carousel
   heroTeam: "/images/photos/aspen-analyst-reviewing-results.jpg",
   heroQuality: "/images/photos/hero-aspen-quality-microscopy.jpg",
@@ -34,7 +35,7 @@ export const images = {
 export const therapeuticAreas = [
   {
     name: "General Medicine",
-    href: "/products/general-medicine",
+    href: "/products",
     detail: "Antibiotics, analgesics, everyday therapy",
     className: "area-main",
     image: "/images/photos/doctor-stethoscope.jpg",

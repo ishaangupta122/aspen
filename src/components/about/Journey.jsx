@@ -1,5 +1,4 @@
 import RfReveal from "@/components/ui/RfReveal";
-import FounderPortrait from "@/components/about/FounderPortrait";
 import { journey } from "@/data/about";
 
 export default function Journey() {
@@ -19,13 +18,6 @@ export default function Journey() {
           </dl>
         </RfReveal>
         <RfReveal className="ab-journey-copy">
-          <figure className="ab-founder">
-            <FounderPortrait src="/founder.jpg" name="Anup Goyal" />
-            <figcaption>
-              <strong>Anup Goyal</strong>
-              <span>Founder</span>
-            </figcaption>
-          </figure>
           <p>
             Aspen was founded by <strong>Anup Goyal</strong>, whose experience
             in pharmaceutical sales and marketing provided a close understanding

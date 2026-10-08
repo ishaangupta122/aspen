@@ -49,7 +49,7 @@ export default async function SpecialtyPage({ params }) {
               >
                 product catalogue
               </Link>{" "}
-              to search and open condensed monographs.
+              to search the range and open product monographs.
             </p>
           </div>
           <div

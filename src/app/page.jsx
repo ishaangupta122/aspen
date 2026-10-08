@@ -1,5 +1,5 @@
 import PageShell from "@/components/layout/PageShell";
-import HeroCarousel from "@/components/sections/HeroCarousel";
+import HeroPreview from "@/components/hero/HeroPreview";
 import StatStrip from "@/components/sections/StatStrip";
 import About from "@/components/sections/About";
 import TherapeuticAreas from "@/components/sections/TherapeuticAreas";
@@ -13,7 +13,7 @@ import FinalCta from "@/components/sections/FinalCta";
 export default function HomePage() {
   return (
     <PageShell>
-      <HeroCarousel />
+      <HeroPreview />
       <div id="highlights">
         <StatStrip />
       </div>

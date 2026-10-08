@@ -6,7 +6,7 @@ function Diagram({ type }) {
   if (type === "bilayer") {
     return (
       <svg viewBox="0 0 72 72" aria-hidden="true">
-        <rect x="8" y="14" width="56" height="20" rx="10" fill="#1e7e75" />
+        <rect x="8" y="14" width="56" height="20" rx="10" fill="#28746e" />
         <rect x="8" y="38" width="56" height="20" rx="10" fill="#15539c" />
       </svg>
     );
@@ -16,13 +16,13 @@ function Diagram({ type }) {
       <svg viewBox="0 0 72 72" aria-hidden="true">
         <circle cx="36" cy="36" r="28" fill="#15539c" />
         <circle cx="36" cy="36" r="15" fill="#fff" />
-        <circle cx="36" cy="36" r="9" fill="#1e7e75" />
+        <circle cx="36" cy="36" r="9" fill="#28746e" />
       </svg>
     );
   }
   return (
     <svg viewBox="0 0 72 72" aria-hidden="true">
-      <circle cx="27" cy="36" r="20" fill="#1e7e75" fillOpacity="0.85" />
+      <circle cx="27" cy="36" r="20" fill="#28746e" fillOpacity="0.85" />
       <circle cx="45" cy="36" r="20" fill="#15539c" fillOpacity="0.8" />
     </svg>
   );

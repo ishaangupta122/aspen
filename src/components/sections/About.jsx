@@ -10,15 +10,15 @@ export default function About() {
         <RfReveal className="rf-about-images">
           <div className="rf-about-main">
             <img
-              src={images.doctorNotes}
+              src={images.scientist}
               alt="Two Aspen scientists reviewing laboratory notes"
               loading="lazy"
             />
           </div>
           <div className="rf-about-detail">
             <img
-              src={images.pharmacists}
-              alt="Scientist checking samples in a stability chamber"
+              src={images.isolator}
+              alt="Operator working at an aseptic isolator"
               loading="lazy"
             />
           </div>

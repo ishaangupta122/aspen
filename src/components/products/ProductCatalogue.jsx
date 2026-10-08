@@ -2,24 +2,22 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, FileText, Search } from "lucide-react";
-import { catalogue, categoryCards, INITIAL_VISIBLE } from "@/data/catalogue";
-import ProductThumb from "@/components/products/ProductThumb";
+import {
+  catalogue,
+  categoryCards,
+  productsFor,
+  INITIAL_VISIBLE,
+} from "@/data/catalogue";
 import Illustration from "@/components/products/Illustration";
-import ImagePreview from "@/components/products/ImagePreview";
 import Monograph from "@/components/products/Monograph";
 import Link from "next/link";
 import { smoothScrollTo } from "@/lib/scroll";
 import { slugify } from "@/lib/specialties-slug";
 
-const sorted = [...catalogue].sort(
-  (a, b) => a.brand.localeCompare(b.brand) || a.id - b.id,
-);
-
 export default function ProductCatalogue() {
   const [tab, setTab] = useState("All");
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(null);
-  const [preview, setPreview] = useState(null);
   const barRef = useRef(null);
   // Scrolls the results bar just below the fixed header.
   const scrollToBar = () => {
@@ -92,13 +90,10 @@ export default function ProductCatalogue() {
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return sorted.filter(
+    return productsFor(tab).filter(
       (p) =>
-        (tab === "All" || p.specialties.includes(tab)) &&
-        (!q ||
-          `${p.brand} ${p.composition} ${p.category}`
-            .toLowerCase()
-            .includes(q)),
+        !q ||
+        `${p.brand} ${p.composition} ${p.category}`.toLowerCase().includes(q),
     );
   }, [tab, query]);
 
@@ -207,22 +202,19 @@ export default function ProductCatalogue() {
             {rows.slice(0, limit).map((p) => (
               <div className="pr-row" role="row" key={p.id}>
                 <div className="pr-brand" role="cell">
-                  <button
-                    type="button"
-                    className="pr-brand-btn"
-                    onClick={() => setPreview(p)}
-                    aria-label={`Preview ${p.brand} image`}
-                  >
-                    <ProductThumb product={p} />
-                  </button>
                   <div>
-                    <button
-                      type="button"
-                      className="pr-brand-name"
-                      onClick={() => setPreview(p)}
-                    >
-                      {p.brand}
-                    </button>
+                    {p.mono ? (
+                      <button
+                        type="button"
+                        className="pr-brand-name"
+                        onClick={() => setOpen(p)}
+                        title="Open product monograph"
+                      >
+                        {p.brand}
+                      </button>
+                    ) : (
+                      <strong className="pr-brand-plain">{p.brand}</strong>
+                    )}
                     <span>{p.form}</span>
                   </div>
                 </div>
@@ -236,13 +228,19 @@ export default function ProductCatalogue() {
                   {p.pack}
                 </p>
                 <div role="cell">
-                  <button
-                    type="button"
-                    className="pr-detail-btn"
-                    onClick={() => setOpen(p)}
-                  >
-                    <FileText size={15} /> Monograph
-                  </button>
+                  {p.mono ? (
+                    <button
+                      type="button"
+                      className="pr-detail-btn"
+                      onClick={() => setOpen(p)}
+                    >
+                      <FileText size={15} /> Monograph
+                    </button>
+                  ) : (
+                    <span className="pr-na" aria-label="No monograph">
+                      –
+                    </span>
+                  )}
                 </div>
               </div>
             ))}
@@ -282,16 +280,6 @@ export default function ProductCatalogue() {
           )}
         </div>
       </div>
-      {preview && (
-        <ImagePreview
-          product={preview}
-          onClose={() => setPreview(null)}
-          onMonograph={() => {
-            setOpen(preview);
-            setPreview(null);
-          }}
-        />
-      )}
       {open && <Monograph product={open} onClose={() => setOpen(null)} />}
     </section>
   );
