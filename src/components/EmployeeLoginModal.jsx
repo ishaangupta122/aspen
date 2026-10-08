@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import {
-  ArrowUpRight,
+  ExternalLink,
   Globe,
   Mail,
   ShieldCheck,
@@ -42,17 +42,20 @@ export default function EmployeeLoginModal({ onClose }) {
         aria-labelledby="el-title">
         <div className="el-top">
           <div className="el-brand">
-            <img className="el-logo" src="/logo-mark-dark.svg" alt="" />
+            <span className="el-logo">
+              <img src="/logo-mark.png" alt="" width="34" height="34" />
+            </span>
             <span>
               <strong>Aspen Pharmaceuticals</strong>
               <em>Staff portal</em>
             </span>
           </div>
-          <button className="el-close" onClick={onClose} aria-label="Close">
+          <button type="button" className="el-close" onClick={onClose} aria-label="Close">
             <X size={18} />
           </button>
         </div>
 
+        <div className="el-scroll">
         <div className="el-body">
           <h2 id="el-title">Employee Login</h2>
           <p className="el-lead">
@@ -72,7 +75,7 @@ export default function EmployeeLoginModal({ onClose }) {
               <strong>CBO ERP Web Login</strong>
               <em>Open in your browser</em>
             </span>
-            <ArrowUpRight size={20} />
+            <ExternalLink className="el-ext" size={18} />
           </a>
 
           <div className="el-apps">
@@ -88,7 +91,7 @@ export default function EmployeeLoginModal({ onClose }) {
                 <strong>Android</strong>
                 <em>Google Play</em>
               </span>
-              <ArrowUpRight size={16} />
+              <ExternalLink className="el-ext" size={16} />
             </a>
             <a
               className="el-app"
@@ -102,7 +105,7 @@ export default function EmployeeLoginModal({ onClose }) {
                 <strong>iPhone</strong>
                 <em>App Store</em>
               </span>
-              <ArrowUpRight size={16} />
+              <ExternalLink className="el-ext" size={16} />
             </a>
           </div>
         </div>
@@ -122,6 +125,7 @@ export default function EmployeeLoginModal({ onClose }) {
               <a href="mailto:aspeninfo03@gmail.com">aspeninfo03@gmail.com</a>
             </span>
           </p>
+        </div>
         </div>
       </div>
     </div>,

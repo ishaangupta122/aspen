@@ -1,7 +1,7 @@
 // Shared content for the home-hero candidates (src/components/hero). The carousel tells a
 // three-part story: what we provide, why you can trust us, what we bring to healthcare.
 // Every fact below comes from existing site content (about.js, manufacturing.js, contact.js).
-export const HERO_DURATION = 9500;
+export const HERO_DURATION = 3500;
 
 // facts: three short, verified facts shown as quiet floating pills on the right (A).
 // image / imagePos / imageFlip: large photo for the full-bleed concept (A).

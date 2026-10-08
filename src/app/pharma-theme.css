@@ -1,0 +1,1353 @@
+/* ==========================================================================
+   Aspen Pharmaceuticals – corporate refinement layer
+   --------------------------------------------------------------------------
+   Loaded after globals.css (see layout.jsx). It is an enhancement pass: the
+   layout, content and blue brand direction are unchanged. It only
+     · refines the colour / radius / shadow / type tokens,
+     · normalises headings, buttons, cards, images and banners,
+     · replaces glow/gradient decoration with quiet grid + rule-line patterns,
+     · makes motion subtle and always-visible,
+     · fixes mobile catalogue / monograph / form usability.
+   Everything lives here so the system can be tuned (or removed) in one place.
+   ========================================================================== */
+
+/* ---------- 1. Design tokens ---------------------------------------------- */
+:root {
+  /* Deep navy = brand. Clinical blue = interaction. Muted teal = sparing trust accent. */
+  --c-ink: #0f1d2e;
+  --c-navy: #0b2342;
+  --c-navy-deep: #07192f;
+  --c-navy-mid: #0d2a4d;
+  --c-navy-soft: #123760;
+  --c-petrol: #0b2342;
+  --c-blue: #1a5ea8;
+  --c-blue-dark: #134b8a;
+  --c-teal: #2b7a78;
+  --c-teal-text: #25706d;
+  --c-aqua: #8fbab9;
+  --c-mint: #a3c8c6;
+  --c-aqua-strong: #6fa9a6;
+  --c-muted: #4a5b6c;
+  --c-muted-2: #5a6c7d;
+  --c-subtle: #66788a;
+  --c-on-dark: #ced9e5;
+  --c-on-dark-2: #b4c4d4;
+  --c-on-dark-3: #93a6b9;
+  --c-line: #d3dce6;
+  --c-line-soft: #dfe6ee;
+  --c-surface: #f4f7fa;
+  --c-surface-tint: #eaf0f5;
+  --c-trust: #eaf0f5;
+  --c-map: #e1eaf2;
+  --c-paper: #ffffff;
+
+  /* One radius scale: modest, institutional. The old "leaf" corners are retired. */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-leaf-sm: 8px;
+  --radius-leaf: 8px;
+  --radius-leaf-lg: 8px;
+  --radius-pill: 4px;
+
+  /* One shadow scale: soft, low-contrast. */
+  --shadow-1: 0 1px 2px rgba(11, 35, 66, 0.06);
+  --shadow-2: 0 4px 16px rgba(11, 35, 66, 0.08);
+  --shadow-3: 0 18px 48px rgba(11, 35, 66, 0.16);
+  --rf-shadow: var(--shadow-2);
+
+  /* Type: institutional scale, calmer than start-up display sizes. */
+  --fs-page-title: clamp(30px, 3.4vw, 42px);
+  --fs-hero-title: clamp(30px, 3.4vw, 44px);
+  --fs-section-title: clamp(28px, 3vw, 40px);
+  --fs-section-title-sm: clamp(24px, 2.5vw, 34px);
+  --heading-tracking: -0.012em;
+  --heading-leading: 1.18;
+
+  /* Motion */
+  --dur-fast: 0.16s;
+  --dur: 0.24s;
+  --dur-slow: 0.4s;
+  --dur-reveal: 0.5s;
+
+  /* Buttons */
+  --btn-height: 46px;
+  --btn-height-sm: 38px;
+  --btn-radius: 4px;
+  --btn-pad-x: 22px;
+
+  /* Section rhythm */
+  --section-y: clamp(64px, 8vw, 104px);
+
+  /* Quiet patterns (never above ~5% contrast) */
+  --grid-light:
+    linear-gradient(rgba(11, 35, 66, 0.045) 1px, transparent 1px) 0 0 / 48px
+      48px,
+    linear-gradient(90deg, rgba(11, 35, 66, 0.045) 1px, transparent 1px) 0 0 /
+      48px 48px;
+  --grid-dark:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 56px
+      56px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 /
+      56px 56px;
+
+  background: var(--c-surface);
+}
+body {
+  background: var(--c-surface);
+  color: var(--c-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 2. Typography ------------------------------------------------- */
+/* Tight negative tracking (-2.5px etc.) is what collapsed words together
+   ("Medicinesacross") at tablet widths. Use a small em-based tracking instead
+   and add a little word spacing so heading words never touch. */
+h1,
+h2,
+h3,
+h4 {
+  word-spacing: 0.06em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.ab-commit-card h3,
+.ab-direction-body p:first-child,
+.ab-foundation-lead,
+.ab-journey h2,
+.ab-mv-card p,
+.ab-value h3,
+.ct-career h3,
+.ct-formcard h2,
+.ct-intro p,
+.ct-sent h2,
+.el-modal h2,
+.fx-head h2,
+.mc-head h2,
+.mf-commit .ab-direction-body h2,
+.mf-flow-detail > span,
+.mf-partners-head h2,
+.mf-ps-caption strong,
+.mf-ps-logo b,
+.mf-qintro h2,
+.pb-banner h1,
+.pq-intro h2,
+.pr-bar h3,
+.pr-ov-head h2,
+.qs-num,
+.qt-copy h2,
+.rd-focus-card h3,
+.rd-intro-copy h2,
+.rd-intro-stats strong,
+.rd-panel h3,
+.rd-quality-copy h2,
+.rd-stage h3,
+.rd-tablet-card h3,
+.rd-tablets-copy h2,
+.rf-heading h2,
+.rf-reach-stat strong,
+.hc-title,
+.hx1 .hx-title,
+.ab-hero h1,
+.final-cta h2,
+.brand-name {
+  letter-spacing: var(--heading-tracking);
+  word-spacing: 0.06em;
+}
+.rf-heading h2,
+.pr-ov-head h2,
+.mf-partners-head h2,
+.pq-intro h2,
+.rd-intro-copy h2,
+.final-cta h2 {
+  font-weight: 600;
+  line-height: var(--heading-leading);
+}
+.rf-heading {
+  max-width: 720px;
+}
+.rf-heading p {
+  font-size: 16.5px;
+  line-height: 1.7;
+}
+/* Headings anywhere on the site share one tracking value (older rules used
+   -2px … -5px, which also squeezed the display numerals). */
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--heading-tracking) !important;
+}
+.section-intro h2,
+.fp-info h3 {
+  font-weight: 600;
+  line-height: var(--heading-leading);
+}
+.rf-reach-stat strong,
+.qs-num,
+.rd-intro-stats strong,
+.stat-copy strong {
+  letter-spacing: -0.01em !important;
+}
+.rf-eyebrow,
+.eyebrow {
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+p {
+  hanging-punctuation: first;
+}
+/* Page banner titles: calmer, shorter */
+.pb-banner h1 {
+  font-weight: 600;
+  line-height: 1.14;
+  max-width: 22ch;
+}
+
+/* Product detail / monograph / table copy: easier to read at length */
+.pr-row p {
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.mg-p,
+.mg-list li,
+.mg-kv dd,
+.mg-refs li {
+  line-height: 1.7;
+}
+
+/* ---------- 3. Section rhythm -------------------------------------------- */
+.rf-section {
+  padding-block: var(--section-y);
+}
+.final-cta {
+  padding-block: clamp(56px, 7vw, 80px);
+}
+
+/* ---------- 4. Buttons ---------------------------------------------------- */
+.button {
+  gap: 10px;
+  min-height: var(--btn-height);
+  border-radius: var(--btn-radius);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  transition:
+    background var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease;
+}
+.button:hover {
+  transform: none;
+  box-shadow: none;
+}
+.button:hover svg {
+  transform: none;
+}
+.button svg {
+  opacity: 0.9;
+}
+/* Solid navy (default, on light surfaces) */
+.button-primary {
+  background: var(--c-navy);
+  color: var(--c-white);
+  border: 1px solid var(--c-navy);
+}
+.button-primary:hover {
+  background: var(--c-blue-dark);
+  border-color: var(--c-blue-dark);
+}
+/* Outline */
+.button-light {
+  background: transparent;
+  color: var(--c-navy);
+  border: 1px solid var(--c-navy);
+}
+.button-light:hover {
+  background: var(--c-navy);
+  color: var(--c-white);
+}
+/* On dark surfaces the same two styles invert */
+:where(.final-cta, .ab-hero, .rf-quality, .rf-sustain, .fx, .pq, .pb-banner)
+  .button-primary {
+  background: var(--c-white);
+  border-color: var(--c-white);
+  color: var(--c-navy);
+}
+:where(.final-cta, .ab-hero, .rf-quality, .rf-sustain, .fx, .pq, .pb-banner)
+  .button-primary:hover {
+  background: var(--c-surface-tint);
+  border-color: var(--c-surface-tint);
+}
+:where(.final-cta, .ab-hero, .rf-quality, .rf-sustain, .fx, .pq, .pb-banner)
+  .button-light {
+  color: var(--c-white);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+:where(.final-cta, .ab-hero, .rf-quality, .rf-sustain, .fx, .pq, .pb-banner)
+  .button-light:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--c-white);
+  color: var(--c-white);
+}
+.button-text {
+  color: var(--c-blue);
+}
+/* Underlined text links: keep them, but make the arrow quiet */
+.rf-link {
+  gap: 12px;
+  font-weight: 600;
+  border-bottom-color: currentColor;
+  transition: color var(--dur-fast) ease;
+}
+.rf-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ---------- 5. Navigation ------------------------------------------------- */
+.site-header {
+  transition:
+    background var(--dur) ease,
+    box-shadow var(--dur) ease;
+}
+.site-header.is-scrolled {
+  background: rgba(11, 35, 66, 0.97);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.nav-links > .nav-contact,
+.nav-contact {
+  border-radius: var(--btn-radius);
+  padding: 10px 18px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.nav-links > .nav-contact:hover {
+  background: var(--c-white);
+  border-color: var(--c-white);
+  color: var(--c-navy) !important;
+}
+.dropdown-menu {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-3);
+  border: 1px solid var(--c-line);
+  animation: pt-menu-in var(--dur) ease both;
+}
+@keyframes pt-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.dropdown-menu a {
+  border-radius: var(--radius-sm);
+}
+.nav-chev {
+  display: inline-grid;
+  place-items: center;
+  padding: 4px;
+  color: inherit;
+}
+@media (max-width: 900px) {
+  /* Quiet navy sheet instead of a teal glow */
+  .nav-links {
+    background: var(--c-navy-deep);
+    font-weight: 400;
+    font-size: 22px;
+    transition:
+      opacity var(--dur) ease,
+      visibility var(--dur) ease;
+  }
+  .nav-links > a.is-active,
+  .nav-dropdown > a.is-active {
+    color: var(--c-white);
+    box-shadow: inset 3px 0 0 var(--c-aqua);
+    padding-left: 14px;
+  }
+  .dropdown-menu {
+    border: 0;
+    animation: none;
+  }
+  .nav-links > .nav-contact {
+    border-radius: var(--btn-radius);
+  }
+}
+
+/* ---------- 6. Home hero (calmer, photograph stays inspectable) ---------- */
+.hx1 {
+  min-height: clamp(560px, 86svh, 760px);
+}
+.hx1-bg img {
+  filter: none;
+  transform: none;
+  transition: opacity 0.6s ease;
+}
+.hx1-bg img.on {
+  transform: none;
+}
+.hx1-blur {
+  display: none;
+}
+.hx1-shade {
+  background:
+    linear-gradient(180deg, rgba(7, 25, 47, 0.55) 0, rgba(7, 25, 47, 0) 22%),
+    linear-gradient(0deg, rgba(7, 25, 47, 0.55) 0, rgba(7, 25, 47, 0) 24%),
+    linear-gradient(
+      90deg,
+      rgba(7, 25, 47, 0.82) 0%,
+      rgba(7, 25, 47, 0.62) 34%,
+      rgba(7, 25, 47, 0.22) 56%,
+      rgba(7, 25, 47, 0) 72%
+    );
+}
+.hx1 .hx-title {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: var(--heading-tracking);
+  word-spacing: 0.04em;
+}
+.hx1-eyebrow {
+  font-size: 12.5px;
+}
+.hx1-text {
+  font-size: 17px;
+  max-width: 480px;
+}
+.hx1 .button,
+.hx1 .button-primary {
+  border-radius: var(--btn-radius);
+  border-color: rgba(255, 255, 255, 0.75);
+  background: transparent;
+  color: var(--c-white);
+}
+.hx1 .button:hover,
+.hx1 .button-primary:hover {
+  background: var(--c-white);
+  color: var(--c-navy);
+}
+.hx1-facts {
+  font-size: 15px;
+}
+.hx1-bar {
+  background: rgba(7, 25, 47, 0.78);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+.hx-arrows button {
+  border-radius: var(--radius-sm);
+  transition:
+    color var(--dur) ease,
+    background var(--dur) ease;
+}
+.hx1 .hx-arrows button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.hx-tabs button {
+  font-size: 14px;
+}
+@media (max-width: 900px) {
+  .hx1 {
+    min-height: clamp(560px, 84svh, 700px);
+  }
+}
+@media (max-width: 600px) {
+  .hx1 {
+    min-height: 600px;
+  }
+  .hx1 .hx-title {
+    font-size: 31px;
+  }
+}
+
+/* ---------- 7. Inner-page banners: short, calm, structured --------------- */
+.pb-banner {
+  min-height: clamp(340px, 42vh, 440px);
+  align-items: flex-end;
+  padding: 136px 0 56px;
+  background-color: var(--c-navy);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(100deg, #0b2342 0%, #0e2d52 62%, #123760 100%);
+  background-size:
+    56px 56px,
+    56px 56px,
+    100% 100%;
+  background-position:
+    0 0,
+    0 0,
+    0 0;
+  background-repeat: repeat, repeat, no-repeat;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* a fine rule that runs under the title block, aligned to the page container */
+.pb-banner::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(var(--page-max, 1240px), calc(100% - 2 * var(--page-gutter, 32px)));
+  height: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    var(--c-aqua-strong) 0,
+    var(--c-aqua-strong) 72px,
+    rgba(255, 255, 255, 0.14) 72px
+  );
+}
+.pb-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 55%, rgba(7, 25, 47, 0.35));
+  pointer-events: none;
+}
+.pb-crumbs {
+  margin-top: 14px;
+}
+.pb-crumbs ol {
+  font-size: 13.5px;
+}
+@media (max-width: 700px) {
+  .pb-banner {
+    min-height: 280px;
+    padding: 112px 0 40px;
+    background-position:
+      0 0,
+      0 0,
+      0 0;
+    background-size:
+      40px 40px,
+      40px 40px,
+      100% 100%;
+  }
+}
+
+/* About hero + other full-height dark intros: same quiet treatment */
+.ab-hero {
+  min-height: 0;
+  padding: 128px 0 72px;
+  background:
+    var(--grid-dark), linear-gradient(100deg, #0b2342 0%, #0e2d52 100%);
+}
+.ab-hero::before,
+.ab-hero-orb,
+.hero-orb,
+.fx-glow,
+.hero::after {
+  display: none;
+}
+.ab-hero-image {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-3);
+  height: 340px;
+}
+.ab-hero-tag {
+  backdrop-filter: none;
+  border-radius: var(--radius-md);
+  background: rgba(11, 35, 66, 0.92);
+}
+.ab-hero h1 {
+  font-weight: 600;
+}
+
+/* ---------- 8. Dark sections: flat navy + rule-line grid ---------------- */
+.rf-sustain {
+  background: var(--grid-dark), var(--c-navy);
+}
+.fx {
+  background: var(--grid-dark), var(--c-navy);
+}
+.final-cta {
+  background: var(--grid-dark), var(--c-navy);
+}
+.final-cta::before,
+.cta-lines {
+  display: none;
+}
+.rf-quality {
+  background: var(--c-navy);
+}
+.footer.ft {
+  background: var(--c-navy-deep);
+}
+.footer.ft::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(143, 186, 185, 0.35),
+    transparent
+  );
+}
+.rf-quality-image::before {
+  display: none;
+}
+.rf-map-center {
+  box-shadow: 0 0 0 8px rgba(26, 94, 168, 0.14);
+}
+.fx-item::after,
+.area-overlay {
+  /* keep photographs legible: lighter wash */
+  opacity: 0.85;
+}
+
+/* ---------- 9. Light sections: tint + faint specification grid ----------- */
+.rf-trust,
+.stat-strip {
+  background: var(--c-trust);
+}
+.pr-catalogue,
+.rf-trust {
+  background: var(--grid-light), var(--c-trust);
+}
+.pr-overview {
+  background: var(--c-paper);
+}
+.stat-icon,
+.mc-badge {
+  background: var(--c-paper);
+  border: 1px solid var(--c-line);
+  box-shadow: none;
+}
+
+/* ---------- 10. Cards (catalogue / specification style) ------------------ */
+.pr-ov-item,
+.fp-card,
+.rd-focus-card,
+.rd-tablet-card,
+.mf-flow-card,
+.mf-flow-detail,
+.ab-value,
+.ab-commit-card,
+.ct-career,
+.mf-ps-card,
+.ab-facts,
+.pr-cat {
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+.pr-ov-item,
+.fp-card,
+.pr-cat:not(.is-active) {
+  border: 1px solid var(--c-line);
+  background: var(--c-paper);
+  transition:
+    border-color var(--dur) ease,
+    box-shadow var(--dur) ease;
+}
+.pr-ov-item:hover,
+.fp-card:hover,
+.pr-cat:not(.is-active):hover {
+  border-color: var(--c-navy-soft);
+  box-shadow: var(--shadow-2);
+  transform: none;
+}
+.area-item {
+  border-radius: var(--radius-md);
+  transition: box-shadow var(--dur) ease;
+}
+.area-item:hover {
+  transform: none;
+  box-shadow: var(--shadow-3);
+}
+.pr-cat.is-active {
+  box-shadow: var(--shadow-2);
+}
+.pr-cat .pr-art::after {
+  opacity: 0.5;
+}
+.pr-cat-label::before {
+  background: var(--c-navy-soft);
+}
+.pr-cat.is-active .pr-cat-label {
+  background: var(--c-navy);
+}
+.pr-arrows button,
+.fp-nav button,
+.fp-arrow,
+.hc-arrows button {
+  border-radius: var(--radius-md);
+}
+
+/* ---------- 11. Images: one crop, one radius ----------------------------- */
+.rf-about-main,
+.rf-about-detail,
+.rf-quality-image img,
+.rf-trust-large,
+.rf-trust-small,
+.rf-sustain-image img,
+.rf-map,
+.rd-tablets-image,
+.rd-intro-media img,
+.hero-image-wrap {
+  border-radius: var(--radius-lg);
+}
+.rf-about-detail {
+  box-shadow: var(--shadow-2);
+}
+.rf-sustain-image img {
+  filter: none;
+}
+.rf-sustain-image img,
+.rf-quality-image img,
+.rf-trust-large,
+.rf-trust-small,
+.rf-about-main {
+  object-fit: cover;
+}
+/* Product imagery: always the whole pack, on white, never cropped */
+.pr-thumb,
+.fp-media,
+.fp-card img {
+  border-radius: var(--radius-sm);
+}
+.fp-card img {
+  object-fit: contain;
+  background: var(--c-paper);
+}
+.pr-thumb img {
+  object-fit: contain;
+  background: var(--c-paper);
+}
+.rf-map-point span {
+  border-radius: var(--radius-sm);
+}
+.ab-chips li,
+.areas-cta a,
+.sp-others a,
+.ct-again {
+  border-radius: var(--radius-md);
+}
+
+/* ---------- 12. Product catalogue ---------------------------------------- */
+.pr-table {
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+.pr-thead {
+  background: var(--c-navy);
+  letter-spacing: 0.12em;
+  font-size: 11.5px;
+}
+.pr-row {
+  border-top-color: var(--c-line-soft);
+}
+.pr-row:nth-child(even) {
+  background: #fafcfe;
+}
+.pr-row:hover {
+  background: var(--c-surface-tint);
+}
+.pr-detail-btn {
+  border-radius: var(--btn-radius);
+  border-color: var(--c-line);
+  color: var(--c-blue-dark);
+}
+.pr-detail-btn:hover {
+  background: var(--c-navy);
+  border-color: var(--c-navy);
+}
+.pr-more-actions button {
+  background: var(--c-navy);
+  border: 1px solid var(--c-navy);
+}
+.pr-more-actions button:hover {
+  background: var(--c-blue-dark);
+}
+.pr-more-actions button.is-ghost {
+  background: var(--c-paper);
+  border-color: var(--c-line);
+}
+.pr-search {
+  border-radius: var(--radius-md);
+}
+.pr-search:focus-within {
+  border-color: var(--c-blue);
+  box-shadow: 0 0 0 3px rgba(26, 94, 168, 0.14);
+}
+.pr-brand-name:focus-visible {
+  outline-offset: 2px;
+}
+
+/* Tablet/mobile: stacked product cards instead of a clipped 900px table */
+@media (max-width: 860px) {
+  .pr-table {
+    overflow: visible;
+    background: transparent;
+    border: 0;
+  }
+  .pr-table-in {
+    min-width: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .pr-thead {
+    /* kept in the DOM for assistive tech, hidden visually */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .pr-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+    padding: 18px;
+    border: 1px solid var(--c-line);
+    border-top: 1px solid var(--c-line);
+    border-radius: var(--radius-md);
+    background: var(--c-paper);
+  }
+  .pr-row:nth-child(even) {
+    background: var(--c-paper);
+  }
+  .pr-row > .pr-brand {
+    grid-column: 1 / -1;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--c-line-soft);
+  }
+  .pr-row > p {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .pr-row > p[data-label="Composition"] {
+    grid-column: 1 / -1;
+  }
+  .pr-row > p::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 3px;
+    color: var(--c-subtle);
+    font: 600 10.5px / 1.2 var(--font-heading);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .pr-row > div:last-child {
+    grid-column: 1 / -1;
+  }
+  .pr-detail-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 42px;
+  }
+  .pr-na {
+    display: none;
+  }
+  .pr-empty {
+    padding: 28px 18px;
+    border: 1px dashed var(--c-line);
+    border-radius: var(--radius-md);
+    background: var(--c-paper);
+  }
+  .pr-more {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 420px) {
+  .pr-row {
+    grid-template-columns: 1fr;
+  }
+  .pr-more-actions {
+    width: 100%;
+  }
+  .pr-more-actions button {
+    flex: 1;
+  }
+}
+
+/* ---------- 13. Monograph modal ------------------------------------------ */
+.pr-overlay {
+  background: rgba(7, 25, 47, 0.66);
+  backdrop-filter: none;
+  animation: pt-fade var(--dur) ease both;
+}
+.mg {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-3);
+  animation: pt-pop var(--dur) ease both;
+}
+.mg-head {
+  background: var(--c-navy);
+}
+.mg-close {
+  border-radius: var(--radius-sm);
+}
+.mg-toc button {
+  transition:
+    background var(--dur-fast) ease,
+    color var(--dur-fast) ease;
+}
+@keyframes pt-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pt-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 900px) {
+  .mg-toc {
+    /* edge fade = visible "this scrolls" affordance */
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      #000 0,
+      #000 calc(100% - 28px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      #000 0,
+      #000 calc(100% - 28px),
+      transparent 100%
+    );
+  }
+  .mg-toc button {
+    min-height: 44px;
+    align-items: center;
+    font-size: 13px;
+  }
+}
+@media (max-width: 600px) {
+  .pr-overlay {
+    padding: 0;
+    align-items: stretch;
+  }
+  .mg {
+    width: 100%;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+  }
+  .mg-head {
+    padding: 18px 56px 14px 18px;
+  }
+  .mg-head h2 {
+    font-size: 19px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+  .mg-kicker {
+    font-size: 10.5px;
+    line-height: 1.5;
+  }
+  .mg-body {
+    padding: 18px 18px 32px;
+  }
+  .mg-facts {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .mg-facts dd,
+  .mg-p,
+  .mg-list li,
+  .mg-kv dd,
+  .mg-refs li,
+  .mg-brands {
+    overflow-wrap: anywhere;
+  }
+  .mg-p,
+  .mg-list li,
+  .mg-kv dd {
+    font-size: 14.5px;
+    line-height: 1.7;
+  }
+  .mg-list {
+    padding-left: 18px;
+  }
+  .mg-refs {
+    padding-left: 20px;
+  }
+}
+
+/* ---------- 14. Contact form --------------------------------------------- */
+.ct-form {
+  border-radius: var(--radius-lg);
+}
+.ct-field input,
+.ct-field textarea,
+.ct-select select {
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease;
+}
+.ct-field input:focus,
+.ct-field textarea:focus,
+.ct-select select:focus {
+  border-color: var(--c-blue);
+  box-shadow: 0 0 0 3px rgba(26, 94, 168, 0.14);
+  outline: none;
+}
+.ct-field i {
+  color: #b3261e;
+  font-style: normal;
+}
+.ct-field.has-error input,
+.ct-field.has-error textarea {
+  border-color: #b3261e;
+}
+.ct-field input:user-invalid,
+.ct-field textarea:user-invalid {
+  border-color: #b3261e;
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.1);
+}
+.ct-error {
+  color: #a32019;
+  font-weight: 500;
+}
+.ct-submit {
+  width: 100%;
+  justify-content: center;
+}
+.ct-submit:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+.ct-intro p {
+  font-style: normal;
+  color: var(--c-blue-dark);
+}
+
+/* ---------- 15. Motion: subtle and always visible ------------------------ */
+/* Content is never near-invisible before it reveals: it starts almost in
+   place (small rise, mostly opaque) and settles quickly. */
+.rf-reveal {
+  opacity: 0.55;
+  transform: translateY(8px);
+  transition:
+    opacity var(--dur-reveal) ease,
+    transform var(--dur-reveal) ease;
+}
+.rf-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.hx-slide > * {
+  transform: none;
+}
+@media print {
+  .rf-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rf-reveal,
+  .rf-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .dropdown-menu,
+  .pr-overlay,
+  .mg,
+  .el-modal {
+    animation: none;
+  }
+}
+
+/* ---------- 16. Employee login modal (match system) ---------------------- */
+.el-modal {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-3);
+}
+.el-top {
+  background: var(--c-navy);
+}
+.el-main {
+  background: var(--c-navy);
+  border-radius: var(--radius-md);
+}
+.el-app,
+.el-main {
+  border-radius: var(--radius-md);
+}
+
+/* ---------- 17. Quieter iconography -------------------------------------- */
+/* Corner arrows on cards read as app-dashboard chrome; the whole card is the link. */
+.area-arrow,
+.fp-arrow {
+  display: none;
+}
+
+/* Legacy .section blocks (therapeutic areas, etc.) follow the same rhythm */
+.section {
+  padding-block: var(--section-y);
+}
+.section-intro h2 {
+  color: var(--c-navy);
+}
+
+/* ---------- 18. Review fixes ---------------------------------------------- */
+@media (max-width: 900px) {
+  .dropdown-menu {
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  /* mobile hero: let the photograph show through more */
+  .hx1-shade {
+    background:
+      linear-gradient(180deg, rgba(7, 25, 47, 0.55) 0, rgba(7, 25, 47, 0) 22%),
+      linear-gradient(
+        0deg,
+        rgba(7, 25, 47, 0.86) 0%,
+        rgba(7, 25, 47, 0.62) 50%,
+        rgba(7, 25, 47, 0.38) 100%
+      );
+  }
+}
+.ct-submit,
+.ct-submit.button-primary {
+  background: var(--c-navy);
+  border-color: var(--c-navy);
+  color: var(--c-white);
+}
+.ct-submit:hover:not(:disabled) {
+  background: var(--c-blue-dark);
+  border-color: var(--c-blue-dark);
+}
+@media (min-width: 640px) and (max-width: 860px) {
+  .pr-table-in {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+  .pr-row {
+    height: 100%;
+  }
+}
+
+/* ---------- 19. Stat strip: four plain figures, no icons ----------------- */
+.stat-inner {
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat {
+  padding: 36px 16px;
+}
+.stat-text {
+  align-items: center;
+  text-align: center;
+}
+/* One row at every width: figures and labels scale down instead of wrapping into a grid */
+.stat-inner {
+  width: min(var(--page-max, 1240px), calc(100% - 2 * var(--page-gutter, 32px)));
+}
+.stat {
+  min-width: 0;
+}
+@media (max-width: 700px) {
+  .stat-inner {
+    width: calc(100% - 16px);
+  }
+  .stat {
+    padding: 20px 4px;
+  }
+  .stat strong {
+    font-size: clamp(20px, 6.2vw, 26px);
+    letter-spacing: -0.02em;
+  }
+  .stat .stat-label {
+    margin-top: 6px;
+    font-size: 8.5px;
+    line-height: 1.35;
+    letter-spacing: 0.05em;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* ---------- 20. Employee login modal: roomier, calmer, clean edges ------- */
+.el-overlay {
+  background: rgba(7, 25, 47, 0.7);
+  backdrop-filter: none;
+  padding: 24px;
+  animation: pt-fade var(--dur) ease both;
+}
+/* One clipping box: the modal clips its own corners, so the header band and
+   footer never leave a hairline of white at the rounded edges. */
+.el-modal {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  max-height: min(92vh, 760px);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--c-paper);
+  box-shadow: var(--shadow-3);
+  animation: pt-pop var(--dur) ease both;
+}
+.el-top,
+.el-foot {
+  border-radius: 0;
+}
+.el-top {
+  flex: none;
+  padding: 24px 24px 24px 36px;
+  background: var(--c-navy);
+}
+.el-brand {
+  gap: 16px;
+}
+.el-brand .el-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--c-white);
+}
+.el-logo img {
+  display: block;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+.el-brand strong {
+  font: 600 17px var(--font-heading);
+  letter-spacing: 0;
+}
+.el-brand em {
+  margin-top: 4px;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+}
+.el-close {
+  border-radius: var(--radius-sm);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.el-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+.el-body {
+  padding: 40px 36px 32px;
+}
+.el-modal h2 {
+  margin: 0 0 12px;
+  font: 600 28px/1.2 var(--font-heading);
+  letter-spacing: var(--heading-tracking) !important;
+}
+.el-lead {
+  margin: 0 0 28px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+.el-main,
+.el-app {
+  border-radius: var(--radius-md);
+  transition:
+    background var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease;
+}
+.el-main:hover,
+.el-app:hover {
+  transform: none;
+  box-shadow: none;
+}
+.el-main {
+  padding: 20px 22px;
+  background: var(--c-navy);
+  border: 1px solid var(--c-navy);
+}
+.el-main:hover {
+  background: var(--c-blue-dark);
+  border-color: var(--c-blue-dark);
+}
+.el-app {
+  padding: 16px 18px;
+  border: 1px solid var(--c-line);
+  background: var(--c-paper);
+}
+.el-app:hover {
+  border-color: var(--c-navy);
+  background: var(--c-surface);
+}
+/* Android and iPhone each get their own full-width row */
+.el-apps {
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+.el-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.12);
+}
+.el-app .el-ico {
+  width: 40px;
+  height: 40px;
+  background: var(--c-surface-tint);
+  color: var(--c-navy);
+}
+.el-txt strong {
+  font: 600 16px var(--font-heading);
+  letter-spacing: 0;
+}
+.el-txt em {
+  margin-top: 3px;
+  font-size: 13.5px;
+}
+.el-ext {
+  flex: none;
+  opacity: 0.55;
+}
+.el-foot {
+  flex: none;
+  gap: 14px;
+  padding: 24px 32px 28px;
+  border-top: 1px solid var(--c-line-soft);
+  background: var(--c-surface);
+}
+.el-foot p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.el-foot a {
+  color: var(--c-blue-dark);
+}
+@media (max-width: 560px) {
+  .el-overlay {
+    padding: 12px;
+  }
+  .el-top {
+    padding: 18px 16px 18px 22px;
+  }
+  .el-body {
+    padding: 28px 22px 24px;
+  }
+  .el-foot {
+    padding: 20px 22px 24px;
+  }
+  .el-modal h2 {
+    font-size: 24px;
+  }
+}

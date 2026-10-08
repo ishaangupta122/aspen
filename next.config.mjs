@@ -11,6 +11,8 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Hide the dev-only Next.js bubble so review screenshots show the site itself.
+  devIndicators: false,
   async redirects() {
     // Specialties merged into others or folded into "All products".
     return [

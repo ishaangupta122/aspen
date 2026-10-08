@@ -1,26 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FlaskConical, Stethoscope, Waypoints } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
-import { SPECIALTY_COUNT } from "@/data/site";
 
+// `plain` values (a year) are shown as-is instead of counting up from 0.
 const stats = [
-  {
-    value: SPECIALTY_COUNT,
-    suffix: "",
-    label: "Medical specialties",
-    Icon: Stethoscope,
-  },
-  { value: 250, suffix: "+", label: "Products", Icon: FlaskConical },
-  { value: 7, suffix: "", label: "States served", Icon: Waypoints },
+  { value: 2010, suffix: "", label: "Established", plain: true },
+  { value: 250, suffix: "+", label: "Products" },
+  { value: 5, suffix: "+", label: "Therapeutic areas served" },
+  { value: 6, suffix: "+", label: "States served" },
 ];
 
-function CountUp({ to, suffix, run }) {
+function CountUp({ to, suffix, run, plain }) {
   const n = useCountUp(to, run);
   return (
     <>
-      {n}
+      {plain ? to : n}
       {suffix}
     </>
   );
@@ -48,14 +43,11 @@ export default function StatStrip() {
   return (
     <section className="stat-strip" ref={ref}>
       <div className="stat-inner">
-        {stats.map(({ value, suffix, label, Icon }) => (
+        {stats.map(({ value, suffix, label, plain }) => (
           <div className="stat" key={label}>
-            <span className="stat-icon" aria-hidden="true">
-              <Icon size={30} strokeWidth={1.4} />
-            </span>
             <div className="stat-text">
               <strong>
-                <CountUp to={value} suffix={suffix} run={run} />
+                <CountUp to={value} suffix={suffix} run={run} plain={plain} />
               </strong>
               <span className="stat-label">{label}</span>
             </div>
