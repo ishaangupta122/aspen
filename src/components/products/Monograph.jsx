@@ -1,31 +1,91 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { X } from "lucide-react";
-import ProductThumb from "@/components/products/ProductThumb";
 
-const TABS = [
-  { key: "ind", label: "Indications" },
-  { key: "dose", label: "Dosage" },
-  { key: "safety", label: "Safety" },
-  { key: "adr", label: "Side effects" },
-];
+const URL_RE = /(https?:\/\/[^\s)]+[^\s).,;])/g;
 
-function List({ items }) {
-  if (!items?.length) return <p className="mg-none">Not listed.</p>;
-  return (
-    <ul className="mg-list">
-      {items.map((t, i) => (
-        <li key={i}>{t}</li>
-      ))}
-    </ul>
+function Linkify({ text }) {
+  const parts = text.split(URL_RE);
+  return parts.map((s, i) =>
+    i % 2 ? (
+      <a key={i} href={s} target="_blank" rel="noopener noreferrer">
+        {s}
+      </a>
+    ) : (
+      s
+    ),
   );
+}
+
+function Para({ text }) {
+  const m = text.match(/^([^:.]{3,60}):\s+([\s\S]+)$/);
+  return (
+    <p className="mg-p">
+      {m ? (
+        <>
+          <strong>{m[1]}:</strong> {m[2]}
+        </>
+      ) : (
+        text
+      )}
+    </p>
+  );
+}
+
+function Blocks({ blocks }) {
+  const out = [];
+  let i = 0;
+  while (i < blocks.length) {
+    const b = blocks[i];
+    const t = b[0];
+    if (t === "kv" || t === "li" || t === "ref") {
+      const run = [];
+      while (i < blocks.length && blocks[i][0] === t) run.push(blocks[i++]);
+      if (t === "kv")
+        out.push(
+          <dl className="mg-kv" key={out.length}>
+            {run.map((r, k) => (
+              <div key={k}>
+                <dt>{r[1]}</dt>
+                <dd>{r[2]}</dd>
+              </div>
+            ))}
+          </dl>,
+        );
+      else if (t === "li")
+        out.push(
+          <ul className="mg-list" key={out.length}>
+            {run.map((r, k) => (
+              <li key={k}>{r[1]}</li>
+            ))}
+          </ul>,
+        );
+      else
+        out.push(
+          <ol className="mg-refs" key={out.length}>
+            {run.map((r, k) => (
+              <li key={k} value={Number(r[1]) || undefined}>
+                <Linkify text={r[2]} />
+              </li>
+            ))}
+          </ol>,
+        );
+      continue;
+    }
+    if (t === "h") out.push(<h4 className="mg-h" key={out.length}>{b[1]}</h4>);
+    else out.push(<Para key={out.length} text={b[1]} />);
+    i++;
+  }
+  return out;
 }
 
 export default function Monograph({ product, onClose }) {
   const closeRef = useRef(null);
-  const [tab, setTab] = useState("ind");
-  const m = product.monograph;
+  const bodyRef = useRef(null);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(false);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -39,16 +99,70 @@ export default function Monograph({ product, onClose }) {
     };
   }, [onClose]);
 
-  const facts = [
-    ["Composition", product.composition],
-    ["Pack", product.pack],
-    m?.cls && ["Class", m.cls],
-    m?.atc && ["ATC code", m.atc],
-    (m?.spec || product.specialties.length) && [
-      "Specialty",
-      m?.spec || product.specialties.join(", "),
-    ],
-  ].filter((f) => f && f[1]);
+  useEffect(() => {
+    let live = true;
+    setData(null);
+    setError(false);
+    fetch(`/data/monographs/${product.mono}.json`)
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d) => live && setData(d))
+      .catch(() => live && setError(true));
+    return () => {
+      live = false;
+    };
+  }, [product.mono]);
+
+  const sections = data?.sections || [];
+
+  // scroll-spy
+  useEffect(() => {
+    const root = bodyRef.current;
+    if (!root || !sections.length) return;
+    const onScroll = () => {
+      const top = root.getBoundingClientRect().top + 40;
+      let cur = 0;
+      root.querySelectorAll("[data-sec]").forEach((el, i) => {
+        if (el.getBoundingClientRect().top <= top) cur = i;
+      });
+      if (root.scrollTop + root.clientHeight >= root.scrollHeight - 4)
+        cur = sections.length - 1;
+      setActive(cur);
+    };
+    root.addEventListener("scroll", onScroll, { passive: true });
+    return () => root.removeEventListener("scroll", onScroll);
+  }, [sections.length]);
+
+  // keep the active TOC entry in view
+  const tocRef = useRef(null);
+  useEffect(() => {
+    const t = tocRef.current;
+    const el = t?.querySelector(".is-active");
+    if (!t || !el) return;
+    const horizontal = t.scrollWidth > t.clientWidth;
+    if (horizontal) {
+      t.scrollLeft = el.offsetLeft - t.clientWidth / 2 + el.offsetWidth / 2;
+    } else if (
+      el.offsetTop < t.scrollTop ||
+      el.offsetTop + el.offsetHeight > t.scrollTop + t.clientHeight
+    ) {
+      t.scrollTop = el.offsetTop - t.clientHeight / 2;
+    }
+  }, [active]);
+
+  const go = (i) => {
+    const root = bodyRef.current;
+    const el = root?.querySelector(`[data-sec="${i}"]`);
+    if (!el) return;
+    root.scrollTo({
+      top: el.offsetTop + 12,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
+    setActive(i);
+  };
+
+  const facts = useMemo(() => data?.meta || [], [data]);
 
   return (
     <div
@@ -69,67 +183,77 @@ export default function Monograph({ product, onClose }) {
         </button>
 
         <header className="mg-head">
-          <ProductThumb product={product} className="mg-img" />
-          <div>
-            <span className="mg-kicker">
-              {product.form} · {product.category}
-            </span>
-            <h2>{product.brand}</h2>
-            {m?.g && <p className="mg-generic">{m.g}</p>}
-          </div>
+          <span className="mg-kicker">
+            Monograph{data ? ` ${data.no}` : ""} · {product.category}
+          </span>
+          <h2>{data?.name || product.composition}</h2>
+          <p className="mg-sub">
+            {product.brand} · {product.form} · {product.pack}
+          </p>
         </header>
 
-        <div className="mg-body">
-          <dl className="mg-facts">
-            {facts.map(([k, v]) => (
-              <div key={k}>
-                <dt>{k}</dt>
-                <dd>{v}</dd>
-              </div>
-            ))}
-          </dl>
+        {error && (
+          <div className="mg-state">
+            The monograph could not be loaded. Please try again.
+          </div>
+        )}
+        {!data && !error && <div className="mg-state">Loading monograph…</div>}
 
-          {m ? (
-            <>
-              <div className="mg-tabs" role="tablist">
-                {TABS.map((t) => (
-                  <button
-                    key={t.key}
-                    type="button"
-                    role="tab"
-                    aria-selected={tab === t.key}
-                    className={tab === t.key ? "is-active" : ""}
-                    onClick={() => setTab(t.key)}>
-                    {t.label}
-                  </button>
+        {data && (
+          <div className="mg-main">
+            <nav className="mg-toc" ref={tocRef} aria-label="Monograph sections">
+              <ol>
+                {sections.map(([title], i) => (
+                  <li key={i}>
+                    <button
+                      type="button"
+                      className={i === active ? "is-active" : ""}
+                      aria-current={i === active ? "true" : undefined}
+                      title={title}
+                      onClick={() => go(i)}>
+                      <span>{i + 1}</span>
+                      <em>{title.replace(/ and /gi, " & ")}</em>
+                    </button>
+                  </li>
                 ))}
-              </div>
-              <div className="mg-panel" role="tabpanel">
-                {tab === "safety" ? (
-                  <>
-                    <h4>Contraindications</h4>
-                    <List items={m.contra} />
-                    <h4>Warnings &amp; precautions</h4>
-                    <List items={m.warn} />
-                  </>
-                ) : (
-                  <List items={m[tab]} />
-                )}
-              </div>
-            </>
-          ) : (
-            <p className="mg-soon">
-              The detailed monograph for {product.brand} will be published soon.
-              For full prescribing information, please contact us.
-            </p>
-          )}
-        </div>
+              </ol>
+            </nav>
 
-        <footer className="mg-foot">
-          Rx – For the use of a Registered Medical Practitioner, Hospital or
-          Laboratory only. Summary information; refer to the approved package
-          insert.
-        </footer>
+            <div className="mg-body" ref={bodyRef} tabIndex={0}>
+              <dl className="mg-facts">
+                {facts.map(([k, v]) => (
+                  <div key={k}>
+                    <dt>{k}</dt>
+                    <dd>{v}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              {data.brands?.length > 0 && (
+                <p className="mg-brands">
+                  <span>Aspen brands</span>
+                  {data.brands.join(" · ")}
+                </p>
+              )}
+
+              {sections.map(([title, blocks], i) => (
+                <section className="mg-sec" data-sec={i} key={i}>
+                  <h3>
+                    <span>{i + 1}</span>
+                    {title}
+                  </h3>
+                  <Blocks blocks={blocks} />
+                </section>
+              ))}
+
+              <p className="mg-disc">
+                <strong>Prescription medicine</strong>
+                {data.disclaimer}
+              </p>
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   );

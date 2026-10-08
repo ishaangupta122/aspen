@@ -13,14 +13,10 @@ export default function FocusAreas() {
           />
         </RfReveal>
         <div className="rd-focus-grid">
-          {focusAreas.map(({ title, text, icon: Icon }, index) => (
+          {focusAreas.map(({ title, text, image }, index) => (
             <RfReveal className="rd-focus-card" key={title}>
-              <div className="rd-focus-top">
-                <span className="rd-icon">
-                  <Icon size={24} />
-                </span>
-                <span className="rd-num">0{index + 1}</span>
-              </div>
+              <img className="rd-focus-img" src={image} alt="" loading="lazy" />
+              <span className="rd-num">0{index + 1}</span>
               <h3>{title}</h3>
               <p>{text}</p>
             </RfReveal>

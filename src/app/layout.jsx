@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./pharma-theme.css";
 import { SITE_NAME, SITE_URL, LEGAL_NAME, SERVED_STATES } from "@/lib/site";
 import JsonLd from "@/components/ui/JsonLd";
 import { contact } from "@/data/contact";
@@ -48,7 +49,7 @@ const organization = {
   name: LEGAL_NAME,
   alternateName: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/logo-dark.svg`,
+  logo: `${SITE_URL}/logo.png`,
   description,
   foundingDate: "2010",
   email: contact.email,

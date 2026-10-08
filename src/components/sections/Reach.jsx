@@ -14,7 +14,7 @@ export default function Reach() {
     "Rajasthan",
   ];
   return (
-    <section className="rf rf-section rf-reach">
+    <section id="reach" className="rf rf-section rf-reach">
       <div className="rf-container rf-reach-grid">
         <RfReveal className="rf-reach-copy">
           <RfHeading

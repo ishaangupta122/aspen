@@ -1,24 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import ButtonLink from "@/components/ui/ButtonLink";
 import { images } from "@/data/site";
-import { useCountUp } from "@/hooks/useCountUp";
 import { prefersReducedMotion } from "@/lib/motion";
 
 const DURATION = 6500;
-
-function Count({ to, suffix = "", run }) {
-  const n = useCountUp(to, run, {
-    duration: 1400,
-  });
-  return (
-    <>
-      {n}
-      {suffix && <sup>{suffix}</sup>}
-    </>
-  );
-}
 
 const slides = [
   {
@@ -32,12 +21,6 @@ const slides = [
     text: "Aspen Pharmaceuticals supports clinical practice with a dependable portfolio and responsible business conduct.",
     image: images.heroTeam,
     alt: "Aspen analyst reviewing results in a laboratory",
-    caption: "Aspen Pharmaceuticals",
-    floats: [
-      { slot: "a", kind: "stat", value: 2010, label: "Established" },
-      { slot: "b", kind: "chip", label: "Based in Ghaziabad" },
-      { slot: "c", kind: "chip", label: "Serving North India" },
-    ],
   },
   {
     tab: "Quality",
@@ -50,12 +33,6 @@ const slides = [
     text: "From partner selection to storage and dispatch, we keep quality and accurate product information at the centre of our work.",
     image: images.heroQuality,
     alt: "Scientist examining samples under a microscope in a laboratory",
-    caption: "Quality at the centre",
-    floats: [
-      { slot: "a", kind: "chip", label: "Established manufacturing partners" },
-      { slot: "b", kind: "chip", label: "EU-GMP · WHO-GMP · ISO 9001" },
-      { slot: "c", kind: "chip", label: "Careful storage & handling" },
-    ],
   },
   {
     tab: "Reach",
@@ -68,12 +45,6 @@ const slides = [
     text: "Our field teams and distribution partners keep clinicians informed and medicines available where they are needed.",
     image: images.heroReach,
     alt: "Healthcare professional reviewing patient records during a consultation",
-    caption: "Serving healthcare since 2010",
-    floats: [
-      { slot: "a", kind: "stat", value: 7, label: "States served" },
-      { slot: "b", kind: "chip", label: "Delhi · Uttar Pradesh" },
-      { slot: "c", kind: "chip", label: "Punjab · Haryana" },
-    ],
   },
 ];
 
@@ -105,6 +76,8 @@ export default function HeroCarousel() {
     return () => clearTimeout(id);
   }, [active, paused, still, go]);
 
+  const pad = (n) => String(n).padStart(2, "0");
+
   return (
     <section
       className="hc"
@@ -114,38 +87,43 @@ export default function HeroCarousel() {
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
-      style={{ "--hc-dur": `${DURATION}ms` }}
-    >
-      <div className="hc-orb o1" />
-      <div className="hc-orb o2" />
+      style={{ "--hc-dur": `${DURATION}ms` }}>
       <div className="container hc-grid">
-        <div className="hc-copy">
-          {slides.map((s, i) => {
-            const Title = i === 0 ? "h1" : "h2";
-            return (
-              <article
-                className={`hc-slide${i === active ? " on" : ""}`}
-                key={s.tab}
-                aria-roledescription="slide"
-                aria-label={`${i + 1} of ${slides.length}`}
-                aria-hidden={i !== active}
-              >
-                <p className="eyebrow eyebrow-light">{s.eyebrow}</p>
-                <Title className="hc-title">{s.title}</Title>
-                <p className="hero-text">{s.text}</p>
-              </article>
-            );
-          })}
+        <div className="hc-left">
+          <div className="hc-copy">
+            {slides.map((s, i) => {
+              const Title = i === 0 ? "h1" : "h2";
+              return (
+                <article
+                  className={`hc-slide${i === active ? " on" : ""}`}
+                  key={s.tab}
+                  aria-roledescription="slide"
+                  aria-label={`${i + 1} of ${slides.length}`}
+                  aria-hidden={i !== active}>
+                  <p className="eyebrow eyebrow-light">{s.eyebrow}</p>
+                  <Title className="hc-title">{s.title}</Title>
+                  <p className="hero-text">{s.text}</p>
+                </article>
+              );
+            })}
+          </div>
+          <div className="hc-actions">
+            <ButtonLink to="/products">Explore products</ButtonLink>
+            <Link className="hc-link" href="/about">
+              About Aspen
+            </Link>
+          </div>
         </div>
 
-        <div className="hc-visual" aria-hidden="true">
+        <div className="hc-right">
           <div className="hc-frame">
             {slides.map((s, i) => (
               <img
                 key={s.tab}
                 className={i === active ? "on" : i === prev ? "prev" : ""}
                 src={s.image}
-                alt={s.alt}
+                alt={i === active ? s.alt : ""}
+                aria-hidden={i !== active}
                 width={820}
                 height={546}
                 loading={i === 0 || warm ? undefined : "lazy"}
@@ -153,78 +131,34 @@ export default function HeroCarousel() {
                 decoding={i === 0 ? undefined : "async"}
               />
             ))}
-            <div className="hc-wash" />
           </div>
-          {slides.map((sl, si) =>
-            sl.floats.map((f, fi) => (
-              <div
-                key={`${sl.tab}-${fi}`}
-                className={`hc-float hc-${f.kind} slot-${f.slot}${si === active ? " on" : ""}`}
-                style={{ "--d": `${fi * 0.12}s`, "--f": `${5 + fi * 1.3}s` }}
-              >
-                <div className="hc-float-in">
-                  {f.kind === "stat" ? (
-                    <>
-                      <strong>
-                        <Count
-                          to={f.value}
-                          suffix={f.suffix}
-                          run={si === active}
-                        />
-                      </strong>
-                      <span>{f.label}</span>
-                    </>
-                  ) : (
-                    <span>{f.label}</span>
-                  )}
-                </div>
-              </div>
-            )),
-          )}
-          <div className="hc-caption">
-            <span className="pulse-dot" />
-            <span key={active}>{slides[active].caption}</span>
+          <div className="hc-controls">
+            <p className="hc-count" aria-live="off">
+              <b>{pad(active + 1)}</b>
+              <span aria-hidden="true"> / {pad(slides.length)}</span>
+              <span className="hc-label">{slides[active].tab}</span>
+            </p>
+            <span className="hc-progress" aria-hidden="true">
+              <i
+                key={active}
+                className={paused || still ? "paused" : ""}
+              />
+            </span>
+            <div className="hc-arrows">
+              <button
+                type="button"
+                aria-label="Previous slide"
+                onClick={() => go(active - 1)}>
+                <ArrowLeft size={15} />
+              </button>
+              <button
+                type="button"
+                aria-label="Next slide"
+                onClick={() => go(active + 1)}>
+                <ArrowRight size={15} />
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <div className="container hc-nav">
-        <div className="hc-tabs" role="tablist" aria-label="Choose highlight">
-          {slides.map((s, i) => (
-            <button
-              key={s.tab}
-              type="button"
-              role="tab"
-              aria-selected={i === active}
-              className={i === active ? "on" : ""}
-              onClick={() => go(i)}
-            >
-              <span className="hc-bar">
-                <i
-                  className={paused || still ? "paused" : ""}
-                  key={i === active ? `a${active}` : `i${i}`}
-                />
-              </span>
-              <b>0{i + 1}</b>
-              {s.tab}
-            </button>
-          ))}
-        </div>
-        <div className="hc-arrows">
-          <button
-            type="button"
-            aria-label="Previous slide"
-            onClick={() => go(active - 1)}
-          >
-            <ArrowLeft size={18} />
-          </button>
-          <button
-            type="button"
-            aria-label="Next slide"
-            onClick={() => go(active + 1)}
-          >
-            <ArrowRight size={18} />
-          </button>
         </div>
       </div>
     </section>

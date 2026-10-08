@@ -12,9 +12,9 @@ export const intro = {
 export const journey = {
   title: "From entrepreneurial venture to growing organisation",
   facts: [
-    ["Company", "Private limited company"],
+    ["Established", "2010"],
     ["Headquarters", "Sahibabad, Ghaziabad, Uttar Pradesh"],
-    ["Focus", `${SPECIALTY_COUNT} medical specialties`],
+    // ["Focus", `${SPECIALTY_COUNT} medical specialties`],
     ["Presence", "North India"],
   ],
   paragraphs: [
@@ -47,7 +47,15 @@ export const commitments = [
     alt: "Pharmaceutical supply and distribution",
     title: "Our presence and distribution",
     lead: "Aspen has developed its business presence across:",
-    chips: ["Delhi", "Uttar Pradesh", "Punjab", "Haryana", "Himachal Pradesh", "Uttarakhand", "Rajasthan"],
+    chips: [
+      "Delhi",
+      "Uttar Pradesh",
+      "Punjab",
+      "Haryana",
+      "Himachal Pradesh",
+      "Uttarakhand",
+      "Rajasthan",
+    ],
     paragraphs: [
       "Our field teams and distribution partners connect the organisation with healthcare professionals and the pharmaceutical trade. These relationships help us understand local requirements, support product availability and respond to customer needs.",
     ],
@@ -55,10 +63,30 @@ export const commitments = [
 ];
 
 export const values = [
-  { title: "Patient focus", image: "patient", alt: "Two scientists discussing results in the laboratory", text: "We weigh the needs of patients and the responsibilities of healthcare in every business decision we make." },
-  { title: "Quality commitment", image: "blisterPacks", alt: "Tablets in blister packs", text: "We give quality due importance across our products, partnerships and operational processes." },
-  { title: "Integrity", image: "people", alt: "Analyst reviewing test results at the bench", text: "We act honestly, communicate clearly and uphold responsible business conduct." },
-  { title: "Accountability", image: "documentCheck", alt: "Quality analyst measuring a tablet", text: "We take ownership of our work and keep improving how we deliver on our commitments." },
+  {
+    title: "Patient focus",
+    image: "patient",
+    alt: "Two scientists discussing results in the laboratory",
+    text: "We weigh the needs of patients and the responsibilities of healthcare in every business decision we make.",
+  },
+  {
+    title: "Quality commitment",
+    image: "blisterPacks",
+    alt: "Tablets in blister packs",
+    text: "We give quality due importance across our products, partnerships and operational processes.",
+  },
+  {
+    title: "Integrity",
+    image: "people",
+    alt: "Analyst reviewing test results at the bench",
+    text: "We act honestly, communicate clearly and uphold responsible business conduct.",
+  },
+  {
+    title: "Accountability",
+    image: "documentCheck",
+    alt: "Quality analyst measuring a tablet",
+    text: "We take ownership of our work and keep improving how we deliver on our commitments.",
+  },
 ];
 
 export const direction = {

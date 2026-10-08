@@ -1,4 +1,4 @@
-// Product catalogue, built from products-data.js (rows) and monographs-data.js (condensed monographs).
+// Product catalogue, built from products-data.js (copied from aspenpharmaceuticals.com). Monographs load from /public/data/monographs.
 
 export const dosageForms = [
   { tag: "Oral solids", title: "Tablets", short: "Immediate & modified release", text: "Immediate, sustained and modified-release tablets, including film-coated and orally dispersible formats.", art: "tablets", image: "/images/photos/dosage-tablets-white-closeup.jpg" },
@@ -10,11 +10,17 @@ export const dosageForms = [
 ];
 
 
-import { productRows, specialtyNames } from "@/data/products-data";
-import { monographData } from "@/data/monographs-data";
+import { productRows, specialtyNames as allSpecialties, specialtyLists } from "@/data/products-data";
 import { formArt } from "@/data/productForms";
 
-export { specialtyNames, formArt };
+export { formArt };
+
+// The live site lists 20 specialties; several are subsets of others, so the filter shows 16.
+// Neurosurgery -> Neurology, Sexology -> Urology & Andrology; General Medicine (covers ~73% of the range)
+// and Haematology (1 product) have no tab of their own. Every product stays in "All products".
+const MERGED_INTO = { Neurosurgery: "Neurology", Sexology: "Urology & Andrology" };
+const NO_TAB = new Set(["General Medicine", "Haematology"]);
+export const specialtyNames = allSpecialties.filter((n) => !MERGED_INTO[n] && !NO_TAB.has(n));
 
 
 // Products shown before "Show more":
@@ -22,12 +28,22 @@ export const INITIAL_VISIBLE = 8;
 
 // Specialty cards with a photo (stock photos, self-hosted in /public/images/photos). Other specialties go in the "More" select.
 const photos = {
-  "General Medicine": "/images/photos/doctor-stethoscope.jpg",
   Psychiatry: "/images/photos/psychiatry-brain-scan.jpg",
   Neurology: "/images/photos/neurology-reflex-hammer.jpg",
   Orthopaedics: "/images/photos/orthopaedics-knee-bones.jpg",
   "Gastroenterology & Hepatology": "/images/photos/gastro-anatomy-model.jpg",
   Cardiology: "/images/photos/heart-model-cardiology.jpg",
+  Rheumatology: "/images/photos/spec-rheumatology.jpg",
+  Diabetology: "/images/photos/spec-diabetology.jpg",
+  "Urology & Andrology": "/images/photos/spec-urology.jpg",
+  Gynaecology: "/images/photos/spec-gynaecology.jpg",
+  Pulmonology: "/images/photos/spec-pulmonology.jpg",
+  ENT: "/images/photos/spec-ent.jpg",
+  Dermatology: "/images/photos/spec-dermatology.jpg",
+  Paediatrics: "/images/photos/spec-paediatrics.jpg",
+  Nephrology: "/images/photos/spec-nephrology.jpg",
+  "General Surgery": "/images/photos/spec-general-surgery.jpg",
+  Dental: "/images/photos/spec-dental.jpg",
 };
 const arts = {
   Psychiatry: "psychiatry", Neurology: "psychiatry", Neurosurgery: "psychiatry", Orthopaedics: "rheumatology", Rheumatology: "rheumatology",
@@ -43,7 +59,7 @@ export const categoryCards = [
 ];
 
 
-// Product photos are self-hosted in /public/images/products.
+// Product photos (home page cards only) are self-hosted in /public/images/products.
 const productImage = (id) => (id ? `/images/products/p-${id}.jpg` : null);
 
 export const catalogue = productRows.map(([brand, composition, pack, form, category, specs, img, mono], i) => ({
@@ -53,7 +69,18 @@ export const catalogue = productRows.map(([brand, composition, pack, form, categ
   pack,
   form,
   category,
-  specialties: specs.map((n) => specialtyNames[n]),
+  specialties: [
+    ...new Set(
+      specs
+        .map((n) => allSpecialties[n])
+        .map((n) => MERGED_INTO[n] || n)
+        .filter((n) => !NO_TAB.has(n)),
+    ),
+  ],
   image: productImage(img),
-  monograph: mono ? monographData[mono] || null : null,
+  mono: mono ? String(mono) : null,
 }));
+
+/** Products for a specialty tab ("All" = the full list), in the order used on the live site. */
+export const productsFor = (name) =>
+  name === "All" ? catalogue : specialtyLists[allSpecialties.indexOf(name)].map((i) => catalogue[i]);

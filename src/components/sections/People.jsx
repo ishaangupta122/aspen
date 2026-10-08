@@ -24,8 +24,8 @@ export default function People() {
           </RfReveal>
           <RfReveal className="rf-trust-large">
             <img
-              src={images.scientist}
-              alt="Scientist preparing samples at a laboratory bench"
+              src={images.formulation}
+              alt="Analyst sampling a raw material powder in the laboratory"
               loading="lazy"
             />
           </RfReveal>
@@ -40,8 +40,8 @@ export default function People() {
           </RfReveal>
           <RfReveal className="rf-trust-small">
             <img
-              src={images.colleagues}
-              alt="Colleagues in a clean room reviewing documents"
+              src={images.qualityTeam}
+              alt="Operator running a V-blender on the manufacturing floor"
               loading="lazy"
             />
           </RfReveal>

@@ -12,7 +12,7 @@ const company = [
 
 // [label, specialty page slug]
 const categories = [
-  ["General Medicine", "general-medicine"],
+  ["Cardiology", "cardiology"],
   ["Neurology", "neurology"],
   ["Psychiatry", "psychiatry"],
   ["Orthopaedics", "orthopaedics"],

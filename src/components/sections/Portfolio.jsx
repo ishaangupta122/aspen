@@ -25,8 +25,9 @@ const shortComposition = {
 };
 
 // Only pass what the card needs (keeps the large monograph data out of the client bundle).
+const norm = (s) => s.toUpperCase().replace(/[^A-Z0-9]/g, "");
 const featured = featuredBrands
-  .map((b) => catalogue.find((p) => p.brand === b))
+  .map((b) => catalogue.find((p) => norm(p.brand) === norm(b)))
   .filter(Boolean)
   .map(({ id, brand, category, composition, form, image }) => ({
     id,

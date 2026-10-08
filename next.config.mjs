@@ -11,6 +11,17 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Hide the dev-only Next.js bubble so review screenshots show the site itself.
+  devIndicators: false,
+  async redirects() {
+    // Specialties merged into others or folded into "All products".
+    return [
+      { source: "/products/neurosurgery", destination: "/products/neurology", permanent: true },
+      { source: "/products/sexology", destination: "/products/urology-andrology", permanent: true },
+      { source: "/products/general-medicine", destination: "/products", permanent: true },
+      { source: "/products/haematology", destination: "/products", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
