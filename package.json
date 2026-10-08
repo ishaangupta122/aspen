@@ -1,0 +1,31 @@
+{
+  "name": "aspen-pharmaceuticals",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "images": "node scripts/fetch-images.mjs",
+    "predev": "node scripts/fetch-images.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/fetch-images.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "check:images": "node scripts/check-images.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^0.446.0",
+    "next": "^16.4.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.6.1",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.0",
+    "postcss": "^8.5.29",
+    "tailwindcss": "^3.4.19"
+  },
+  "engines": {
+    "node": ">=20.9"
+  }
+}
