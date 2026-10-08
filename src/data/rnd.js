@@ -63,10 +63,12 @@ export const dosageForms = [
 export const tablets = {
   intro:
     "Our development priorities also include advanced tablet architectures. The choice of platform is guided by scientific feasibility and the needs of the intended product.",
+  image: "/images/photos/rd-complex-tablets.jpg",
+  imageAlt: "Assorted tablets and capsules on a stainless steel laboratory tray",
   items: [
-    { key: "bilayer", title: "Bilayer tablets", text: "Separate layers that can accommodate different ingredients or release profiles." },
-    { key: "nested", title: "Tablet-in-tablet systems", text: "A core tablet within an outer tablet, enabling ingredient separation or tailored release." },
-    { key: "combo", title: "Combination formulations", text: "Multiple active ingredients developed with attention to compatibility, stability and dosage requirements." },
+    { key: "bilayer", image: "/images/photos/rd-bilayer-tablet.jpg", imageAlt: "Two bilayer tablets showing separate layers", title: "Bilayer tablets", text: "Separate layers that can accommodate different ingredients or release profiles." },
+    { key: "nested", image: "/images/photos/rd-tablet-in-tablet.jpg", imageAlt: "A broken tablet-in-tablet showing the core inside the outer tablet", title: "Tablet-in-tablet systems", text: "A core tablet within an outer tablet, enabling ingredient separation or tailored release." },
+    { key: "combo", image: "/images/photos/rd-combination-formulation.jpg", imageAlt: "Analyst handling a combination formulation sample beside a bottle", title: "Combination formulations", text: "Multiple active ingredients developed with attention to compatibility, stability and dosage requirements." },
   ],
 };
 

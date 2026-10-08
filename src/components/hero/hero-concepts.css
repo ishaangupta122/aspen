@@ -228,7 +228,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: clamp(660px, 100svh, 860px);
+  min-height: clamp(640px, 88svh, 760px);
   overflow: hidden;
   color: var(--c-white);
   background: #06172b;
@@ -331,7 +331,7 @@
 }
 .hx1 .hx-title {
   margin-bottom: 28px;
-  font: 500 clamp(36px, 4.9vw, 72px) / 1.1 "Hanken Grotesk", var(--font-body);
+  font: 500 clamp(44px, 4.4vw, 64px) / 1.1 "Hanken Grotesk", var(--font-body);
   letter-spacing: -0.03em;
   text-wrap: balance;
 }
@@ -442,10 +442,13 @@
 
 @media (max-width: 900px) {
   .hx1 {
-    min-height: clamp(640px, 90svh, 780px);
+    min-height: clamp(560px, 66svh, 640px);
   }
   .hx1-body {
     padding: 110px 0 40px;
+  }
+  .hx1 .hx-title {
+    font-size: clamp(37px, 5.5vw, 46px);
   }
   .hx1-caption-wrap {
     display: none;
@@ -472,7 +475,7 @@
 }
 @media (max-width: 600px) {
   .hx1 {
-    min-height: 680px;
+    min-height: 540px;
   }
   .hx1-body {
     padding: 100px 0 28px;
@@ -483,7 +486,7 @@
   }
   .hx1 .hx-title {
     margin-bottom: 14px;
-    font-size: 33px;
+    font-size: clamp(30px, 9.2vw, 37px);
   }
   .hx1-text {
     font-size: 15px;

@@ -8,6 +8,11 @@ import Logo from "@/components/Logo";
 import EmployeeLoginModal from "@/components/EmployeeLoginModal";
 import { navLinks } from "@/data/navigation";
 
+// Hover-to-open is only for the full desktop bar. At 1200px and below the links live in the
+// mobile menu, where dropdowns open by tap/click on the chevron only.
+const isDesktopNav = () =>
+  typeof window !== "undefined" && window.matchMedia("(min-width: 1201px)").matches;
+
 export default function Navbar() {
   const pathname = usePathname();
   const isActive = (href) =>
@@ -67,8 +72,8 @@ export default function Navbar() {
                 // Hover opens the menu for mouse pointers only. Touch taps also fire
                 // synthetic mouse-enter events, which used to open then instantly
                 // re-close the dropdown on the chevron's own click.
-                onPointerEnter={(e) => e.pointerType === "mouse" && setOpen(l.label)}
-                onPointerLeave={(e) => e.pointerType === "mouse" && setOpen(null)}>
+                onPointerEnter={(e) => e.pointerType === "mouse" && isDesktopNav() && setOpen(l.label)}
+                onPointerLeave={(e) => e.pointerType === "mouse" && isDesktopNav() && setOpen(null)}>
                 <Link
                   href={l.href}
                   onClick={close}

@@ -355,7 +355,7 @@ p {
   padding: 4px;
   color: inherit;
 }
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   /* Quiet navy sheet instead of a teal glow */
   .nav-links {
     background: var(--c-navy-deep);
@@ -382,7 +382,7 @@ p {
 
 /* ---------- 6. Home hero (calmer, photograph stays inspectable) ---------- */
 .hx1 {
-  min-height: clamp(560px, 86svh, 760px);
+  min-height: clamp(640px, 88svh, 760px);
 }
 .hx1-bg img {
   filter: none;
@@ -408,7 +408,7 @@ p {
     );
 }
 .hx1 .hx-title {
-  font-size: clamp(32px, 4vw, 56px);
+  font-size: clamp(44px, 4.4vw, 64px);
   font-weight: 500;
   line-height: 1.12;
   letter-spacing: var(--heading-tracking);
@@ -454,15 +454,15 @@ p {
 }
 @media (max-width: 900px) {
   .hx1 {
-    min-height: clamp(560px, 84svh, 700px);
+    min-height: clamp(560px, 66svh, 640px);
   }
 }
 @media (max-width: 600px) {
   .hx1 {
-    min-height: 600px;
+    min-height: 540px;
   }
   .hx1 .hx-title {
-    font-size: 31px;
+    font-size: clamp(30px, 9.2vw, 37px);
   }
 }
 
@@ -1103,12 +1103,14 @@ p {
 }
 
 /* ---------- 18. Review fixes ---------------------------------------------- */
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .dropdown-menu {
     border-radius: 0;
     box-shadow: none;
     background: transparent;
   }
+}
+@media (max-width: 900px) {
   /* mobile hero: let the photograph show through more */
   .hx1-shade {
     background:
@@ -1349,5 +1351,293 @@ p {
   }
   .el-modal h2 {
     font-size: 24px;
+  }
+}
+
+/* ---------- 21. Quality page: photography alongside the content ------------ */
+/* Photographs used only here (nowhere else on the site). One figure style:
+   same radius, hairline border, cover crop. */
+.q-fig {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--c-line-soft);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface-tint);
+}
+.q-fig img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Stages: photo card on the left, numbered stage list on the right */
+.qsel {
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+  margin-top: 48px;
+}
+.qsel-card {
+  position: relative;
+  min-height: 460px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--c-navy-deep, #0b2342);
+}
+.qsel-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.qsel-card img.is-active {
+  opacity: 1;
+}
+.qsel-count {
+  position: absolute;
+  top: 24px;
+  left: 26px;
+  z-index: 2;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--c-ink, #0f1b2d);
+  font: 500 12px var(--font-body);
+  letter-spacing: 0.08em;
+}
+.qsel-caption {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 2;
+  padding: 120px 30px 28px;
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 34, 52, 0) 0%,
+    rgba(6, 34, 52, 0.45) 50%,
+    rgba(6, 34, 52, 0.92) 100%
+  );
+  color: #fff;
+}
+.qsel-caption span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--c-mint);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.qsel-caption strong {
+  display: block;
+  font: 600 30px / 1.15 var(--font-heading);
+  letter-spacing: -1px;
+  animation: qsel-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes qsel-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.qsel-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rf-line);
+}
+.qsel-list li {
+  position: relative;
+  border-bottom: 1px solid var(--rf-line);
+}
+.qsel-list li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--rf-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.qsel-list li.is-active::after {
+  transform: scaleX(1);
+}
+.qsel-list button {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  min-height: 74px;
+  padding: 0 4px;
+  color: var(--rf-ink);
+  font: 500 18px / 1.3 var(--font-heading);
+  text-align: left;
+  transition: color var(--dur-fast);
+}
+.qsel-list li.is-active button {
+  color: var(--rf-blue);
+}
+.qsel-num {
+  flex: none;
+  width: 26px;
+  color: var(--rf-muted);
+  font: 500 13px var(--font-body);
+}
+.qsel-name {
+  flex: 1;
+  min-width: 0;
+}
+.qsel-detail[hidden] {
+  display: none;
+}
+.qsel-detail {
+  padding: 0 4px 26px 48px;
+  animation: qsel-rise 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.qsel-detail p {
+  max-width: 520px;
+  margin: 0;
+  color: var(--rf-muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.qsel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 12px;
+  color: var(--c-teal);
+  font: 600 12px var(--font-heading);
+  letter-spacing: 0.3px;
+}
+.qsel-tags span + span::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  margin: 0 10px;
+  border-radius: 50%;
+  background: #9eadab;
+  vertical-align: middle;
+}
+
+/* Commitment: navy panel with a photograph bleeding off the right edge */
+.mf-commit {
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 0;
+  padding: 0;
+}
+.mf-commit::before {
+  display: none;
+}
+.mf-commit-main {
+  position: relative;
+  padding: clamp(32px, 5vw, 64px);
+}
+.mf-commit-main .rf-eyebrow {
+  display: block;
+  margin: 0 0 18px;
+}
+.mf-commit-fig {
+  position: relative;
+  min-height: 340px;
+}
+.mf-commit-fig img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mf-commit-fig::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(11, 35, 66, 0.4), transparent 38%);
+}
+
+@media (max-width: 1024px) {
+  .qsel {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .qsel-card {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+    max-width: 640px;
+  }
+  .mf-commit {
+    grid-template-columns: 1fr;
+  }
+  .mf-commit-fig {
+    order: -1;
+    min-height: 0;
+    aspect-ratio: 16 / 7;
+  }
+  .mf-commit-fig::after {
+    background: linear-gradient(0deg, rgba(11, 35, 66, 0.5), transparent 50%);
+  }
+}
+@media (max-width: 760px) {
+  .qsel {
+    margin-top: 36px;
+  }
+  .qsel-card {
+    aspect-ratio: 4 / 3;
+  }
+  .qsel-caption {
+    padding: 90px 22px 22px;
+  }
+  .qsel-caption strong {
+    font-size: 24px;
+  }
+  .qsel-list button {
+    min-height: 64px;
+    gap: 14px;
+    font-size: 16px;
+  }
+  .qsel-detail {
+    padding-left: 40px;
+  }
+  .mf-commit-fig {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* ---------- 22. R&D complex oral formulations: photo thumbnails ------------ */
+.rd-tablet-card {
+  grid-template-columns: 148px 1fr;
+}
+.rd-diagram {
+  width: 148px;
+  height: 104px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+.rd-diagram img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 600px) {
+  .rd-tablet-card {
+    grid-template-columns: 1fr;
+  }
+  .rd-diagram {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
   }
 }

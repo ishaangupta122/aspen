@@ -59,26 +59,36 @@ export const stages = {
   items: [
     {
       title: "Raw & packaging material testing",
+      image: "/images/photos/quality-raw-material-testing.jpg",
+      imageAlt: "Analyst in gloves sampling powder from a jar beside amber bottles and blister packs",
       text: "Active ingredients, excipients and packaging components are checked against approved specifications before they are accepted for use.",
       tags: ["Identification", "Assay", "Impurities", "Moisture content"],
     },
     {
       title: "In-process quality checks",
+      image: "/images/photos/quality-in-process-checks.jpg",
+      imageAlt: "Analyst measuring a tablet with a digital micrometer beside a tablet press",
       text: "Checks during manufacture catch variation early and confirm the process is producing material with the required characteristics.",
       tags: ["Blend uniformity", "Weight", "Hardness", "Disintegration", "pH", "Fill volume"],
     },
     {
       title: "Finished product analysis",
+      image: "/images/photos/quality-finished-product-analysis.jpg",
+      imageAlt: "Tablets, an amber bottle and a vial on a laboratory bench",
       text: "Each batch is evaluated against approved specifications before a release decision is made through the authorised quality system.",
       tags: ["Assay", "Impurities", "Dosage uniformity", "Dissolution", "Packaging & labelling"],
     },
     {
       title: "Microbiological testing",
+      image: "/images/photos/quality-microbiological-testing.jpg",
+      imageAlt: "Microbiologist pipetting into culture plates inside a safety cabinet",
       text: "Testing is matched to the product and its intended use, as part of a wider contamination-control system.",
       tags: ["Microbial limits", "Sterility", "Bacterial endotoxins"],
     },
     {
       title: "Stability studies",
+      image: "/images/photos/quality-stability-studies.jpg",
+      imageAlt: "Analyst checking packaged medicines inside a stability chamber",
       text: "Studies track how product quality holds up over time under defined storage conditions, supporting shelf life and storage instructions.",
       tags: ["Potency", "Degradation products", "Dissolution", "Appearance"],
     },
@@ -120,6 +130,8 @@ export const qcqa = {
 
 export const commitment = {
   title: "Responsibility across the product lifecycle",
+  image: "/images/photos/hero-lab-rotary-evaporator.jpg",
+  imageAlt: "Gloved hands adjusting laboratory process equipment",
   text: "Quality is a responsibility carried from material selection to delivery. Our focus is on scientifically sound evaluation, clear documentation and accountable quality decisions that support confidence in the medicines we supply.",
   tagline: "Aspen Pharmaceuticals Pvt. Ltd.",
 };
