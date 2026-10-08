@@ -4,6 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 import { findSpecialty, specialtyPages } from "@/lib/specialties";
 import PageShell from "@/components/layout/PageShell";
 import PageBanner from "@/components/ui/PageBanner";
+import SpecialtyProducts from "@/components/products/SpecialtyProducts";
 import FinalCta from "@/components/sections/FinalCta";
 
 export const dynamicParams = false;
@@ -28,7 +29,6 @@ export default async function SpecialtyPage({ params }) {
   const { specialty } = await params;
   const s = findSpecialty(specialty);
   if (!s) notFound();
-  const n = s.products.length;
   const others = specialtyPages.filter((o) => o.slug !== s.slug);
 
   return (
@@ -40,48 +40,7 @@ export default async function SpecialtyPage({ params }) {
       />
       <section className="rf rf-section sp-section">
         <div className="rf-container">
-          <div className="sp-head">
-            <p>
-              {n} {n === 1 ? "product" : "products"} in our range for {s.name},
-              listed A–Z by brand. Use the{" "}
-              <Link
-                href={`/products?specialty=${encodeURIComponent(s.name)}#catalogue`}
-              >
-                product catalogue
-              </Link>{" "}
-              to search the range and open product monographs.
-            </p>
-          </div>
-          <div
-            className="sp-table-wrap"
-            tabIndex={0}
-            role="region"
-            aria-label={`${s.name} products table`}
-          >
-            <table className="sp-table">
-              <caption className="sp-sr">{s.name} products</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Brand</th>
-                  <th scope="col">Composition</th>
-                  <th scope="col">Category</th>
-                  <th scope="col">Form</th>
-                  <th scope="col">Pack</th>
-                </tr>
-              </thead>
-              <tbody>
-                {s.products.map((p) => (
-                  <tr key={p.id}>
-                    <th scope="row">{p.brand}</th>
-                    <td>{p.composition}</td>
-                    <td>{p.category}</td>
-                    <td>{p.form}</td>
-                    <td>{p.pack}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <SpecialtyProducts name={s.name} products={s.products} />
           <nav className="sp-others" aria-label="Other specialties">
             <h2>Other specialties</h2>
             <ul>

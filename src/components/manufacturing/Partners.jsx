@@ -1,5 +1,4 @@
 import RfReveal from "@/components/ui/RfReveal";
-import PartnerSelector from "@/components/manufacturing/PartnerSelector";
 import { partners } from "@/data/manufacturing";
 
 export default function Partners() {
@@ -9,14 +8,27 @@ export default function Partners() {
         <RfReveal className="mf-partners-head">
           <span className="rf-eyebrow">Manufacturing partners</span>
           <h2>Where Aspen products are made</h2>
-          <p>
-            Aspen products are made by established manufacturing partners.
-            Select a partner to see who they are.
-          </p>
+          <p>Aspen products are made by established manufacturing partners.</p>
         </RfReveal>
-        <RfReveal className="mf-ps-wrap">
-          <PartnerSelector partners={partners} />
-        </RfReveal>
+        <ul className="mf-pcards">
+          {partners.map(({ name, image }) => (
+            <li className="mf-pcard" key={name}>
+              {image ? (
+                <div
+                  className="mf-pcard-logo"
+                  role="img"
+                  aria-label={`${name} logo`}
+                  style={{ backgroundImage: `url(${image})` }}
+                />
+              ) : (
+                <div className="mf-pcard-logo is-text" aria-hidden="true">
+                  {name}
+                </div>
+              )}
+              <h3>{name}</h3>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

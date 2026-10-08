@@ -629,7 +629,6 @@ p {
 .ab-value,
 .ab-commit-card,
 .ct-career,
-.mf-ps-card,
 .ab-facts,
 .pr-cat {
   border-radius: var(--radius-md);
@@ -1639,5 +1638,195 @@ p {
     width: 100%;
     height: auto;
     aspect-ratio: 3 / 2;
+  }
+}
+
+/* ---------- 23. Manufacturing partners: minimal logo cards ----------------- */
+.mf-pcards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: pcard;
+}
+.mf-pcard {
+  position: relative;
+  min-height: 176px;
+  overflow: hidden;
+  border: 1px solid var(--c-line-soft);
+  border-radius: var(--radius-md);
+  background: var(--c-white);
+  counter-increment: pcard;
+}
+.mf-pcard::before {
+  content: counter(pcard, decimal-leading-zero);
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  color: var(--rf-muted);
+  font: 500 12px var(--font-body);
+  letter-spacing: 0.08em;
+}
+.mf-pcard-logo {
+  position: absolute;
+  inset: 0;
+  padding: 22px 32px 62px;
+  background-origin: content-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.mf-pcard-logo.is-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-navy);
+  font: 700 24px / 1.2 var(--font-heading);
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+.mf-pcard h3 {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  margin: 0;
+  padding: 13px 20px 14px;
+  background: var(--c-navy);
+  font: 500 15px / 1.35 var(--font-heading);
+  letter-spacing: -0.2px;
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .mf-pcards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .mf-pcards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 36px;
+  }
+  .mf-pcard {
+    min-height: 164px;
+  }
+}
+
+/* ---------- 24. Products: text-only specialty cards ------------------------ */
+.pr-cat {
+  flex: 1 0 180px;
+  max-width: 220px;
+}
+.pr-cat-label {
+  padding: 22px 18px 18px;
+}
+.pr-cat-label::before {
+  clip-path: none;
+}
+
+/* ---------- 25. Certifications: certificate / mark image, no icons --------- */
+.mc-card {
+  padding: 40px 22px 30px;
+}
+.mc-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 96px;
+  margin-bottom: 14px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+.mc-badge img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0;
+  background: none;
+  object-fit: contain;
+}
+
+/* ---------- 26. Certifications: one panel, four ruled columns --------------- */
+.mc-grid {
+  gap: 0;
+  margin-top: 48px;
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  background: var(--c-white);
+}
+.mc-card {
+  align-items: flex-start;
+  gap: 10px;
+  padding: 36px 32px 40px;
+  border: 0;
+  border-left: 1px solid var(--c-line-soft);
+  border-radius: 0;
+  background: none;
+  text-align: left;
+}
+.mc-card:first-child {
+  border-left: 0;
+}
+.mc-card:hover {
+  border-color: var(--c-line-soft);
+}
+.mc-card:first-child:hover {
+  border-color: transparent;
+}
+.mc-num {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  color: var(--rf-teal);
+  font: 600 12px var(--font-heading);
+  letter-spacing: 0.14em;
+}
+.mc-num::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--rf-teal);
+}
+.mc-badge {
+  justify-content: flex-start;
+  height: 72px;
+}
+.mc-card strong {
+  font: 500 clamp(26px, 2.4vw, 34px) / 1.1 var(--font-heading);
+  letter-spacing: -1px;
+}
+.mc-detail {
+  max-width: 220px;
+}
+@media (max-width: 900px) {
+  .mc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mc-card:nth-child(odd) {
+    border-left: 0;
+  }
+  .mc-card:nth-child(n + 3) {
+    border-top: 1px solid var(--c-line-soft);
+  }
+}
+@media (max-width: 560px) {
+  .mc-grid {
+    grid-template-columns: 1fr;
+  }
+  .mc-card {
+    border-left: 0;
+    padding: 28px 24px 30px;
+  }
+  .mc-card:nth-child(n + 2) {
+    border-top: 1px solid var(--c-line-soft);
   }
 }
