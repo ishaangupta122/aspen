@@ -455,10 +455,10 @@ export default function Illustration({ name, image, alt = "" }) {
   const Art = art[name] || art.all;
   return (
     <div
-      className="pr-art"
+      className="overflow-hidden aspect-[1] h-full relative grid [place-items:center] w-full"
       style={{ background: `linear-gradient(145deg, ${a}, ${b})` }}>
       {image ? (
-        <img src={image} alt={alt} loading="lazy" />
+        <img className="inset-0 block w-full absolute h-full object-cover" src={image} alt={alt} loading="lazy" />
       ) : (
         <svg
           viewBox="0 0 240 180"

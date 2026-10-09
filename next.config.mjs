@@ -22,6 +22,10 @@ const nextConfig = {
       { source: "/products/haematology", destination: "/products", permanent: true },
     ];
   },
+  async rewrites() {
+    // Browsers and crawlers request /favicon.ico directly; the file lives with the other images.
+    return [{ source: "/favicon.ico", destination: "/images/favicon.ico" }];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

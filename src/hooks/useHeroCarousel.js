@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { prefersReducedMotion } from "@/lib/motion";
 
-/** Shared carousel behaviour for every hero concept: autoplay, pause while a control has keyboard focus, reduced motion. */
-export function useHeroCarousel(count, duration) {
+/** Shared carousel behaviour for every hero concept. Slides change only when the visitor uses the controls (no autoplay). */
+export function useHeroCarousel(count) {
   const [active, setActive] = useState(0);
   const [prev, setPrev] = useState(-1);
   const [paused, setPaused] = useState(false);
@@ -35,12 +35,6 @@ export function useHeroCarousel(count, duration) {
     [show],
   );
 
-  useEffect(() => {
-    if (paused || still || stopped) return;
-    const id = setTimeout(() => show(active + 1), duration);
-    return () => clearTimeout(id);
-  }, [active, paused, still, stopped, show, duration]);
-
   const hold = {
     onFocus: () => setPaused(true),
     onBlur: () => setPaused(false),
@@ -49,4 +43,3 @@ export function useHeroCarousel(count, duration) {
   return { active, prev, paused, still, stopped, warm, go, hold };
 }
 
-export const pad2 = (n) => String(n).padStart(2, "0");

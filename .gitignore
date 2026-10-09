@@ -17,3 +17,8 @@ next-env.d.ts
 .DS_Store
 *.log
 *.tgz
+
+# cloudflare
+.open-next
+.wrangler
+.dev.vars

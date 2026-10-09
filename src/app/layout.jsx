@@ -1,5 +1,4 @@
 import "./globals.css";
-import "./pharma-theme.css";
 import { SITE_NAME, SITE_URL, LEGAL_NAME, SERVED_STATES } from "@/lib/site";
 import JsonLd from "@/components/ui/JsonLd";
 import { contact } from "@/data/contact";
@@ -7,22 +6,29 @@ import { contact } from "@/data/contact";
 const description =
   "Aspen Pharmaceuticals, established in 2010, serves healthcare professionals across North India with a portfolio of finished dosage forms.";
 const homeTitle =
-  "Aspen Pharmaceuticals | Medicines for healthcare professionals, North India";
+  "Aspen Pharmaceuticals | Medicines for Healthcare Professionals";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: homeTitle,
   description,
   alternates: { canonical: "/" },
+  icons: {
+    icon: [
+      { url: "/images/favicon.ico", sizes: "48x48" },
+      { url: "/images/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: { url: "/images/apple-icon.png", sizes: "180x180" },
+  },
   openGraph: {
     type: "website",
     url: "/",
     images: [
       {
-        url: "/og-image.png",
+        url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Aspen Pharmaceuticals – Driven by science, inspired by life",
+        alt: "Aspen Pharmaceuticals – Serving healthcare across North India",
       },
     ],
     siteName: SITE_NAME,
@@ -32,7 +38,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image.png"],
+    images: ["/images/og-image.jpg"],
     title: homeTitle,
     description,
   },
@@ -49,7 +55,7 @@ const organization = {
   name: LEGAL_NAME,
   alternateName: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
+  logo: `${SITE_URL}/images/logo.png`,
   description,
   foundingDate: "2010",
   email: contact.email,

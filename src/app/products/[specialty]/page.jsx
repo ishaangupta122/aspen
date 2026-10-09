@@ -5,7 +5,7 @@ import { findSpecialty, specialtyPages } from "@/lib/specialties";
 import PageShell from "@/components/layout/PageShell";
 import PageBanner from "@/components/ui/PageBanner";
 import SpecialtyProducts from "@/components/products/SpecialtyProducts";
-import FinalCta from "@/components/sections/FinalCta";
+import ProductsClosing from "@/components/products/ProductsClosing";
 
 export const dynamicParams = false;
 
@@ -38,26 +38,22 @@ export default async function SpecialtyPage({ params }) {
         crumbs={[{ label: "Products", href: "/products" }, { label: s.name }]}
         path={s.href}
       />
-      <section className="rf rf-section sp-section">
-        <div className="rf-container">
+      <section className="rf px-0 py-[var(--section-y)] text-[color:var(--rf-ink)] [background:var(--c-white)]">
+        <div className="mx-auto w-[min(var(--page-max),calc(100%_-_2_*_var(--page-gutter)))]">
           <SpecialtyProducts name={s.name} products={s.products} />
-          <nav className="sp-others" aria-label="Other specialties">
-            <h2>Other specialties</h2>
-            <ul>
+          <nav className="mt-14" aria-label="Other specialties">
+            <h2 className="mx-0 mt-0 mb-4 text-navy font-semibold text-[20px] leading-[normal] font-heading tracking-[-0.4px]">Other specialties</h2>
+            <ul className="m-0 p-0 flex flex-wrap gap-y-2 gap-x-2.5 [list-style:none]">
               {others.map((o) => (
                 <li key={o.slug}>
-                  <Link href={o.href}>{o.name}</Link>
+                  <Link className="px-4 py-2 rounded-[var(--radius-md)] border border-solid border-[color:var(--rf-line)] inline-block text-[color:var(--rf-muted)] text-[14px] [transition:color_var(--dur-fast),border-color_var(--dur-fast)] hover:border-[color:var(--rf-teal)] hover:text-navy" href={o.href}>{o.name}</Link>
                 </li>
               ))}
             </ul>
           </nav>
         </div>
       </section>
-      <FinalCta
-        eyebrow="Product enquiries"
-        title="Looking for product information?"
-        text="For product details, distribution or partnership enquiries, our team is happy to help."
-      />
+      <ProductsClosing />
     </PageShell>
   );
 }

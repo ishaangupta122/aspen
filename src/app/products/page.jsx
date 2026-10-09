@@ -1,7 +1,7 @@
 import { pageMetadata } from "@/lib/seo";
 import PageShell from "@/components/layout/PageShell";
 import PageBanner from "@/components/ui/PageBanner";
-import FinalCta from "@/components/sections/FinalCta";
+import ProductsClosing from "@/components/products/ProductsClosing";
 import ProductsOverview from "@/components/products/ProductsOverview";
 import ProductCatalogue from "@/components/products/ProductCatalogue";
 
@@ -22,7 +22,7 @@ export default function ProductsPage() {
       />
       <ProductsOverview />
       <ProductCatalogue />
-      <FinalCta />
+      <ProductsClosing />
     </PageShell>
   );
 }

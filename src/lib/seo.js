@@ -15,10 +15,10 @@ export function pageMetadata({ title, description, path }) {
       url: path,
       images: [
         {
-          url: "/og-image.png",
+          url: "/images/og-image.jpg",
           width: 1200,
           height: 630,
-          alt: "Aspen Pharmaceuticals – Driven by science, inspired by life",
+          alt: "Aspen Pharmaceuticals – Serving healthcare across North India",
         },
       ],
     },
@@ -26,7 +26,7 @@ export function pageMetadata({ title, description, path }) {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-image.png"],
+      images: ["/images/og-image.jpg"],
     },
   };
 }
