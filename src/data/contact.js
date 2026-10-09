@@ -35,18 +35,14 @@ export const careers = {
     {
       title: "Work that reaches patients",
       text: `Our range supports healthcare professionals across ${SPECIALTY_COUNT} medical specialties. Whatever your role, your work helps reliable medicines reach the people who need them.`,
-      icon: "reach",
     },
     {
       title: "Exposure across the product lifecycle",
       text: "From quality review and regulatory documentation to distribution and field engagement, you work close to every stage of a product’s journey.",
-      icon: "science",
     },
     {
       title: "A team that values your contribution",
       text: "Based in Ghaziabad since 2010, we serve healthcare professionals across North India. Our teams are close-knit, so your work is seen and your ideas are heard.",
-      icon: "growth",
     },
   ],
-
 };

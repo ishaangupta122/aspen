@@ -43,4 +43,3 @@ export function useHeroCarousel(count) {
   return { active, prev, paused, still, stopped, warm, go, hold };
 }
 
-export const pad2 = (n) => String(n).padStart(2, "0");

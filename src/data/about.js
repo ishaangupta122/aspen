@@ -65,25 +65,21 @@ export const commitments = [
 export const values = [
   {
     title: "Patient focus",
-    image: "patient",
     alt: "Two scientists discussing results in the laboratory",
     text: "We weigh the needs of patients and the responsibilities of healthcare in every business decision we make.",
   },
   {
     title: "Quality commitment",
-    image: "blisterPacks",
     alt: "Tablets in blister packs",
     text: "We give quality due importance across our products, partnerships and operational processes.",
   },
   {
     title: "Integrity",
-    image: "people",
     alt: "Analyst reviewing test results at the bench",
     text: "We act honestly, communicate clearly and uphold responsible business conduct.",
   },
   {
     title: "Accountability",
-    image: "documentCheck",
     alt: "Quality analyst measuring a tablet",
     text: "We take ownership of our work and keep improving how we deliver on our commitments.",
   },

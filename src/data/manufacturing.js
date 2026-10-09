@@ -12,13 +12,13 @@ export const process = {
   ],
 };
 
-// Partner logos and plant photos are self-hosted in /public/images/partners and /public/images/facilities.
+// Partner logos and plant photos are self-hosted in /public/images.
 export const partners = [
-  { name: "Akums Drugs & Pharmaceuticals Ltd.", image: "/images/partners/akums-drugs.jpg" },
-  { name: "Gentech Healthcare Pvt. Ltd.", image: "/images/partners/gentech-healthcare.jpg" },
-  { name: "Enrico Pharmaceuticals", image: "/images/partners/enrico-pharmaceuticals.jpg" },
-  { name: "Ekanthika Pharmaceuticals", image: "/images/partners/ekanthika-pharmaceuticals.jpg" },
-  { name: "Medicef Pharma Ltd.", image: "/images/partners/medicef-pharma.jpg" },
+  { name: "Akums Drugs & Pharmaceuticals Ltd.", image: "/images/akums-drugs.jpg" },
+  { name: "Gentech Healthcare Pvt. Ltd.", image: "/images/gentech-healthcare.jpg" },
+  { name: "Enrico Pharmaceuticals", image: "/images/enrico-pharmaceuticals.jpg" },
+  { name: "Ekanthika Pharmaceuticals", image: "/images/ekanthika-pharmaceuticals.jpg" },
+  { name: "Medicef Pharma Ltd.", image: "/images/medicef-pharma.jpg" },
   { name: "Antibiotic India" },
 ];
 
@@ -28,10 +28,10 @@ export const facilities = {
   copy: "Clean-room production and automated packing at the plants that make Aspen products.",
   note: "Representative images of partner facilities.",
   items: [
-    { caption: "Akums manufacturing campus, Haridwar (aerial view)", image: "/images/facilities/akums-haridwar-aerial.jpg" },
-    { caption: "Medicef manufacturing facility", image: "/images/facilities/medicef-facility.jpg" },
-    { caption: "Automated filling line in a clean-room area", image: "/images/facilities/cleanroom-filling-line.jpg" },
-    { caption: "Automatic sachet packing machine", image: "/images/facilities/sachet-packing-machine.jpg" },
+    { caption: "Akums manufacturing campus, Haridwar (aerial view)", image: "/images/akums-haridwar-aerial.jpg" },
+    { caption: "Medicef manufacturing facility", image: "/images/medicef-facility.jpg" },
+    { caption: "Automated filling line in a clean-room area", image: "/images/cleanroom-filling-line.jpg" },
+    { caption: "Automatic sachet packing machine", image: "/images/sachet-packing-machine.jpg" },
   ],
 };
 
@@ -59,36 +59,26 @@ export const stages = {
   items: [
     {
       title: "Raw & packaging material testing",
-      image: "/images/photos/quality-raw-material-testing.jpg",
-      imageAlt: "Analyst in gloves sampling powder from a jar beside amber bottles and blister packs",
       text: "Active ingredients, excipients and packaging components are checked against approved specifications before they are accepted for use.",
       tags: ["Identification", "Assay", "Impurities"],
     },
     {
       title: "In-process quality checks",
-      image: "/images/photos/quality-in-process-checks.jpg",
-      imageAlt: "Analyst measuring a tablet with a digital micrometer beside a tablet press",
       text: "Checks during manufacture catch variation early and confirm the process is producing material with the required characteristics.",
       tags: ["Blend uniformity", "Hardness", "Disintegration"],
     },
     {
       title: "Finished product analysis",
-      image: "/images/photos/quality-finished-product-analysis.jpg",
-      imageAlt: "Tablets, an amber bottle and a vial on a laboratory bench",
       text: "Each batch is evaluated against approved specifications before a release decision is made through the authorised quality system.",
       tags: ["Assay", "Dosage uniformity", "Dissolution"],
     },
     {
       title: "Microbiological testing",
-      image: "/images/photos/quality-microbiological-testing.jpg",
-      imageAlt: "Microbiologist pipetting into culture plates inside a safety cabinet",
       text: "Testing is matched to the product and its intended use, as part of a wider contamination-control system.",
       tags: ["Microbial limits", "Sterility", "Bacterial endotoxins"],
     },
     {
       title: "Stability studies",
-      image: "/images/photos/quality-stability-studies.jpg",
-      imageAlt: "Analyst checking packaged medicines inside a stability chamber",
       text: "Studies track how product quality holds up over time under defined storage conditions, supporting shelf life and storage instructions.",
       tags: ["Potency", "Degradation products", "Dissolution"],
     },
@@ -130,7 +120,7 @@ export const qcqa = {
 
 export const commitment = {
   title: "Responsibility across the product lifecycle",
-  image: "/images/photos/hero-lab-rotary-evaporator.jpg",
+  image: "/images/hero-lab-rotary-evaporator.jpg",
   imageAlt: "Gloved hands adjusting laboratory process equipment",
   text: "Quality is a responsibility carried from material selection to delivery. Our focus is on scientifically sound evaluation, clear documentation and accountable quality decisions that support confidence in the medicines we supply.",
   tagline: "Aspen Pharmaceuticals Pvt. Ltd.",
