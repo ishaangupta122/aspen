@@ -2,8 +2,8 @@ import { pageMetadata } from "@/lib/seo";
 import JsonLd from "@/components/ui/JsonLd";
 import { pageSchema } from "@/lib/schema";
 import PageShell from "@/components/layout/PageShell";
-import FinalCta from "@/components/sections/FinalCta";
-import AboutHero from "@/components/about/AboutHero";
+import ClosingBand from "@/components/ui/ClosingBand";
+import PageBanner from "@/components/ui/PageBanner";
 import Foundation from "@/components/about/Foundation";
 import Journey from "@/components/about/Journey";
 import MissionVision from "@/components/about/MissionVision";
@@ -28,17 +28,18 @@ export default function AboutPage() {
   return (
     <PageShell>
       <JsonLd data={schema} />
-      <AboutHero />
+      <PageBanner title="About Aspen" crumbs={[{ label: "About" }]} path="/about" />
       <Foundation />
       <Journey />
       <MissionVision />
       <Commitments />
       <CoreValues />
       <Direction />
-      <FinalCta
+      <ClosingBand
+        id="contact"
         eyebrow="Work with Aspen"
         title="Questions about Aspen?"
-        text="For product information, distribution or partnership enquiries, our team is happy to help."
+        paragraphs={["For product information, distribution or partnership enquiries, our team is happy to help and will respond promptly."]}
       />
     </PageShell>
   );

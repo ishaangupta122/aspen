@@ -1,4 +1,3 @@
-import { ShieldCheck } from "lucide-react";
 import { images } from "@/data/site";
 import RfLink from "@/components/ui/RfLink";
 import RfHeading from "@/components/ui/RfHeading";
@@ -9,29 +8,26 @@ export default function Quality() {
     <section className="rf rf-section rf-quality" id="quality">
       <div className="rf-container rf-quality-grid">
         <RfReveal className="rf-quality-image">
-          <img
-            src={images.manufacturing}
-            alt="A bright, modern pharmaceutical laboratory facility"
-            loading="lazy"
-          />
-          <div className="rf-quality-badge">
-            <ShieldCheck size={25} />
-            <span>
-              Quality checks
-              <br />
-              at every stage
-            </span>
-          </div>
+          <figure className="rf-quality-figure">
+            <div className="rf-quality-photo">
+              <img
+                src={images.manufacturing}
+                alt="A bright, modern pharmaceutical laboratory facility"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>Quality checks at every stage</figcaption>
+          </figure>
         </RfReveal>
         <RfReveal className="rf-quality-copy">
           <RfHeading
             eyebrow="How we work"
-            title="Made with quality-focused partners."
+            title="Made with quality‑focused partners."
           />
           <p>
             Our products are made with established manufacturing partners whose
-            systems, facilities, and practices support consistent quality—from
-            production and packing to storage and delivery.
+            systems and facilities support consistent quality, from production
+            and packing to storage and delivery.
           </p>
           <div className="rf-certs">
             <div>

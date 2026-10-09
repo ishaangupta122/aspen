@@ -1,6 +1,6 @@
 import { pageMetadata } from "@/lib/seo";
 import PageShell from "@/components/layout/PageShell";
-import FinalCta from "@/components/sections/FinalCta";
+import ClosingBand from "@/components/ui/ClosingBand";
 import PageBanner from "@/components/ui/PageBanner";
 import ProductionLine from "@/components/manufacturing/ProductionLine";
 import Partners from "@/components/manufacturing/Partners";
@@ -28,10 +28,11 @@ export default function ManufacturingPage() {
       <Facilities />
       <Certifications />
       <QualityTeaser />
-      <FinalCta
+      <ClosingBand
+        id="contact"
         eyebrow="Partnerships"
         title="Interested in working with Aspen?"
-        text="For manufacturing, distribution or partnership enquiries, our team is happy to help."
+        paragraphs={["For manufacturing, distribution or partnership enquiries, write to us and our team will respond with the details you need."]}
       />
     </PageShell>
   );

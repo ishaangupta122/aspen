@@ -1,42 +1,39 @@
 import Link from "next/link";
-import { ArrowRight, MoveUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SPECIALTY_COUNT, therapeuticAreas } from "@/data/site";
-import SectionIntro from "@/components/ui/SectionIntro";
+
+/** Compact index: heading on the left, the areas as a plain two-column list on the right. */
+// Home shows six areas (Nutraceuticals is left out); the full list stays in the data and on the products page.
+const shown = therapeuticAreas.filter((a) => a.name !== "Nutraceuticals");
 
 export default function TherapeuticAreas() {
   return (
     <section className="section areas-section" id="capabilities">
-      <div className="container">
-        <SectionIntro
-          eyebrow="What we focus on"
-          title="Healthcare across essential therapeutic areas."
-          copy={`Our seven core areas, drawn from ${SPECIALTY_COUNT} medical specialties.`}
-        />
-        <div className="areas-layout">
-          {therapeuticAreas.map((area) => (
-            <Link
-              href={area.href}
-              className={`area-item ${area.className}`}
-              key={area.name}
-            >
-              {area.image && (
-                <img src={area.image} alt="" loading="lazy" decoding="async" />
-              )}
-              <div className="area-overlay" />
-              <div className="area-content">
-                <span>{area.name}</span>
-                <small>{area.detail}</small>
-              </div>
-              <MoveUpRight className="area-arrow" size={20} />
-            </Link>
-          ))}
-        </div>
-        <div className="areas-cta">
-          <Link href="/products#catalogue">
-            Browse the full product range
-            <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
+      <div className="container ta-layout">
+        <div className="ta-intro">
+          <p className="eyebrow">What we focus on</p>
+          <h2>Essential therapeutic areas.</h2>
+          <p className="section-copy">
+            Six core areas, drawn from {SPECIALTY_COUNT} medical specialties.
+          </p>
+          <Link href="/products#catalogue" className="ta-all">
+            Browse all products
+            <ArrowRight size={17} aria-hidden="true" />
           </Link>
         </div>
+        <ul className="ta-list">
+          {shown.map((area) => (
+            <li key={area.name}>
+              <Link href={area.href} className="ta-row">
+                <span className="ta-text">
+                  <span className="ta-name">{area.name}</span>
+                  <span className="ta-detail">{area.detail}</span>
+                </span>
+                <ArrowRight className="ta-arrow" size={17} aria-hidden="true" />
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

@@ -8,20 +8,16 @@ export default function About() {
     <section className="rf rf-section rf-about" id="about">
       <div className="rf-container rf-about-grid">
         <RfReveal className="rf-about-images">
-          <div className="rf-about-main">
-            <img
-              src={images.scientist}
-              alt="Two Aspen scientists reviewing laboratory notes"
-              loading="lazy"
-            />
-          </div>
-          <div className="rf-about-detail">
-            <img
-              src={images.isolator}
-              alt="Operator working at an aseptic isolator"
-              loading="lazy"
-            />
-          </div>
+          <figure className="rf-about-figure">
+            <div className="rf-about-main">
+              <img
+                src={images.scientist}
+                alt="Two Aspen scientists reviewing laboratory notes"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>Ghaziabad, Uttar Pradesh · Established 2010</figcaption>
+          </figure>
         </RfReveal>
         <RfReveal className="rf-about-copy">
           <RfHeading

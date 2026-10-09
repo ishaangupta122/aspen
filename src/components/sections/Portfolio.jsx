@@ -1,6 +1,7 @@
 import { catalogue } from "@/data/catalogue";
 import SectionIntro from "@/components/ui/SectionIntro";
-import ButtonLink from "@/components/ui/ButtonLink";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import FeaturedTrack from "@/components/sections/FeaturedTrack";
 
 // Featured brands from the real catalogue (matched by brand name).
@@ -48,9 +49,9 @@ export default function Portfolio() {
             title="Brands from our portfolio."
             copy="A selection from our range of 250+ products across therapeutic areas."
           />
-          <ButtonLink to="/products" variant="text">
-            Explore complete portfolio
-          </ButtonLink>
+          <Link className="ta-all" href="/products">
+            Explore complete portfolio <ArrowRight size={18} />
+          </Link>
         </div>
         <FeaturedTrack products={featured} />
       </div>

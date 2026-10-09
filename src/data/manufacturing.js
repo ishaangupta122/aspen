@@ -62,21 +62,21 @@ export const stages = {
       image: "/images/photos/quality-raw-material-testing.jpg",
       imageAlt: "Analyst in gloves sampling powder from a jar beside amber bottles and blister packs",
       text: "Active ingredients, excipients and packaging components are checked against approved specifications before they are accepted for use.",
-      tags: ["Identification", "Assay", "Impurities", "Moisture content"],
+      tags: ["Identification", "Assay", "Impurities"],
     },
     {
       title: "In-process quality checks",
       image: "/images/photos/quality-in-process-checks.jpg",
       imageAlt: "Analyst measuring a tablet with a digital micrometer beside a tablet press",
       text: "Checks during manufacture catch variation early and confirm the process is producing material with the required characteristics.",
-      tags: ["Blend uniformity", "Weight", "Hardness", "Disintegration", "pH", "Fill volume"],
+      tags: ["Blend uniformity", "Hardness", "Disintegration"],
     },
     {
       title: "Finished product analysis",
       image: "/images/photos/quality-finished-product-analysis.jpg",
       imageAlt: "Tablets, an amber bottle and a vial on a laboratory bench",
       text: "Each batch is evaluated against approved specifications before a release decision is made through the authorised quality system.",
-      tags: ["Assay", "Impurities", "Dosage uniformity", "Dissolution", "Packaging & labelling"],
+      tags: ["Assay", "Dosage uniformity", "Dissolution"],
     },
     {
       title: "Microbiological testing",
@@ -90,7 +90,7 @@ export const stages = {
       image: "/images/photos/quality-stability-studies.jpg",
       imageAlt: "Analyst checking packaged medicines inside a stability chamber",
       text: "Studies track how product quality holds up over time under defined storage conditions, supporting shelf life and storage instructions.",
-      tags: ["Potency", "Degradation products", "Dissolution", "Appearance"],
+      tags: ["Potency", "Degradation products", "Dissolution"],
     },
   ],
 };

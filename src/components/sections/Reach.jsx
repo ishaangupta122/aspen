@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import RfHeading from "@/components/ui/RfHeading";
 import RfReveal from "@/components/ui/RfReveal";
 
@@ -22,31 +22,15 @@ export default function Reach() {
             title="Serving healthcare across North India."
           />
           <p>
-            Field teams and{" "}
-            <Link className="in-link" href="/contact">
-              distribution partners
-            </Link>{" "}
-            connect Aspen with healthcare professionals across seven states,
-            helping keep medicines available where clinicians need them.
+            Field teams and distribution partners connect Aspen with
+            healthcare professionals across seven states, helping keep
+            medicines available where clinicians need them.
           </p>
-          <div className="rf-reach-stat">
-            <strong>7</strong>
-            <span>
-              States
-              <br />
-              served
-            </span>
-          </div>
+          <Link className="ta-all" href="/contact">
+            Become a distributor <ArrowRight size={18} />
+          </Link>
         </RfReveal>
         <RfReveal className="rf-map">
-          <div className="rf-map-grid" />
-          <div className="rf-map-route rf-map-route-one" />
-          <div className="rf-map-route rf-map-route-two" />
-          <div className="rf-map-route rf-map-route-three" />
-          <div className="rf-map-center">
-            <MapPin size={30} strokeWidth={1.8} />
-            <span>North India</span>
-          </div>
           {states.map((state, index) => (
             <div
               className={`rf-map-point rf-map-point-${index + 1}`}

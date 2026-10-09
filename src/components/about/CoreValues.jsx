@@ -1,6 +1,5 @@
 import RfReveal from "@/components/ui/RfReveal";
 import RfHeading from "@/components/ui/RfHeading";
-import { images } from "@/data/site";
 import { values } from "@/data/about";
 
 export default function CoreValues() {
@@ -14,11 +13,8 @@ export default function CoreValues() {
           />
         </RfReveal>
         <div className="ab-values-grid">
-          {values.map(({ title, text, image, alt }, index) => (
+          {values.map(({ title, text }, index) => (
             <RfReveal className="ab-value" key={title}>
-              <div className="ab-value-image">
-                <img src={images[image]} alt={alt} loading="lazy" />
-              </div>
               <span className="ab-value-num">0{index + 1}</span>
               <h3>{title}</h3>
               <p>{text}</p>

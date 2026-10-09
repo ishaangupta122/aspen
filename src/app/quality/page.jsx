@@ -1,11 +1,11 @@
 import { pageMetadata } from "@/lib/seo";
 import PageShell from "@/components/layout/PageShell";
-import FinalCta from "@/components/sections/FinalCta";
 import PageBanner from "@/components/ui/PageBanner";
 import QualityIntro from "@/components/manufacturing/QualityIntro";
 import QualityStages from "@/components/manufacturing/QualityStages";
 import Practices from "@/components/manufacturing/Practices";
 import QualityCommitment from "@/components/manufacturing/QualityCommitment";
+import QualityClosing from "@/components/manufacturing/QualityClosing";
 
 export const metadata = pageMetadata({
   title: "Quality control & testing | Aspen Pharmaceuticals",
@@ -26,11 +26,7 @@ export default function QualityPage() {
       <QualityStages />
       <Practices />
       <QualityCommitment />
-      <FinalCta
-        eyebrow="Quality enquiries"
-        title="Questions about our quality approach?"
-        text="For product quality information or partnership enquiries, get in touch with our team."
-      />
+      <QualityClosing />
     </PageShell>
   );
 }

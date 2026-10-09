@@ -1,3 +1,5 @@
+import { SPECIALTY_COUNT } from "@/data/site";
+
 export const contact = {
   address: [
     "Aspen Pharmaceuticals Pvt. Ltd.",
@@ -27,23 +29,24 @@ export const enquiryTypes = [
 // Copy is drawn from the site's own themes (science, quality, reach). Edit freely.
 export const careers = {
   eyebrow: "Careers",
-  title: "Why work with Aspen",
-  copy: "Three things shape how we work, and what you can expect from working with us.",
+  title: "Want to work with Aspen?",
+  copy: "If you would like to be part of the team, tell us about yourself. When your profile matches an opening, our team will get in touch.",
   reasons: [
     {
-      title: "Evidence before opinion",
-      text: "Work alongside research and quality teams where decisions rest on sound science and careful testing.",
+      title: "Work that reaches patients",
+      text: `Our range supports healthcare professionals across ${SPECIALTY_COUNT} medical specialties. Whatever your role, your work helps reliable medicines reach the people who need them.`,
+      icon: "reach",
+    },
+    {
+      title: "Exposure across the product lifecycle",
+      text: "From quality review and regulatory documentation to distribution and field engagement, you work close to every stage of a product’s journey.",
       icon: "science",
     },
     {
-      title: "Quality in every step",
-      text: "Our products are made with EU-GMP, WHO-GMP and ISO 9001:2015 certified partners, so you learn and work to high, recognised standards.",
-      icon: "quality",
-    },
-    {
-      title: "Care that reaches people",
-      text: "Field teams and distribution partners connect us with healthcare professionals across seven states of North India.",
-      icon: "reach",
+      title: "A team that values your contribution",
+      text: "Based in Ghaziabad since 2010, we serve healthcare professionals across North India. Our teams are close-knit, so your work is seen and your ideas are heard.",
+      icon: "growth",
     },
   ],
+
 };

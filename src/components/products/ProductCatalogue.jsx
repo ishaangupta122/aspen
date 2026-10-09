@@ -37,6 +37,14 @@ export default function ProductCatalogue() {
       setTab(spec);
       setTimeout(scrollToBar, 350);
     }
+    if (params.get("search")) {
+      setTimeout(() => {
+        scrollToBar();
+        document
+          .querySelector("#catalogue .pr-search input")
+          ?.focus({ preventScroll: true });
+      }, 350);
+    }
     const q = params.get("q");
     if (q) {
       setQuery(q);

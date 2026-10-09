@@ -7,7 +7,6 @@ import DosageForms from "@/components/rnd/DosageForms";
 import AdvancedTablets from "@/components/rnd/AdvancedTablets";
 import DevelopmentApproach from "@/components/rnd/DevelopmentApproach";
 import QualityStatement from "@/components/rnd/QualityStatement";
-import RndCta from "@/components/rnd/RndCta";
 
 export const metadata = pageMetadata({
   title: "Formulation development | Aspen Pharmaceuticals R&D",
@@ -30,7 +29,6 @@ export default function ResearchDevelopmentPage() {
       <AdvancedTablets />
       <DevelopmentApproach />
       <QualityStatement />
-      <RndCta />
     </PageShell>
   );
 }

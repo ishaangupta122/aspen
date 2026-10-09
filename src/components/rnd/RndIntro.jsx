@@ -4,15 +4,15 @@ import { hero } from "@/data/rnd";
 
 export default function RndIntro() {
   return (
-    <section className="rf rd-intro">
-      <div className="rf-container rd-intro-grid">
-        <RfReveal className="rd-intro-copy">
+    <section className="rf rf-section rn-intro">
+      <div className="rf-container rn-intro-grid">
+        <RfReveal className="rn-intro-copy">
           <span className="rf-eyebrow">{hero.title}</span>
           <h2>{hero.tagline}</h2>
           {hero.paragraphs.map((text) => (
             <p key={text}>{text}</p>
           ))}
-          <ul className="rd-intro-stats">
+          <ul className="rn-stats">
             {hero.highlights.map(([value, label]) => (
               <li key={label}>
                 <strong>{value}</strong>
@@ -21,7 +21,7 @@ export default function RndIntro() {
             ))}
           </ul>
         </RfReveal>
-        <RfReveal className="rd-intro-media">
+        <RfReveal className="rn-intro-media">
           <img
             src={images.capsuleTray}
             alt="Gloved hands arranging capsules in a laboratory tray"

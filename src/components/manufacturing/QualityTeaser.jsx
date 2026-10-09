@@ -1,4 +1,5 @@
-import ButtonLink from "@/components/ui/ButtonLink";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import RfReveal from "@/components/ui/RfReveal";
 
 const points = [
@@ -17,7 +18,9 @@ export default function QualityTeaser() {
         <RfReveal className="qt-copy">
           <span className="rf-eyebrow">Quality</span>
           <h2>Testing from raw material to finished product.</h2>
-          <ButtonLink to="/quality">See our quality approach</ButtonLink>
+          <Link className="ta-all" href="/quality">
+            See our quality approach <ArrowRight size={18} />
+          </Link>
         </RfReveal>
         <div className="qt-list">
           {points.map(([t, d], i) => (

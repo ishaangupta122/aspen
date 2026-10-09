@@ -5,7 +5,6 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 export default function AboutHero() {
   return (
     <section className="ab-hero">
-      <div className="ab-hero-orb" />
       <div className="rf-container ab-hero-grid">
         <div className="ab-hero-copy">
           <p className="eyebrow eyebrow-light">About Aspen</p>

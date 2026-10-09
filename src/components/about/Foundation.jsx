@@ -10,6 +10,7 @@ export default function Foundation() {
           <p className="ab-foundation-lead">{intro.foundation[0]}</p>
         </RfReveal>
         <RfReveal className="ab-foundation-side">
+          <p className="ab-foundation-intro">{intro.lead}</p>
           <p>{intro.foundation[1]}</p>
         </RfReveal>
       </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import EmployeeLoginLink from "@/components/EmployeeLoginLink";
 import { contact } from "@/data/contact";
 
 const company = [
@@ -66,6 +67,7 @@ export default function Footer() {
         <span>© 2026 Aspen Pharmaceuticals Pvt. Ltd.</span>
         <span className="ft-legal">
           <Link href="/privacy">Privacy policy</Link>
+          <EmployeeLoginLink />
           <span>Driven by science, inspired by life.</span>
         </span>
       </div>

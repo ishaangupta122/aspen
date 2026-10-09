@@ -33,8 +33,8 @@ export default function ContactPage() {
         crumbs={[{ label: "Contact" }]}
         path="/contact"
       />
-      <ContactSection />
       <Careers />
+      <ContactSection />
     </PageShell>
   );
 }

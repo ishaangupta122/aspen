@@ -5,7 +5,7 @@ import { findSpecialty, specialtyPages } from "@/lib/specialties";
 import PageShell from "@/components/layout/PageShell";
 import PageBanner from "@/components/ui/PageBanner";
 import SpecialtyProducts from "@/components/products/SpecialtyProducts";
-import FinalCta from "@/components/sections/FinalCta";
+import ProductsClosing from "@/components/products/ProductsClosing";
 
 export const dynamicParams = false;
 
@@ -53,11 +53,7 @@ export default async function SpecialtyPage({ params }) {
           </nav>
         </div>
       </section>
-      <FinalCta
-        eyebrow="Product enquiries"
-        title="Looking for product information?"
-        text="For product details, distribution or partnership enquiries, our team is happy to help."
-      />
+      <ProductsClosing />
     </PageShell>
   );
 }

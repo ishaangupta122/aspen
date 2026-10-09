@@ -86,6 +86,7 @@ export default function Monograph({ product, onClose }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
   const [active, setActive] = useState(0);
+  const lockRef = useRef(0);
 
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -119,6 +120,7 @@ export default function Monograph({ product, onClose }) {
     const root = bodyRef.current;
     if (!root || !sections.length) return;
     const onScroll = () => {
+      if (Date.now() < lockRef.current) return;
       const top = root.getBoundingClientRect().top + 40;
       let cur = 0;
       root.querySelectorAll("[data-sec]").forEach((el, i) => {
@@ -153,6 +155,7 @@ export default function Monograph({ product, onClose }) {
     const root = bodyRef.current;
     const el = root?.querySelector(`[data-sec="${i}"]`);
     if (!el) return;
+    lockRef.current = Date.now() + 900;
     root.scrollTo({
       top: el.offsetTop + 12,
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches

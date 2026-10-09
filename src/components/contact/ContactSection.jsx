@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import RfReveal from "@/components/ui/RfReveal";
 import EnquiryForm from "@/components/contact/EnquiryForm";
@@ -11,22 +12,40 @@ export default function ContactSection() {
         <div className="ct-col">
           <RfReveal className="ct-c-intro">
             <div className="ct-intro">
-              <p>Thank you for contacting Aspen Pharmaceuticals.</p>
+              <span className="rf-eyebrow">Get in touch</span>
+              <h2>Send us an enquiry</h2>
               <p>
                 Whether you are a healthcare professional, distributor, partner
-                or job seeker, you can find the best way to reach us below.
+                or job seeker, tell us how we can help and our team will reply.
               </p>
             </div>
           </RfReveal>
 
           <RfReveal className="ct-c-form">
             <div className="ct-formcard">
-              <h2>Send an enquiry</h2>
               <EnquiryForm />
             </div>
           </RfReveal>
         </div>
         <div className="ct-col">
+          <RfReveal className="ct-c-map">
+            <div className="ct-map">
+              <iframe
+                title="Aspen Pharmaceuticals location map"
+                src={contact.mapSrc}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <a
+                className="ct-map-link"
+                href={contact.mapLink}
+                target="_blank"
+                rel="noopener noreferrer">
+                Open in Maps <ExternalLink size={14} />
+              </a>
+            </div>
+          </RfReveal>
+
           <RfReveal className="ct-c-office">
             <div className="ct-office">
               <strong>Aspen Pharmaceuticals — Head Office</strong>
@@ -55,25 +74,13 @@ export default function ContactSection() {
               </dl>
             </div>
           </RfReveal>
-
-          <RfReveal className="ct-c-map">
-            <div className="ct-map">
-              <iframe
-                title="Aspen Pharmaceuticals location map"
-                src={contact.mapSrc}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-              <a
-                className="ct-map-link"
-                href={contact.mapLink}
-                target="_blank"
-                rel="noopener noreferrer">
-                Open in Maps <ExternalLink size={14} />
-              </a>
-            </div>
-          </RfReveal>
         </div>
+      </div>
+      <div className="rf-container">
+        <p className="ct-privacy ct-privacy-bar">
+          We use your details only to respond to your enquiry. See our{" "}
+          <Link href="/privacy">privacy policy</Link>.
+        </p>
       </div>
     </section>
   );

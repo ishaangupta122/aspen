@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { CheckCircle2, ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
 import { contact, enquiryTypes } from "@/data/contact";
 import { validateEnquiry } from "@/lib/validateEnquiry";
 import { submitEnquiry } from "@/app/contact/actions";
@@ -21,6 +20,16 @@ export default function EnquiryForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [failure, setFailure] = useState("");
+
+  // Lets other parts of the page (e.g. the careers "Apply" link) pre-select a type.
+  useEffect(() => {
+    const pick = (event) => {
+      const type = event.detail;
+      if (enquiryTypes.includes(type)) setValues((v) => ({ ...v, type }));
+    };
+    window.addEventListener("aspen-enquiry-type", pick);
+    return () => window.removeEventListener("aspen-enquiry-type", pick);
+  }, []);
 
   const set = (key) => (event) => {
     setValues((v) => ({ ...v, [key]: event.target.value }));
@@ -117,11 +126,7 @@ export default function EnquiryForm() {
   };
 
   return (
-    <form
-      className="ct-form"
-      name="enquiry"
-      onSubmit={onSubmit}
-      aria-describedby="ct-required-note">
+    <form className="ct-form" name="enquiry" onSubmit={onSubmit}>
       <input
         type="text"
         name="website"
@@ -137,34 +142,35 @@ export default function EnquiryForm() {
         }}
       />
 
-      <div className="ct-field">
-        <label htmlFor="ct-type">
-          Enquiry type <i aria-hidden="true">*</i>
-        </label>
-        <div className="ct-select">
-          <select
-            id="ct-type"
-            name="type"
-            required
-            value={values.type}
-            onChange={set("type")}>
-            {enquiryTypes.map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-          <ChevronDown size={18} />
+      <div className="ct-row">
+        <div className="ct-field">
+          <label htmlFor="ct-type">
+            Enquiry type <i aria-hidden="true">*</i>
+          </label>
+          <div className="ct-select">
+            <select
+              id="ct-type"
+              name="type"
+              required
+              value={values.type}
+              onChange={set("type")}>
+              {enquiryTypes.map((t) => (
+                <option key={t}>{t}</option>
+              ))}
+            </select>
+            <ChevronDown size={18} />
+          </div>
         </div>
+        {field("name", "Full name", {
+          type: "text",
+          placeholder: "Your name",
+          auto: "name",
+        })}
       </div>
-
-      {field("name", "Full name", {
-        type: "text",
-        placeholder: "Enter your name",
-        auto: "name",
-      })}
       <div className="ct-row">
         {field("phone", "Phone number", {
           type: "tel",
-          placeholder: "Enter your phone number",
+          placeholder: "+91 98765 43210",
           auto: "tel",
           inputMode: "tel",
           pattern: "[+\\d][\\d\\s\\-]{7,}",
@@ -172,13 +178,13 @@ export default function EnquiryForm() {
         })}
         {field("email", "Email address", {
           type: "email",
-          placeholder: "Enter your email",
+          placeholder: "you@example.com",
           auto: "email",
         })}
       </div>
       {field("message", "Message", {
         as: "textarea",
-        placeholder: "Tell us about your requirement",
+        placeholder: "Tell us how we can help",
       })}
 
       {failure && (
@@ -186,17 +192,16 @@ export default function EnquiryForm() {
           {failure}
         </span>
       )}
-      <button
-        className="button button-primary ct-submit"
-        type="submit"
-        disabled={sending}
-      >
-        {sending ? "Sending…" : "Submit enquiry"}
-      </button>
-      <p className="ct-privacy">
-        We use your details only to respond to your enquiry. See our{" "}
-        <Link href="/privacy">privacy policy</Link>.
-      </p>
+      <div className="ct-actions">
+        <button
+          className="button button-primary ct-submit"
+          type="submit"
+          disabled={sending}
+        >
+          {sending ? "Sending…" : "Submit enquiry"}
+          {!sending && <ArrowRight size={17} />}
+        </button>
+      </div>
     </form>
   );
 }

@@ -1,30 +1,30 @@
 import PageShell from "@/components/layout/PageShell";
-import HeroPreview from "@/components/hero/HeroPreview";
-import StatStrip from "@/components/sections/StatStrip";
+import Hero from "@/components/hero/Hero";
+import HeroBand from "@/components/hero/HeroBand";
 import About from "@/components/sections/About";
 import TherapeuticAreas from "@/components/sections/TherapeuticAreas";
 import Portfolio from "@/components/sections/Portfolio";
 import Quality from "@/components/sections/Quality";
-import People from "@/components/sections/People";
+// import People from "@/components/sections/People"; // "Our approach" section: hidden for now, file kept.
 import Sustainability from "@/components/sections/Sustainability";
 import Reach from "@/components/sections/Reach";
-import FinalCta from "@/components/sections/FinalCta";
+// import FinalCta from "@/components/sections/FinalCta"; // "Start a conversation" section: hidden for now, file kept.
 
 export default function HomePage() {
   return (
     <PageShell>
-      <HeroPreview />
+      <Hero />
       <div id="highlights">
-        <StatStrip />
+        <HeroBand />
       </div>
       <About />
       <TherapeuticAreas />
-      <Reach />
-      <Sustainability />
       <Portfolio />
       <Quality />
-      <People />
-      <FinalCta />
+      <Reach />
+      <Sustainability />
+      {/* <People /> */}
+      {/* <FinalCta /> */}
     </PageShell>
   );
 }
