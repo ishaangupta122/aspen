@@ -14,8 +14,8 @@
   "vars": {
     // Non-secret runtime settings. NEXT_PUBLIC_SITE_URL is inlined at BUILD time, so it must also be
     // present in the environment that runs `npm run deploy` (see .env.example).
-    "ENQUIRY_TO": "ishaang2209@gmail.com",
-    "RESEND_FROM": "Aspen Website <onboarding@resend.dev>"
+    "ENQUIRY_TO": "aspeninfo03@gmail.com",
+    "RESEND_FROM": "Aspen Website <enquiries@aspenpharmaceuticals.com>"
   }
   // Secrets are NOT stored here. Set the Resend key once with:
   //   npx wrangler secret put RESEND_API_KEY
