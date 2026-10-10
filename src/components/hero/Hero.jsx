@@ -4,7 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import { heroSlides as slides } from "@/data/heroSlides";
 import { useHeroCarousel } from "@/hooks/useHeroCarousel";
 
-const AUTOPLAY_MS = 5000;
+const AUTOPLAY_MS = 3000;
+
+// Titles carry a "\n" between their two rows; on phones the break is dropped so the text wraps freely.
+const rows = (t) =>
+  t.split("\n").map((line, i) => (
+    <span key={i}>
+      {i > 0 && <br className="max-[560px]:hidden" />}
+      {i > 0 && " "}
+      {line}
+    </span>
+  ));
 
 /** Home hero: full-bleed photograph, bold one-line title and pill indicators. Changes only when the visitor chooses. */
 export default function Hero() {
@@ -76,20 +86,23 @@ export default function Hero() {
         {slides.map((s, i) => (
           <img
             key={s.key}
-            className={`inset-0 absolute w-full h-full object-cover opacity-0 [transform:scaleX(var(--fx,1))] [transition:opacity_1.4s_ease] motion-reduce:[transition:none] [&.on]:opacity-100 [&.on]:[animation:hv-drift_7s_cubic-bezier(0.22,0.61,0.36,1)_both] motion-reduce:[&.on]:[animation:none]${i === active ? " on" : ""}`}
+            className={`inset-0 absolute w-full h-full object-cover opacity-0 [transform:scaleX(var(--fx,1))] [transition:opacity_0.8s_ease] motion-reduce:[transition:none] [&.on]:opacity-100 [&.on]:[animation:hv-drift_7s_cubic-bezier(0.22,0.61,0.36,1)_both] motion-reduce:[&.on]:[animation:none]${i === active ? " on" : ""}`}
             src={s.image}
+            srcSet={`${s.image.replace(".jpg", "-960.jpg")} 960w, ${s.image} 1920w`}
+            sizes="100vw"
             alt={i === active ? s.alt : ""}
             aria-hidden={i !== active}
             style={{ objectPosition: s.pos, "--fx": s.flip ? -1 : 1 }}
-            width={1400}
-            height={933}
+            width={1920}
+            height={1280}
             loading={i === 0 || warm ? undefined : "lazy"}
             fetchPriority={i === 0 ? "high" : undefined}
           />
         ))}
       </div>
-      <div className="hv-shade inset-0 absolute [background:linear-gradient(180deg,rgba(7,25,47,0.5)_0,rgba(7,25,47,0.16)_130px,rgba(7,25,47,0)_220px),linear-gradient(0deg,rgba(7,25,47,0.78)_0%,rgba(7,25,47,0.46)_26%,rgba(7,25,47,0.12)_52%,rgba(7,25,47,0.12)_100%)]" aria-hidden="true" />
-      <div className={`inset-0 absolute [background:linear-gradient(0deg,rgba(7,25,47,0.3)_0%,rgba(7,25,47,0.2)_60%,rgba(7,25,47,0.2)_100%)] opacity-0 [transition:opacity_0.7s_ease] hv-shade ${slides[active].strongShade ? " on" : ""}`} aria-hidden="true" />
+      <div className="hv-shade inset-0 absolute [background:linear-gradient(180deg,rgba(7,25,47,0.55)_0,rgba(7,25,47,0.22)_110px,rgba(7,25,47,0)_220px),linear-gradient(0deg,rgba(7,25,47,0.7)_0%,rgba(7,25,47,0.38)_24%,rgba(7,25,47,0)_50%)]" aria-hidden="true" />
+      <div className="inset-0 absolute max-[700px]:hidden [background:linear-gradient(90deg,rgba(7,25,47,0.72)_0%,rgba(7,25,47,0.6)_22%,rgba(7,25,47,0.34)_42%,rgba(7,25,47,0.1)_60%,rgba(7,25,47,0)_74%)]" aria-hidden="true" />
+      <div className={`inset-0 absolute [background:linear-gradient(0deg,rgba(7,25,47,0.3)_0%,rgba(7,25,47,0.2)_60%,rgba(7,25,47,0.2)_100%)] opacity-0 [transition:opacity_0.8s_ease] hv-shade ${slides[active].strongShade ? " on" : ""}`} aria-hidden="true" />
 
       <div className="inset-0 absolute pointer-events-none">
         {slides.map((s, i) => {
@@ -103,9 +116,9 @@ export default function Hero() {
               <div className="gap-11 w-full flex items-start min-[561px]:items-end justify-between max-[900px]:gap-6 max-[560px]:gap-4 max-[560px]:flex-col">
                 <div className="flex flex-col items-start">
                 {i === 0 ? (
-                  <h1 className="!font-semibold m-0 max-w-none font-body text-[length:var(--hv-fs)] leading-[1.14] tracking-[-0.012em] [word-spacing:0.08em] text-balance [text-shadow:0_1px_3px_rgba(7,25,47,0.4),0_2px_22px_rgba(7,25,47,0.4)] max-[560px]:tracking-[-0.006em] max-[560px]:[word-spacing:0.05em] [.hv-slide.on_&]:[animation:hv-rise_1s_cubic-bezier(0.2,0.7,0.2,1)_0.35s_both] motion-reduce:[.hv-slide.on_&]:[animation:none]">{s.title}</h1>
+                  <h1 className="!font-semibold m-0 max-w-none font-body text-[length:var(--hv-fs)] leading-[1.14] tracking-[-0.012em] [word-spacing:0.08em] text-balance [text-shadow:0_1px_3px_rgba(7,25,47,0.4),0_2px_22px_rgba(7,25,47,0.4)] max-[560px]:tracking-[-0.006em] max-[560px]:[word-spacing:0.05em] [.hv-slide.on_&]:[animation:hv-rise_1s_cubic-bezier(0.2,0.7,0.2,1)_0.35s_both] motion-reduce:[.hv-slide.on_&]:[animation:none]">{rows(s.title)}</h1>
                 ) : (
-                  <h2 className="!font-semibold m-0 max-w-none font-body text-[length:var(--hv-fs)] leading-[1.14] tracking-[-0.012em] [word-spacing:0.08em] text-balance [text-shadow:0_1px_3px_rgba(7,25,47,0.4),0_2px_22px_rgba(7,25,47,0.4)] max-[560px]:tracking-[-0.006em] max-[560px]:[word-spacing:0.05em]">{s.title}</h2>
+                  <h2 className="!font-semibold m-0 max-w-none font-body text-[length:var(--hv-fs)] leading-[1.14] tracking-[-0.012em] [word-spacing:0.08em] text-balance [text-shadow:0_1px_3px_rgba(7,25,47,0.4),0_2px_22px_rgba(7,25,47,0.4)] max-[560px]:tracking-[-0.006em] max-[560px]:[word-spacing:0.05em]">{rows(s.title)}</h2>
                 )}
                 <span className="rounded-[3px] block w-11 h-[3px] mt-3.5 [background:var(--red-on-dark,#cc4a51)] max-[560px]:mt-3 [.hv-slide.on_&]:[transform-origin:left] [.hv-slide.on_&]:[animation:hv-draw_0.8s_cubic-bezier(0.2,0.7,0.2,1)_0.9s_both] motion-reduce:[.hv-slide.on_&]:[animation:none]" aria-hidden="true" />
                 </div>

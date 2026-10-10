@@ -1,6 +1,6 @@
 import Link from "@/components/ui/SiteLink";
 import { ArrowRight } from "lucide-react";
-import { SPECIALTY_COUNT, therapeuticAreas } from "@/data/site";
+import { therapeuticAreas } from "@/data/site";
 
 /** Compact index: heading on the left, the areas as a plain two-column list on the right. */
 // Home shows six areas (Nutraceuticals is left out); the full list stays in the data and on the products page.
@@ -14,7 +14,7 @@ export default function TherapeuticAreas() {
           <p className="mx-0 text-[#196d66] uppercase mt-0 mb-4 font-body !text-[14px] !tracking-[0.12em] !font-bold [&:not(.eyebrow-light)]:text-[color:var(--c-teal-text)]">What we focus on</p>
           <h2 className="m-0 max-w-[14ch] font-semibold text-[length:clamp(30px,3.2vw,40px)] leading-[1.2] font-body tracking-[-0.012em] text-navy max-[960px]:max-w-none">Essential therapeutic areas.</h2>
           <p className="section-copy mx-0 text-[#4a5b6c] max-w-[32ch] leading-[1.6] text-[16.5px] mt-4 mb-0 font-normal font-body max-[960px]:max-w-none">
-            Six core areas, drawn from {SPECIALTY_COUNT} medical specialties.
+            The core areas of clinical practice we serve.
           </p>
           <Link href="/products#catalogue" className="ta-all px-0 py-2 gap-3 border-b [border-bottom-style:solid] border-b-navy inline-flex items-center mt-[26px] font-semibold text-[15.5px] leading-[1.2] font-body text-navy [transition:border-color_0.25s_ease] hover:border-b-red focus-visible:outline-[length:2px] focus-visible:outline focus-visible:outline-[color:var(--c-navy)] focus-visible:outline-offset-[3px]">
             Browse all products

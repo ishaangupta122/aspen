@@ -4,7 +4,7 @@ const items = [
     title: "Serving healthcare since 2010",
   },
   {
-    title: "240+ pharmaceutical products",
+    title: "250+ pharmaceutical products",
   },
   {
     title: "Quality-focused operations",
@@ -19,7 +19,7 @@ export default function HeroBand() {
         {items.map(({ title }) => (
           <li className="px-[clamp(20px,2.4vw,34px)] py-0 relative max-[900px]:px-[clamp(16px,3vw,28px)] max-[700px]:px-3.5 max-[700px]:flex-1 first:pl-0 [.hl-band_li+&::before]:border-l [.hl-band_li+&::before]:[border-left-style:solid] [.hl-band_li+&::before]:border-l-white/20 [.hl-band_li+&::before]:[content:''] [.hl-band_li+&::before]:absolute [.hl-band_li+&::before]:left-0 [.hl-band_li+&::before]:top-1/2 [.hl-band_li+&::before]:h-10 [.hl-band_li+&::before]:-mt-5 max-[700px]:[.hl-band_li+&::before]:h-7 max-[700px]:[.hl-band_li+&::before]:-mt-3.5" key={title}>
             <p className="m-0 gap-1.5 grid">
-              <strong className="font-medium text-[18px] leading-[1.1] font-body tracking-[0.005em] max-[900px]:text-[16px] max-[700px]:text-[13.5px] max-[700px]:leading-[1.2]">{title}</strong>
+              <strong className="font-medium text-[16px] leading-[1.1] font-body tracking-[0.005em] max-[900px]:text-[15px] max-[700px]:text-[12.5px] max-[700px]:leading-[1.2]">{title}</strong>
             </p>
           </li>
         ))}

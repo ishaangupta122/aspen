@@ -485,30 +485,63 @@ body:has(#partners) {
   --c-aqua-strong: var(--red);
 }
 
-/* Process timeline motion: a red line fills across the timeline and each marker fills red as it is reached, then it resets and repeats. */
-.mf-tl-wrap.is-in .mf-tl::after { animation: mf-line 10s linear infinite; }
-.mf-tl-wrap.is-in .mf-tl-step:nth-child(1) .mf-tl-dot { animation: mf-dot-1 10s ease infinite; }
-.mf-tl-wrap.is-in .mf-tl-step:nth-child(2) .mf-tl-dot { animation: mf-dot-2 10s ease infinite; }
-.mf-tl-wrap.is-in .mf-tl-step:nth-child(3) .mf-tl-dot { animation: mf-dot-3 10s ease infinite; }
-.mf-tl-wrap.is-in .mf-tl-step:nth-child(4) .mf-tl-dot { animation: mf-dot-4 10s ease infinite; }
-@keyframes mf-line {
-  0% { transform: scaleX(0); opacity: 1; }
-  66% { transform: scaleX(1); opacity: 1; }
-  92% { transform: scaleX(1); opacity: 1; }
-  97% { transform: scaleX(1); opacity: 0; }
-  100% { transform: scaleX(0); opacity: 0; }
+/* Manufacturing process animation (ProductionLine.jsx): a clean line-art tablet line. Each station loops
+   while the section is on screen; the default (no animation) state is a static finished frame. */
+.pl { --pl-navy: #07192f; --pl-ink2: #8aa0b8; --pl-fill: #eef3f8; --pl-fill2: #d9e3ee; --pl-coat: #a9d3cd; }
+.pl svg * { transform-box: fill-box; transform-origin: center; }
+.pl .pl-stroke { stroke: var(--pl-navy); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; fill: var(--pl-fill); }
+.pl .pl-solid { fill: var(--pl-navy); }
+.pl .pl-tab { fill: #fff; stroke: var(--pl-navy); stroke-width: 2; }
+.pl .pl-coated { fill: var(--pl-coat); stroke: var(--pl-navy); stroke-width: 2; }
+.pl .pl-belt-marks { stroke: var(--pl-ink2); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 22; fill: none; }
+/* static fallback: finished frame */
+.pl .pl-powder, .pl .pl-drop, .pl .pl-spray, .pl .pl-out { opacity: 0; }
+.pl .pl-fill-cell { opacity: 1; }
+.pl .pl-foil { opacity: 1; }
+.pl .pl-pack-strip { transform: translateY(86px); }
+.pl .pl-flap { transform: rotate(0deg); transform-origin: 0% 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .pl .pl-belt-marks { animation: pl-belt 1.4s linear infinite; }
+  /* 1 compression: powder falls, punch presses, tablet slides out (4s) */
+  .pl .pl-powder { animation: pl-powder 4s ease-in infinite; }
+  .pl .pl-powder:nth-of-type(2) { animation-delay: .12s; }
+  .pl .pl-powder:nth-of-type(3) { animation-delay: .24s; }
+  .pl .pl-punch { animation: pl-punch 4s ease-in-out infinite; }
+  .pl .pl-out-1 { animation: pl-out 4s ease-in-out infinite; }
+  /* 2 coating: drum turns, tablets pick up the film coat, spray pulses (8s turn, 4s tint) */
+  .pl .pl-drum-in { animation: pl-spin 9s linear infinite; }
+  .pl .pl-drum-tab { animation: pl-tint 4s ease-in-out infinite; }
+  .pl .pl-spray { animation: pl-spray 1.2s ease-in-out infinite; }
+  .pl .pl-spray:nth-of-type(2) { animation-delay: .2s; }
+  .pl .pl-spray:nth-of-type(3) { animation-delay: .4s; }
+  .pl .pl-out-2 { animation: pl-out 4s ease-in-out infinite; animation-delay: 1.6s; }
+  /* 3 blister packing: tablets drop into cells, foil seals the strip (6s) */
+  .pl .pl-drop { animation: pl-fall 6s ease-in infinite; animation-delay: calc(var(--k) * .7s); }
+  .pl .pl-fill-cell { opacity: 0; animation: pl-cell 6s ease infinite; animation-delay: calc(var(--k) * .7s); }
+  .pl .pl-foil { animation: pl-foil 6s ease-in-out infinite; }
+  /* 4 cartoning: strip slides into the carton, flap closes, carton moves on (6s) */
+  .pl .pl-carton { animation: pl-carton 6s ease-in-out infinite; }
+  .pl .pl-pack-strip { animation: pl-strip 6s ease-in-out infinite; }
+  .pl .pl-flap { animation: pl-flap 6s ease-in-out infinite; }
 }
-/* Each dot fills when the line reaches it (about 0%, 17%, 34% and 51% of the cycle) and clears at the end. */
-@keyframes mf-dot-1 { 0%, 92% { background: var(--red); border-color: var(--red); box-shadow: 0 0 0 0 rgba(184,36,44,0); } 97%, 100% { background: #fff; border-color: var(--c-navy); box-shadow: none; } }
-@keyframes mf-dot-2 { 0%, 16% { background: #fff; border-color: var(--c-navy); box-shadow: 0 0 0 0 rgba(184,36,44,0); } 19% { box-shadow: 0 0 0 7px rgba(184,36,44,0.16); } 22%, 92% { background: var(--red); border-color: var(--red); box-shadow: 0 0 0 0 rgba(184,36,44,0); } 97%, 100% { background: #fff; border-color: var(--c-navy); } }
-@keyframes mf-dot-3 { 0%, 33% { background: #fff; border-color: var(--c-navy); box-shadow: 0 0 0 0 rgba(184,36,44,0); } 36% { box-shadow: 0 0 0 7px rgba(184,36,44,0.16); } 39%, 92% { background: var(--red); border-color: var(--red); box-shadow: 0 0 0 0 rgba(184,36,44,0); } 97%, 100% { background: #fff; border-color: var(--c-navy); } }
-@keyframes mf-dot-4 { 0%, 50% { background: #fff; border-color: var(--c-navy); box-shadow: 0 0 0 0 rgba(184,36,44,0); } 53% { box-shadow: 0 0 0 7px rgba(184,36,44,0.16); } 56%, 92% { background: var(--red); border-color: var(--red); box-shadow: 0 0 0 0 rgba(184,36,44,0); } 97%, 100% { background: #fff; border-color: var(--c-navy); } }
-@media (max-width: 900px) {
-  .mf-tl-wrap.is-in .mf-tl::after { animation-name: mf-line-v; }
-}
-@keyframes mf-line-v {
-  0% { transform: scaleY(0); opacity: 1; } 66% { transform: scaleY(1); opacity: 1; } 92% { transform: scaleY(1); opacity: 1; } 97% { transform: scaleY(1); opacity: 0; } 100% { transform: scaleY(0); opacity: 0; }
-}
+/* Play / pause. Kept after the animation declarations above: each `animation` shorthand resets play-state to
+   running, so these rules must come later to win. Everything idles until the section is on screen. */
+.pl .pl-anim, .pl .pl-anim * { animation-play-state: paused; }
+.pl.is-in:not(.is-paused) .pl-anim, .pl.is-in:not(.is-paused) .pl-anim * { animation-play-state: running; }
+@keyframes pl-belt { to { stroke-dashoffset: -24; } }
+@keyframes pl-powder { 0% { transform: translateY(0); opacity: 0; } 8% { opacity: 1; } 30% { transform: translateY(52px); opacity: 1; } 34% { opacity: 0; } 100% { transform: translateY(52px); opacity: 0; } }
+@keyframes pl-punch { 0%, 22% { transform: translateY(0); } 40% { transform: translateY(62px); } 55%, 100% { transform: translateY(0); } }
+@keyframes pl-out { 0%, 48% { transform: translateX(0); opacity: 0; } 54% { opacity: 1; } 96% { transform: translateX(86px); opacity: 1; } 100% { transform: translateX(96px); opacity: 0; } }
+@keyframes pl-spin { to { transform: rotate(360deg); } }
+@keyframes pl-tint { 0%, 8% { fill: #fff; } 60%, 92% { fill: var(--pl-coat); } 100% { fill: #fff; } }
+@keyframes pl-spray { 0%, 100% { opacity: 0; transform: translate(0, 0); } 40% { opacity: .9; } 80% { opacity: 0; transform: translate(-10px, 8px); } }
+@keyframes pl-fall { 0% { transform: translateY(0); opacity: 0; } 4% { opacity: 1; } 14% { transform: translateY(153px); opacity: 1; } 15% { opacity: 0; } 100% { transform: translateY(153px); opacity: 0; } }
+@keyframes pl-cell { 0%, 14% { opacity: 0; } 15%, 90% { opacity: 1; } 96%, 100% { opacity: 0; } }
+@keyframes pl-foil { 0%, 52% { transform: translateY(-34px); opacity: 0; } 62% { transform: translateY(0); opacity: 1; } 90% { transform: translateY(0); opacity: 1; } 96%, 100% { transform: translateY(0); opacity: 0; } }
+@keyframes pl-carton { 0% { transform: translateX(0); opacity: 0; } 6% { opacity: 1; } 62% { transform: translateX(0); opacity: 1; } 94% { transform: translateX(78px); opacity: 1; } 99%, 100% { transform: translateX(86px); opacity: 0; } }
+@keyframes pl-strip { 0%, 10% { transform: translateY(0); } 38%, 100% { transform: translateY(86px); } }
+@keyframes pl-flap { 0%, 38% { transform: rotate(-104deg); } 56%, 100% { transform: rotate(0deg); } }
 
 /* ===== 43. Quality page: same system as Home / About / Manufacturing ===== */
 body:has(#quality-stages) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import {
   catalogue,
@@ -50,19 +50,6 @@ export default function ProductCatalogue() {
       setQuery(q);
       setTimeout(scrollToBar, 350);
     }
-  }, []);
-
-  const counts = useMemo(() => {
-    const c = { All: catalogue.length };
-    categoryCards
-      .slice(1)
-      .forEach(
-        ({ name }) =>
-          (c[name] = catalogue.filter((p) =>
-            p.specialties.includes(name),
-          ).length),
-      );
-    return c;
   }, []);
 
   const trackRef = useRef(null);
@@ -141,9 +128,6 @@ export default function ProductCatalogue() {
             >
               <span className="pr-cat-label px-[18px] flex-1 relative block pt-[22px] pb-[18px] [transition:background_var(--dur),color_var(--dur)] before:[content:''] before:absolute before:left-0 before:top-0 before:w-full before:h-1.5 before:[background:var(--c-navy-soft)] before:[clip-path:none] [.pr-cat.is-active_&]:[background:var(--c-navy)]">
                 <strong className="block whitespace-nowrap font-semibold text-[16px] leading-[normal] font-heading tracking-[-0.3px] text-[color:var(--rf-ink)] [.pr-cat.is-active_.pr-cat-label_&]:text-white">{label}</strong>
-                <em className="block mt-[3px] text-[color:var(--rf-muted)] not-italic font-normal text-[13px] leading-[normal] font-body [.pr-cat.is-active_.pr-cat-label_&]:text-on-dark-2">
-                  {counts[name]} {counts[name] === 1 ? "product" : "products"}
-                </em>
               </span>
             </button>
           ))}

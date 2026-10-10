@@ -19,7 +19,7 @@ export default function ManufacturingPage() {
   return (
     <PageShell>
       <PageBanner
-        title="Manufactured with established partners"
+        title="Aspen's Manufacturing"
         crumbs={[{ label: "Manufacturing" }]}
         path="/manufacturing"
       />

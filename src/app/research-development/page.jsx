@@ -19,7 +19,7 @@ export default function ResearchDevelopmentPage() {
   return (
     <PageShell>
       <PageBanner
-        title="Science-led formulation development"
+        title="Research & Innovation"
         crumbs={[{ label: "R&D" }]}
         path="/research-development"
       />
