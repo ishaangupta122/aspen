@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { ExternalLink } from "lucide-react";
 import RfReveal from "@/components/ui/RfReveal";
 import EnquiryForm from "@/components/contact/EnquiryForm";

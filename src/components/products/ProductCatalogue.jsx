@@ -8,7 +8,7 @@ import {
   productsFor,
 } from "@/data/catalogue";
 import ProductList from "@/components/products/ProductList";
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { smoothScrollTo } from "@/lib/scroll";
 import { slugify } from "@/lib/specialties-slug";
 

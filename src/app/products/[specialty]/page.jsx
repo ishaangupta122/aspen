@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/lib/seo";
 import { findSpecialty, specialtyPages } from "@/lib/specialties";

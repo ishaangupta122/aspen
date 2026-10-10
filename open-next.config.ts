@@ -1,5 +1,9 @@
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
+import staticAssetsIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/static-assets-incremental-cache";
 
-// The site is statically generated and uses no ISR/revalidation, so the default (no incremental
-// cache) setup is enough. Add an R2 incremental cache here only if you later introduce revalidate.
-export default defineCloudflareConfig();
+// The site is fully prerendered with no revalidation. Reading the prerendered output from Workers
+// static assets (read-only) keeps CPU per request low, which the Workers Free 10 ms limit needs.
+// Do not enable enableCacheInterception here: it writes to the cache, which this one forbids.
+export default defineCloudflareConfig({
+  incrementalCache: staticAssetsIncrementalCache,
+});

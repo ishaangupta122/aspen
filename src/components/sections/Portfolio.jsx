@@ -1,6 +1,6 @@
 import { catalogue } from "@/data/catalogue";
 import SectionIntro from "@/components/ui/SectionIntro";
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { ArrowRight } from "lucide-react";
 import FeaturedTrack from "@/components/sections/FeaturedTrack";
 
