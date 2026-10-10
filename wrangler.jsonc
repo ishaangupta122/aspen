@@ -1,24 +1,22 @@
 {
-  // Cloudflare Workers deployment (OpenNext adapter). Deploy with: npm run deploy
+  // Static site (next build -> out/) plus a tiny Worker for POST /api/enquiry. Deploy with: npm run deploy
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "aspen-pharmaceuticals",
-  "main": ".open-next/worker.js",
+  "main": "worker/index.js",
   "compatibility_date": "2026-09-01",
-  // nodejs_compat is required by Next.js and by the Resend client used in the contact Server Action.
+  // nodejs_compat is required by the Resend client.
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "directory": "out",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // Only the enquiry endpoint runs the Worker; everything else is served straight from assets.
+    "run_worker_first": ["/api/*"]
   },
   "observability": { "enabled": true },
   "vars": {
-    // Non-secret runtime settings. NEXT_PUBLIC_SITE_URL is inlined at BUILD time, so it must also be
-    // present in the environment that runs `npm run deploy` (see .env.example).
     "ENQUIRY_TO": "aspeninfo03@gmail.com",
     "RESEND_FROM": "Aspen Website <enquiries@aspenpharmaceuticals.com>"
   }
-  // Secrets are NOT stored here. Set the Resend key once with:
-  //   npx wrangler secret put RESEND_API_KEY
-  // To serve on your own domain, add (after the domain is on Cloudflare):
-  // "routes": [{ "pattern": "aspenpharmaceuticals.com", "custom_domain": true }, { "pattern": "www.aspenpharmaceuticals.com", "custom_domain": true }]
+  // Set the Resend key once with: npx wrangler secret put RESEND_API_KEY
 }

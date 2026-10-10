@@ -1,4 +1,4 @@
-import { SPECIALTY_COUNT } from "@/data/site";
+import { SPECIALTY_COUNT } from "./site";
 
 export const contact = {
   address: [

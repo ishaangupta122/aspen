@@ -1,4 +1,5 @@
 import "./globals.css";
+import { preload } from "react-dom";
 import { SITE_NAME, SITE_URL, LEGAL_NAME } from "@/lib/site";
 import JsonLd from "@/components/ui/JsonLd";
 import { contact } from "@/data/contact";
@@ -103,6 +104,7 @@ const website = {
 };
 
 export default function RootLayout({ children }) {
+  preload("/fonts/dm-sans-latin-wght-normal.woff2", { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
   return (
     <html lang="en-IN" data-scroll-behavior="smooth">
       <body>

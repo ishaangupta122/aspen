@@ -38,9 +38,7 @@ export const categoryCards = [
 ];
 
 
-const productImage = (id) => (id ? `/images/p-${id}.jpg` : null);
-
-export const catalogue = productRows.map(([brand, composition, pack, form, category, specs, img, mono], i) => ({
+export const catalogue = productRows.map(([brand, composition, pack, form, category, specs, , mono], i) => ({
   id: i,
   brand,
   composition,
@@ -55,7 +53,6 @@ export const catalogue = productRows.map(([brand, composition, pack, form, categ
         .filter((n) => !NO_TAB.has(n)),
     ),
   ],
-  image: productImage(img),
   mono: mono ? String(mono) : null,
 }));
 

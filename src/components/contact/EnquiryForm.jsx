@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
 import { contact, enquiryTypes } from "@/data/contact";
 import { validateEnquiry } from "@/lib/validateEnquiry";
-import { submitEnquiry } from "@/app/contact/actions";
 
 const empty = {
   type: enquiryTypes[0],
@@ -45,10 +44,15 @@ export default function EnquiryForm() {
     setSending(true);
     setFailure("");
     try {
-      const res = await submitEnquiry({
-        ...values,
-        website: event.currentTarget.elements.website.value,
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...values,
+          website: event.currentTarget.elements.website.value,
+        }),
       });
+      const res = await response.json().catch(() => null);
       if (!res?.ok) {
         if (res?.errors) setErrors(res.errors);
         throw new Error(res?.error || "send failed");

@@ -1,6 +1,8 @@
 import { SITE_URL } from "@/lib/site";
 import { specialtyPages } from "@/lib/specialties";
 
+export const dynamic = "force-static";
+
 const routes = [
   "",
   "/about",

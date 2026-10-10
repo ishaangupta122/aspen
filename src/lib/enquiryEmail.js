@@ -1,5 +1,5 @@
-import { SITE_NAME, SITE_URL } from "@/lib/site";
-import { LOGO_CID } from "@/lib/emailLogo";
+import { SITE_NAME, SITE_URL } from "./site";
+import { LOGO_CID } from "./emailLogo";
 
 // Email-safe, table-based layout with inline styles (works in Gmail, Outlook, Apple Mail, mobile clients).
 const NAVY = "#0b2545";
