@@ -16,7 +16,7 @@ export default function About() {
                 loading="lazy"
               />
             </div>
-            <figcaption className="gap-3.5 border-t [border-top-style:solid] border-t-[color:var(--c-line)] flex items-center mt-4 pt-3.5 font-medium text-[13.5px] leading-[1.4] font-body tracking-[0.02em] text-[color:var(--c-muted)] before:flex-none before:rounded-full before:[content:''] before:w-6 before:h-0.5 before:[background:var(--red)]">Ghaziabad, Uttar Pradesh · Established 2010</figcaption>
+            <figcaption className="gap-3.5 border-t [border-top-style:solid] border-t-[color:var(--c-line)] flex items-center mt-4 pt-3.5 font-medium text-[13.5px] leading-[1.4] font-body tracking-[0.02em] text-[color:var(--c-muted)] before:flex-none before:rounded-full before:[content:''] before:w-6 before:h-0.5 before:[background:var(--red)]">Established 2010 · Serving healthcare professionals</figcaption>
           </figure>
         </RfReveal>
         <RfReveal className="rf-about-copy max-[900px]:max-w-[650px] motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none]">
@@ -25,9 +25,9 @@ export default function About() {
             title="Built around the needs of clinicians."
           />
           <p className="mx-0 mt-[26px] mb-4 text-[color:var(--c-ink)] text-[18.5px] leading-[1.65] font-normal font-body">
-            Aspen Pharmaceuticals is a Ghaziabad-based pharmaceutical company,
-            established in 2010, serving healthcare professionals across seven
-            states of North India.
+            Aspen Pharmaceuticals is a pharmaceutical company,
+            established in 2010, serving healthcare professionals across
+            India.
           </p>
           <p className="m-0 text-[#4a5b6c] leading-[1.7] font-normal text-[16.5px] font-body">
             We combine a focused therapeutic portfolio with responsive field

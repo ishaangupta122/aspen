@@ -596,14 +596,14 @@ html { -webkit-tap-highlight-color: rgba(11, 35, 66, 0.12); }
 
 /* Highlights band: straddles the hero's bottom edge, half over the photo, half over the page. */
 :root {
-  --hl-h: 92px;
+  --hl-h: 72px;
   --hl-gap: 44px;
   --hl-overlap: calc(var(--hl-h) / 2);
 }
 /* Body of the strip: a softly skewed, rounded end with a fine red edge. */
 @media (max-width: 700px) {
   :root {
-    --hl-h: 68px;
+    --hl-h: 76px;
     --hl-gap: 32px;
   }
 }

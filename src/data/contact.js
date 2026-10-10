@@ -42,7 +42,7 @@ export const careers = {
     },
     {
       title: "A team that values your contribution",
-      text: "Based in Ghaziabad since 2010, we serve healthcare professionals across North India. Our teams are close-knit, so your work is seen and your ideas are heard.",
+      text: "Since 2010, we have served healthcare professionals across India. Our teams are close-knit, so your work is seen and your ideas are heard.",
     },
   ],
 };

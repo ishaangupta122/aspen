@@ -18,7 +18,7 @@ export function pageMetadata({ title, description, path }) {
           url: "/images/og-image.jpg",
           width: 1200,
           height: 630,
-          alt: "Aspen Pharmaceuticals – Serving healthcare across North India",
+          alt: "Aspen Pharmaceuticals – Medicines you can depend on",
         },
       ],
     },
