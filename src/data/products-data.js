@@ -1,4 +1,3 @@
-// Aspen product list, copied exactly from aspenpharmaceuticals.com.
 // Row: [brand, composition, pack, form, category, specialtyIndexes, imageId (home page cards only), monographNo]
 // Monographs live in /public/monographs/<no>.json and load when opened.
 export const specialtyNames = ["Psychiatry","Neurology","Neurosurgery","Orthopaedics","Rheumatology","Gastroenterology & Hepatology","General Medicine","Cardiology","Diabetology","Urology & Andrology","Sexology","Gynaecology","Pulmonology","ENT","Dermatology","Paediatrics","Nephrology","General Surgery","Dental","Haematology"];
@@ -253,7 +252,6 @@ export const productRows = [
   ["TRAPEN PLUS","Aceclofenac IP 100 mg Tramadol HCI 37.5 mg, Paracetamolip 325 mg","1X10*TAB","Tablet","NSAID + Opioid Analgesic",[3,6,17,18],0,"052"],
   ["ZOLASPEN","DANAZOL CAP 50 MG","1X10 CAP","Capsule","Hormonal (Androgen derivative)",[11,17,19],0,"109"],
 ];
-// Product order inside each specialty tab (indexes into productRows), as listed on the live site.
 export const specialtyLists = [
   [38,39,213,145,146,144,23,24,76,77,244,243,97,98,101,102,99,100,148,151,152,150,165,171,172,174,173,193,194,195,103,1,2,13,14,32,157,158,31,33,34,205,206,127,121,207,208,209,210,49,50,229,231,78,79,81,153,149,154,136,137,138,35,37,83,84,69,70,123,124,125,115,131,36,48,51,104,191,192,87,176,179,47,15,16,114,113,22,120,119,233,235,135,156],
   [83,84,139,140,196,198,199,200,197,220,221,69,70,123,124,125,48,51,164,166,170,167,169,168,129,106,108,107,109,175,180,87,178,177,181,176,179,105,133,15,114,113,71,112,120,119,233,235,135,38,39,245,246,213,7,6,23,24,148,151,152,150,103,236,127,207,208,209,210,49,50,141,142,143,229,231,78,79,81,90,217,218,116,47,134,25,132,16,22,226,228,227,184,185,149,154,136,137,138,189,190,35,37],

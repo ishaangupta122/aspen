@@ -19,7 +19,6 @@ export function escapeHtml(value = "") {
     .replace(/'/g, "&#39;");
 }
 
-/** Remove CR/LF so user input can never inject email headers. */
 export const oneLine = (value = "") => String(value).replace(/[\r\n]+/g, " ").trim();
 
 function formatDate(date) {

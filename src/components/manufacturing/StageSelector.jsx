@@ -1,6 +1,5 @@
 const pad = (n) => String(n).padStart(2, "0");
 
-/** Quality checkpoints along the product's path: a connected rail of five stages. */
 export default function StageSelector({ items }) {
   return (
     <ol className="mx-0 p-0 [list-style:none] mt-14 mb-0 grid grid-cols-[repeat(5,minmax(0,1fr))] gap-x-[clamp(20px,2.4vw,36px)] max-[1100px]:mt-10 max-[1100px]:grid-cols-[1fr] max-[1100px]:gap-y-0 min-[1101px]:grid-rows-[auto_auto_1fr_auto] min-[1101px]:gap-y-0">

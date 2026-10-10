@@ -1,6 +1,5 @@
 import { SITE_URL } from "@/lib/site";
 
-/** BreadcrumbList for a trail like [["Products", "/products"], ["Cardiology", "/products/cardiology"]]. */
 export function breadcrumbSchema(trail) {
   return {
     "@context": "https://schema.org",
@@ -14,7 +13,6 @@ export function breadcrumbSchema(trail) {
   };
 }
 
-/** WebPage-family schema (AboutPage, ContactPage, WebPage) tied to the site's Organization. */
 export function pageSchema(type, { name, description, path }) {
   return {
     "@context": "https://schema.org",

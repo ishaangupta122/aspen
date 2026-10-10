@@ -1,6 +1,5 @@
 import { enquiryTypes } from "@/data/contact";
 
-/** Shared enquiry validation (used by the form and the API route). Returns an errors object. */
 export function validateEnquiry(v) {
   const e = {};
   if (!v.name.trim()) e.name = "Please enter your name.";

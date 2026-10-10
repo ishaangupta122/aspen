@@ -3,7 +3,6 @@
 import { useState } from "react";
 import EmployeeLoginModal from "@/components/EmployeeLoginModal";
 
-/** Footer link that opens the employee login dialog. */
 export default function EmployeeLoginLink() {
   const [open, setOpen] = useState(false);
   return (

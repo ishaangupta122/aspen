@@ -1,6 +1,5 @@
 import { SITE_NAME } from "@/lib/site";
 
-/** Builds per-page metadata with matching canonical, Open Graph and Twitter data. */
 export function pageMetadata({ title, description, path }) {
   return {
     title,

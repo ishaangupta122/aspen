@@ -14,7 +14,6 @@ export const metadata = pageMetadata({
 
 const UPDATED = "October 2026";
 
-// Tailwind class sets for the long-form policy text.
 const body = "mb-4";
 const lead = "mb-4 font-body text-[19px] font-medium leading-[1.65] text-navy";
 const h2 = "mb-3 mt-11 border-t border-solid border-t-[#dfe6ee] pt-7 font-body text-[22px] font-semibold leading-[1.3] tracking-[-0.008em] text-navy";

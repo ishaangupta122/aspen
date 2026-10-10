@@ -4,7 +4,6 @@ import Link from "@/components/ui/SiteLink";
 import { ArrowRight } from "lucide-react";
 import FeaturedTrack from "@/components/sections/FeaturedTrack";
 
-// Featured brands from the real catalogue (matched by brand name).
 const featuredBrands = [
   "ASPACOX-60",
   "APXMIN-400",
@@ -19,13 +18,13 @@ const featuredBrands = [
   "TREADY 10",
   "AHALAC",
 ];
-// Long multi-ingredient compositions shortened for the home cards (full detail stays in the catalogue).
+// Shortened compositions for the home cards.
 const shortComposition = {
   ASPENGEL: "Diclofenac, Methyl salicylate, Menthol, Linseed oil",
   CHYMOSIN: "Trypsin, Bromelain, Rutoside",
 };
 
-// Only pass what the card needs (keeps the large monograph data out of the client bundle).
+// Pass only what the card needs, to keep monograph data out of the client bundle.
 const norm = (s) => s.toUpperCase().replace(/[^A-Z0-9]/g, "");
 const featured = featuredBrands
   .map((b) => catalogue.find((p) => norm(p.brand) === norm(b)))

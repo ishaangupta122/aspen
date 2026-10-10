@@ -1,8 +1,7 @@
 import RfReveal from "@/components/ui/RfReveal";
 import { certifications } from "@/data/manufacturing";
 
-// Each certification is [name, detail, image?]. Add the certificate / mark image path (for example
-// "/certs/eu-gmp.png" in /public) as the third item to show it on the card.
+// Each certification is [name, detail, image?]; add an image path from /public as the third item to show it.
 export default function Certifications() {
   return (
     <section className="rf px-0 py-[var(--section-y)] text-[color:var(--rf-ink)] [background:#fff] [&[id]]:scroll-mt-[70px]" id="certifications">

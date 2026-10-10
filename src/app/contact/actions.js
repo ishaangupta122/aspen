@@ -12,7 +12,7 @@ import {
 } from "@/lib/enquiryEmail";
 
 const MAX = { type: 80, name: 120, phone: 40, email: 160, message: 5000 };
-const hits = new Map(); // naive per-IP limit (per server instance)
+const hits = new Map(); // naive per-IP limit, per server instance
 
 function rateLimited(ip) {
   const now = Date.now();
@@ -22,15 +22,11 @@ function rateLimited(ip) {
   return recent.length > 5;
 }
 
-/**
- * Server Action: validates the enquiry on the server and emails it via Resend.
- * Env: RESEND_API_KEY, ENQUIRY_TO (receiver), RESEND_FROM (verified sender).
- * The visitor's email is set as replyTo so Reply answers them directly.
- */
+/** Validates the enquiry on the server and emails it via Resend. Env: RESEND_API_KEY, ENQUIRY_TO, RESEND_FROM. The visitor is set as replyTo. */
 export async function submitEnquiry(input) {
   const data = input && typeof input === "object" ? input : {};
 
-  // Honeypot: bots fill the hidden field. Pretend success.
+  // Honeypot: bots fill the hidden field, so pretend success.
   if (data.website) return { ok: true };
 
   const values = {};

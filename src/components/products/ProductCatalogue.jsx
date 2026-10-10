@@ -16,7 +16,6 @@ export default function ProductCatalogue() {
   const [tab, setTab] = useState("All");
   const [query, setQuery] = useState("");
   const barRef = useRef(null);
-  // Scrolls the results bar just below the fixed header.
   const scrollToBar = () => {
     const el = barRef.current;
     if (el)

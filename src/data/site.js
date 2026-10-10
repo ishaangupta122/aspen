@@ -1,6 +1,4 @@
-// All photos are self-hosted in /public/images.
-// Number of medical specialties Aspen serves. Single source for every place the
-// site quotes it; keep in sync with `specialtyNames` in catalogue.js (16 tabs).
+// Number of medical specialties; keep in sync with `specialtyNames` in catalogue.js.
 export const SPECIALTY_COUNT = 16;
 
 export const images = {

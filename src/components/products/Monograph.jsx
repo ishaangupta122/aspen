@@ -115,7 +115,6 @@ export default function Monograph({ product, onClose }) {
 
   const sections = data?.sections || [];
 
-  // scroll-spy
   useEffect(() => {
     const root = bodyRef.current;
     if (!root || !sections.length) return;
@@ -134,7 +133,6 @@ export default function Monograph({ product, onClose }) {
     return () => root.removeEventListener("scroll", onScroll);
   }, [sections.length]);
 
-  // keep the active TOC entry in view
   const tocRef = useRef(null);
   useEffect(() => {
     const t = tocRef.current;

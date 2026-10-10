@@ -26,7 +26,6 @@ export const enquiryTypes = [
   "Other",
 ];
 
-// Copy is drawn from the site's own themes (science, quality, reach). Edit freely.
 export const careers = {
   eyebrow: "Careers",
   title: "Want to work with Aspen?",

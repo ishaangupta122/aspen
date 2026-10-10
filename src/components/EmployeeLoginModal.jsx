@@ -11,7 +11,7 @@ import {
   X,
 } from "lucide-react";
 
-// Update these links if the CBO login addresses change.
+// CBO login addresses.
 const CBO = {
   web: "https://cboerp.com",
   android:
@@ -40,14 +40,14 @@ export default function EmployeeLoginModal({ onClose }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="el-title">
-        <div className="py-6 flex-none rounded-none flex items-center justify-between pr-6 pl-9 [background:var(--c-navy)] text-white max-[560px]:pl-[22px] max-[560px]:py-[18px] max-[560px]:pr-4">
+        <div className="py-6 flex-none rounded-none flex items-center justify-between px-9 border-b-[3px] [border-bottom-style:solid] border-b-[color:var(--red-on-dark)] [background:var(--c-navy)] text-white max-[560px]:px-[22px] max-[560px]:py-[18px]">
           <div className="gap-4 flex items-center">
             <span className="flex-none rounded-[var(--radius-md)] [place-items:center] text-[color:var(--c-blue)] font-extrabold text-[20px] leading-[normal] font-heading flex w-[52px] [background:var(--c-white)] h-[52px] items-center justify-center">
               <img className="block w-[34px] h-[34px] object-contain" src="/images/logo-mark.png" alt="" width="34" height="34" />
             </span>
             <span>
-              <strong className="block font-semibold text-[17px] leading-[normal] font-heading tracking-[0]">Aspen Pharmaceuticals</strong>
-              <em className="block mt-1 not-italic text-[13px] tracking-[0.14em] uppercase text-[#a4c4c1]">Staff portal</em>
+              <strong className="block font-semibold text-[18px] leading-[1.2] font-heading tracking-[0]">Aspen Pharmaceuticals</strong>
+              <em className="block mt-1 not-italic text-[12.5px] font-semibold tracking-[0.16em] uppercase text-[color:var(--red-on-dark)]">Staff portal</em>
             </span>
           </div>
           <button type="button" className="rounded-[var(--radius-sm)] border border-solid border-white/30 grid [place-items:center] w-9 h-9 [background:transparent] text-white cursor-pointer [transition:background_var(--dur-fast)] hover:[background:rgba(255,255,255,0.14)] focus-visible:rounded-[max(var(--ring-r,0px),3px)]" onClick={onClose} aria-label="Close">
@@ -110,7 +110,7 @@ export default function EmployeeLoginModal({ onClose }) {
           </div>
         </div>
 
-        <div className="px-8 gap-3.5 flex-none rounded-none border-t [border-top-style:solid] border-t-[color:var(--c-line-soft)] grid pt-6 pb-7 [background:var(--c-surface)] max-[560px]:px-[22px] max-[560px]:pt-5 max-[560px]:pb-6">
+        <div className="px-9 gap-3.5 flex-none rounded-none border-t [border-top-style:solid] border-t-[color:var(--c-line-soft)] grid pt-6 pb-7 [background:var(--c-surface)] max-[560px]:px-[22px] max-[560px]:pt-5 max-[560px]:pb-6">
           <p className="m-0 gap-2.5 flex items-start text-[color:var(--c-muted)] text-[13px] leading-[1.6]">
             <ShieldCheck className="flex-none mt-0.5 text-[color:var(--c-teal)]" size={16} />{" "}
             <span>

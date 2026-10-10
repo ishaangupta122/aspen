@@ -3,11 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { process } from "@/data/manufacturing";
 
-/**
- * A clean line-art animation of the tablet line: compression, coating, blister packing, cartoning.
- * It plays while the section is on screen, can be paused, and shows a finished static frame when the
- * visitor prefers reduced motion. The stage descriptions stay in the page for screen readers and search.
- */
+/** Line-art animation of the tablet line. Plays while on screen, can be paused, and shows a static frame under reduced motion. */
 export default function ProductionLine() {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
@@ -34,14 +30,12 @@ export default function ProductionLine() {
           className={`pl mt-12 max-[900px]:mt-9 overflow-hidden rounded-[var(--radius-lg)] border border-solid border-[color:var(--c-line)] [background:linear-gradient(180deg,#fff_0%,var(--c-surface)_100%)] px-[clamp(12px,3vw,40px)] pt-[clamp(20px,3vw,36px)] pb-[clamp(16px,2.4vw,28px)]${inView ? " is-in" : ""}${paused ? " is-paused" : ""}`}
         >
           <svg className="pl-anim block w-full h-auto" viewBox="0 0 1200 270" role="img" aria-label="Animated overview of a tablet production line: compression, coating, blister packing and cartoning">
-            {/* station guides */}
             <g stroke="#d6e0df" strokeWidth="1.5" strokeDasharray="3 7" fill="none">
               <line x1="300" y1="14" x2="300" y2="236" />
               <line x1="600" y1="14" x2="600" y2="236" />
               <line x1="900" y1="14" x2="900" y2="236" />
             </g>
 
-            {/* conveyor */}
             <rect x="30" y="236" width="1140" height="16" rx="8" fill="#07192f" />
             <line className="pl-belt-marks" x1="44" y1="244" x2="1156" y2="244" />
 
@@ -116,7 +110,7 @@ export default function ProductionLine() {
                   </g>
                 </g>
                 <rect x="-50" y="190" width="100" height="46" rx="3" fill="#fff" stroke="#07192f" strokeWidth="2.5" strokeLinejoin="round" />
-                <rect x="-48.7" y="210" width="97.4" height="8" fill="#b8242c" />
+                <rect x="-48.7" y="210" width="97.4" height="8" style={{ fill: "var(--red)" }} />
                 <rect className="pl-flap" x="-50" y="180" width="100" height="10" rx="2" fill="#eef3f8" stroke="#07192f" strokeWidth="2.5" strokeLinejoin="round" />
               </g>
             </g>

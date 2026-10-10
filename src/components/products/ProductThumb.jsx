@@ -4,7 +4,6 @@ import { useState } from "react";
 import Illustration from "@/components/products/Illustration";
 import { formArt } from "@/data/productForms";
 
-// Product photo with an illustration fallback (used when no photo exists or it fails to load).
 export default function ProductThumb({ product, className = "" }) {
   const [failed, setFailed] = useState(false);
   const showPhoto = product.image && !failed;

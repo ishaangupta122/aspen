@@ -3,7 +3,6 @@ export const process = {
   title: "A typical tablet production line",
   caption: "General overview · Actual processes vary by partner and product",
   stages: ["Compression", "Coating", "Blister packing", "Cartoning"],
-  // General descriptions of each stage; actual processes vary by partner and product.
   details: [
     "Powder blends are compressed into tablets of a defined weight, size and hardness.",
     "A thin film coat is applied to protect the tablet and make it easier to swallow.",
@@ -12,7 +11,6 @@ export const process = {
   ],
 };
 
-// Partner logos and plant photos are self-hosted in /public/images.
 export const partners = [
   { name: "Akums Drugs & Pharmaceuticals Ltd.", image: "/images/akums-drugs.jpg" },
   { name: "Gentech Healthcare Pvt. Ltd.", image: "/images/gentech-healthcare.jpg" },
@@ -35,7 +33,7 @@ export const facilities = {
   ],
 };
 
-// [name, detail, image?]. Add a certificate / mark image path (e.g. "/certs/eu-gmp.png" in /public) as the third item to show it in the badge.
+// [name, detail, image?]; add an image path from /public as the third item to show it.
 export const certifications = [
   ["EU-GMP", "European Good Manufacturing Practice"],
   ["WHO-GMP", "World Health Organization GMP"],

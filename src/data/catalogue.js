@@ -1,4 +1,4 @@
-// Product catalogue, built from products-data.js (copied from aspenpharmaceuticals.com). Monographs load from /public/monographs.
+// Product catalogue built from products-data.js. Monographs load from /public/monographs.
 
 export const dosageForms = [
   { tag: "Oral solids", title: "Tablets", short: "Immediate & modified release", text: "Immediate, sustained and modified-release tablets, including film-coated and orally dispersible formats.", art: "tablets", image: "/images/dosage-tablets-white-closeup.jpg" },
@@ -23,7 +23,6 @@ const NO_TAB = new Set(["General Medicine", "Haematology"]);
 export const specialtyNames = allSpecialties.filter((n) => !MERGED_INTO[n] && !NO_TAB.has(n));
 
 
-// Products shown before "Show more":
 export const INITIAL_VISIBLE = 8;
 
 const arts = {
@@ -33,14 +32,12 @@ const arts = {
   Nephrology: "tablets", "General Surgery": "injectables", Dental: "topicals", Haematology: "injectables",
 };
 const labels = { "Gastroenterology & Hepatology": "Gastro & Hepatology" };
-// One card per specialty. Each card shows an illustration.
 export const categoryCards = [
   { name: "All", label: "All products", art: "all" },
   ...specialtyNames.map((name) => ({ name, label: labels[name] || name, art: arts[name] || "all" })),
 ];
 
 
-// Product photos (home page cards only) are self-hosted in /public/images.
 const productImage = (id) => (id ? `/images/p-${id}.jpg` : null);
 
 export const catalogue = productRows.map(([brand, composition, pack, form, category, specs, img, mono], i) => ({
@@ -62,6 +59,5 @@ export const catalogue = productRows.map(([brand, composition, pack, form, categ
   mono: mono ? String(mono) : null,
 }));
 
-/** Products for a specialty tab ("All" = the full list), in the order used on the live site. */
 export const productsFor = (name) =>
   name === "All" ? catalogue : specialtyLists[allSpecialties.indexOf(name)].map((i) => catalogue[i]);

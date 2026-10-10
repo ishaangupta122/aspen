@@ -1,4 +1,4 @@
-/* Fonts are self-hosted (public/fonts) — latin subset, variable weights. */
+/* Fonts are self-hosted in public/fonts. */
 @font-face {
   font-family: "DM Sans";
   font-style: normal;
@@ -24,7 +24,6 @@
 @tailwind components;
 
 :root {
-  /* Colour tokens (Phase 2). Use these instead of raw hex values. */
   --c-white: #ffffff;
   --c-ink: #0e1b2c;
   --c-navy: #07192f;
@@ -52,30 +51,27 @@
   --c-trust: #ecf0f0;
   --c-map: #e1eaf2;
 
-  /* Type (Phase 2): two families + a brand logotype, and a shared heading scale */
   --font-body: "DM Sans", sans-serif;
   --font-heading: Manrope, sans-serif;
   --font-brand: "Cormorant Garamond", Georgia, serif;
-  --fs-page-title: clamp(36px, 4.4vw, 56px); /* inner-page banner H1 */ /* home + About hero titles */
-  --fs-section-title: clamp(32px, 3.6vw, 48px); /* primary section H2 */
+  --fs-page-title: clamp(36px, 4.4vw, 56px);
+  --fs-section-title: clamp(32px, 3.6vw, 48px);
   --fs-section-title-sm: clamp(
     28px,
     3.2vw,
     42px
-  ); /* two-column / secondary H2 */
+  );
 
-  /* Shape and motion (Phase 3): corner radii and transition timings */
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
-  --radius-leaf-sm: 64px; /* small "leaf" corner on cards and images */
+  --radius-leaf-sm: 64px;
   --radius-leaf: 100px;
   --radius-pill: 999px;
   --dur-fast: 0.2s;
   --dur: 0.3s;
   --dur-reveal: 0.8s;
 
-  /* Buttons (Phase 2): one height, radius and label style for every button */
   --btn-height: 48px;
   --btn-height-sm: 38px;
   --btn-radius: var(--radius-sm);
@@ -135,11 +131,7 @@ h2 em {
   color: #5fa39d;
 }
 
-/* ==========================================================================
-   Homepage sections: About / Quality / Trust / Reach
-   Scoped under .rf so they never collide with the rest of the site.
-   Palette sampled from the approved design screenshots.
-   ========================================================================== */
+/* Home page sections, scoped under .rf. */
 .rf {
   --rf-ink: var(--c-ink);
   --rf-muted: var(--c-muted);
@@ -148,13 +140,12 @@ h2 em {
   --rf-teal: var(--c-teal);
   --rf-teal-text: var(
     --c-teal-text
-  ); /* darker teal for small text on tinted backgrounds (WCAG AA) */
+  );
   --rf-navy: var(--c-navy);
   --rf-map-bg: var(--c-map);
   --rf-shadow: 0 24px 70px rgba(18, 55, 96, 0.13);
 }
 
-/* ---- Responsive ---- */
 @media (prefers-reduced-motion: reduce) {
   .rf-reveal {
     opacity: 1;
@@ -163,8 +154,7 @@ h2 em {
   }
 }
 
-/* Motion: one calm ease-out used everywhere (soft start, long settle). Scroll reveals use the
-   individual `translate` property so they never fight a block's own `transform`. */
+/* Scroll reveals use the individual `translate` property so they never fight a block's own `transform`. */
 .rf-pre {
   opacity: 0;
   translate: 0 22px;
@@ -187,15 +177,14 @@ h2 em {
   }
 }
 
-/* One page container. Every container-like wrapper shares the same max width
-   and side gutters, so section edges line up with the navbar and footer. */
+/* One page container: shared max width and gutters keep section edges aligned with the navbar and footer. */
 :root {
   --page-max: 1240px;
   --page-gutter: 32px;
-  --focus-ring: var(--c-teal); /* teal ring on light backgrounds */
+  --focus-ring: var(--c-teal);
   --focus-ring-on-dark: var(
     --c-mint
-  ); /* light teal ring on navy/teal backgrounds */
+  );
 }
 @media (max-width: 900px) {
   :root {
@@ -208,9 +197,7 @@ h2 em {
   }
 }
 
-/* Keyboard focus: one consistent ring, shown only for keyboard/programmatic
-   focus. :where() keeps specificity low so intentionally styled controls
-   (e.g. the product search field) keep their own treatment. */
+/* Keyboard focus ring. :where() keeps specificity low so styled controls (e.g. the product search) can override it. */
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
@@ -233,9 +220,7 @@ h2 em {
   --focus-ring: var(--focus-ring-on-dark);
 }
 
-/* Reduced motion (Phase 3): for visitors who ask their device to minimise
-   motion, stop decorative animation, hover lifts and smooth scrolling site-wide.
-   Component-level rules above already show final states (reveals, counters, carousel). */
+/* Reduced motion: stop decorative animation, hover lifts and smooth scrolling. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -248,16 +233,13 @@ h2 em {
     transition-duration: 0.01ms !important;
   }
 }
-/* ===== Large screens: keep the call-to-action ring and lines inside the
-   content width instead of drifting to the far edges of the viewport. ===== */
+/* Large screens: keep call-to-action rings inside the content width. */
 @media (min-width: 1300px) {
   :root {
     --side: max(0px, calc((100% - var(--page-max)) / 2));
   }
 }
 
-/* Balanced line breaks for headings (no single-word last lines); avoid
-   orphans in body copy. */
 h1,
 h2,
 h3 {
@@ -267,9 +249,8 @@ p {
   text-wrap: pretty;
 }
 
-/* ---------- 1. Design tokens ---------------------------------------------- */
+/* Design tokens */
 :root {
-  /* Deep navy = brand. Clinical blue = interaction. Muted teal = sparing trust accent. */
   --c-ink: #0f1d2e;
   --c-navy: #0b2342;
   --c-navy-deep: #07192f;
@@ -280,8 +261,8 @@ p {
   --c-blue-dark: #0b2342;
   --c-teal: #2b7a78;
   --c-teal-text: #25706d;
-  --c-aqua: #8fbab9;
-  --c-mint: #a3c8c6;
+  --c-aqua: #66b2ac;
+  --c-mint: #66b2ac;
   --c-aqua-strong: #6fa9a6;
   --c-muted: #4a5b6c;
   --c-muted-2: #4a5b6c;
@@ -297,7 +278,6 @@ p {
   --c-map: #e1eaf2;
   --c-paper: #ffffff;
 
-  /* One radius scale: modest, institutional. The old "leaf" corners are retired. */
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
@@ -305,30 +285,25 @@ p {
   --radius-leaf: 8px;
   --radius-pill: 4px;
 
-  /* One shadow scale: soft, low-contrast. */
   --shadow-2: 0 4px 16px rgba(11, 35, 66, 0.08);
   --shadow-3: 0 18px 48px rgba(11, 35, 66, 0.16);
   --rf-shadow: var(--shadow-2);
 
-  /* Type: institutional scale, calmer than start-up display sizes. */
   --fs-page-title: clamp(30px, 3.4vw, 42px);
   --fs-section-title: clamp(28px, 3vw, 40px);
   --fs-section-title-sm: clamp(24px, 2.5vw, 34px);
   --heading-tracking: -0.012em;
   --heading-leading: 1.18;
 
-  /* Motion */
   --dur-fast: 0.16s;
   --dur: 0.24s;
   --dur-reveal: 0.5s;
 
-  /* Buttons */
   --btn-height: 46px;
   --btn-height-sm: 38px;
   --btn-radius: 4px;
   --btn-pad-x: 22px;
 
-  /* Section rhythm */
   --section-y: clamp(64px, 8vw, 104px);
 
   /* Quiet patterns (never above ~5% contrast) */
@@ -346,9 +321,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-/* Tight negative tracking (-2.5px etc.) is what collapsed words together
-   ("Medicinesacross") at tablet widths. Use a small em-based tracking instead
-   and add a little word spacing so heading words never touch. */
+/* Small em-based tracking plus word spacing: tight negative tracking made heading words touch at tablet widths. */
 h1,
 h2,
 h3,
@@ -357,8 +330,7 @@ h4 {
   text-wrap: balance;
   overflow-wrap: break-word;
 }
-/* Headings anywhere on the site share one tracking value (older rules used
-   -2px … -5px, which also squeezed the display numerals). */
+/* One shared heading tracking value. */
 h1,
 h2,
 h3,
@@ -369,12 +341,10 @@ p {
   hanging-punctuation: first;
 }
 
-/* ---------- 5. Navigation ------------------------------------------------- */
 @media (max-width: 1200px) {
-  /* Quiet navy sheet instead of a teal glow */
 }
 
-/* ---------- 13. Monograph modal ------------------------------------------ */
+/* Monograph modal */
 @keyframes pt-fade {
   from {
     opacity: 0;
@@ -394,16 +364,10 @@ p {
   }
 }
 
-/* ---------- 18. Review fixes ---------------------------------------------- */
 @media (max-width: 900px) {
-  /* mobile hero: let the photograph show through more */
 }
 
-/* 30. Navbar system ---------------------------------------------------------
-   One component, three treatments, all driven by the tokens below:
-   - overlay (default): transparent over the hero or an inner-page banner, light ink on dark imagery.
-   - overlay + light slide: deep-blue ink (body[data-hero-tone="light"]).
-   - solid (.nav-solid, or after scrolling): navy bar for pages with no banner. */
+/* Navbar: overlay (default, light ink over imagery), light-slide variant, and solid (.nav-solid or scrolled). */
 .site-header {
   --nav-h: 82px;
   --nav-gap: clamp(24px, 2.5vw, 38px);
@@ -419,9 +383,7 @@ body[data-hero-tone="light"] .site-header:not(.is-scrolled):not(.menu-open):not(
   --nav-focus: #0b2342;
 }
 
-/* Links */
 @media (min-width: 1201px) {
-  /* Search: a plain icon in a 44px target, set off by one hairline. */
 }
 
 /* Compact header: hamburger menu below 1201px. */
@@ -431,7 +393,7 @@ body[data-hero-tone="light"] .site-header:not(.is-scrolled):not(.menu-open):not(
   }
 }
 
-/* Mobile / tablet menu: a full-height navy sheet with generous, evenly spaced links. */
+/* Mobile and tablet menu: full-height navy sheet. */
 @keyframes nav-sheet-in {
   from {
     opacity: 0;
@@ -443,13 +405,12 @@ body[data-hero-tone="light"] .site-header:not(.is-scrolled):not(.menu-open):not(
   }
 }
 
-/* Brand red: exactly two values. --red on light surfaces and photographs (the hero rule); --red-on-dark on navy. */
+/* Brand accent (named "red" in the code, now teal): --red on light surfaces and photos, --red-on-dark on navy. */
 :root {
-  --red: #bb3039;
-  --red-on-dark: #cc4a51;
+  --red: #2b7a78;
+  --red-on-dark: #66b2ac;
 }
 
-/* 31. Home page: the teal accent becomes the brand red used under the hero title. */
 body:has(.hv) {
   --c-teal: var(--red);
   --c-teal-text: var(--red);
@@ -458,7 +419,6 @@ body:has(.hv) {
   --c-aqua-strong: var(--red);
 }
 
-/* 32. Footer: same type system and brand red as the navbar. ------------------- */
 .footer.ft {
   --ft-ink: #ffffff;
   --ft-text: rgba(255, 255, 255, 0.78);
@@ -467,7 +427,6 @@ body:has(.hv) {
   --ft-mark: var(--red-on-dark);
 }
 
-/* About: refinements after review. */
 body:has(#foundation) {
   --c-teal: var(--red);
   --c-teal-text: var(--red);
@@ -476,7 +435,6 @@ body:has(#foundation) {
   --c-aqua-strong: var(--red);
 }
 
-/* 42. Manufacturing page (all sections except the process line): red accents, DM Sans, quiet cards. */
 body:has(#partners) {
   --c-teal: var(--red);
   --c-teal-text: var(--red);
@@ -485,8 +443,7 @@ body:has(#partners) {
   --c-aqua-strong: var(--red);
 }
 
-/* Manufacturing process animation (ProductionLine.jsx): a clean line-art tablet line. Each station loops
-   while the section is on screen; the default (no animation) state is a static finished frame. */
+/* Manufacturing process animation: each station loops while on screen; the default state is a static finished frame. */
 .pl { --pl-navy: #07192f; --pl-ink2: #8aa0b8; --pl-fill: #eef3f8; --pl-fill2: #d9e3ee; --pl-coat: #a9d3cd; }
 .pl svg * { transform-box: fill-box; transform-origin: center; }
 .pl .pl-stroke { stroke: var(--pl-navy); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; fill: var(--pl-fill); }
@@ -494,7 +451,7 @@ body:has(#partners) {
 .pl .pl-tab { fill: #fff; stroke: var(--pl-navy); stroke-width: 2; }
 .pl .pl-coated { fill: var(--pl-coat); stroke: var(--pl-navy); stroke-width: 2; }
 .pl .pl-belt-marks { stroke: var(--pl-ink2); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 22; fill: none; }
-/* static fallback: finished frame */
+/* Static finished frame */
 .pl .pl-powder, .pl .pl-drop, .pl .pl-spray, .pl .pl-out { opacity: 0; }
 .pl .pl-fill-cell { opacity: 1; }
 .pl .pl-foil { opacity: 1; }
@@ -525,8 +482,7 @@ body:has(#partners) {
   .pl .pl-pack-strip { animation: pl-strip 6s ease-in-out infinite; }
   .pl .pl-flap { animation: pl-flap 6s ease-in-out infinite; }
 }
-/* Play / pause. Kept after the animation declarations above: each `animation` shorthand resets play-state to
-   running, so these rules must come later to win. Everything idles until the section is on screen. */
+/* Play / pause. Must come after the animations above: each `animation` shorthand resets play-state to running. */
 .pl .pl-anim, .pl .pl-anim * { animation-play-state: paused; }
 .pl.is-in:not(.is-paused) .pl-anim, .pl.is-in:not(.is-paused) .pl-anim * { animation-play-state: running; }
 @keyframes pl-belt { to { stroke-dashoffset: -24; } }
@@ -543,7 +499,6 @@ body:has(#partners) {
 @keyframes pl-strip { 0%, 10% { transform: translateY(0); } 38%, 100% { transform: translateY(86px); } }
 @keyframes pl-flap { 0%, 38% { transform: rotate(-104deg); } 56%, 100% { transform: rotate(0deg); } }
 
-/* ===== 43. Quality page: same system as Home / About / Manufacturing ===== */
 body:has(#quality-stages) {
   --c-teal: var(--red);
   --c-teal-text: var(--red);
@@ -552,7 +507,6 @@ body:has(#quality-stages) {
   --c-aqua-strong: var(--red);
 }
 
-/* ===== 48. R&D page: same system as Home / About / Manufacturing / Quality ===== */
 body:has(.rn-intro) {
   --c-teal: var(--red);
   --c-teal-text: var(--red);
@@ -561,7 +515,6 @@ body:has(.rn-intro) {
   --c-aqua-strong: var(--red);
 }
 
-/* ===== 53. Contact page: same system as the other pages ===== */
 body:has(#enquiry) {
   --c-teal: var(--red);
   --c-teal-text: var(--red);
@@ -571,7 +524,6 @@ body:has(#enquiry) {
   --rf-teal: var(--red);
 }
 
-/* ===== 56. Products: same red / navy system as the other pages ===== */
 body:has(.pr-table), body:has(.pr-overview) {
   --c-teal: var(--red);
   --c-teal-text: var(--red);
@@ -580,7 +532,6 @@ body:has(.pr-table), body:has(.pr-overview) {
   --c-aqua-strong: var(--red);
 }
 
-/* ===== 61. Privacy policy + 404: same red / navy system ===== */
 body:has(.lg-body), body:has(.nf) {
   --c-teal: var(--red);
   --c-teal-text: var(--red);
@@ -591,7 +542,7 @@ body:has(.lg-body), body:has(.nf) {
   --c-aqua-strong: var(--red);
 }
 
-/* ===== 62. Keyboard focus: one navy ring on light, one white ring on dark ===== */
+/* Focus ring colour: navy on light, white on dark. */
 :root {
   --focus-ring: #0b2342;
   --focus-ring-on-dark: #ffffff;
@@ -604,10 +555,10 @@ body:has(.lg-body), body:has(.nf) {
   outline-offset: 3px;
   border-radius: max(var(--ring-r, 0px), 3px);
 }
-/* solid white buttons on navy bands */
+/* Solid white buttons on navy bands */
 html { -webkit-tap-highlight-color: rgba(11, 35, 66, 0.12); }
-::selection { background: rgba(187, 48, 57, 0.18); color: inherit; }
-/* Home hero: bright photograph, thin shade, bold title with pill indicators beside it. */
+::selection { background: rgba(43, 122, 120, 0.18); color: inherit; }
+/* Home hero */
 .hv {
   --hv-pad: var(--page-gutter, 32px);
   --hv-fs: clamp(30px, 3.8vw, 56px);
@@ -627,13 +578,13 @@ html { -webkit-tap-highlight-color: rgba(11, 35, 66, 0.12); }
   }
 }
 
-/* Highlights band: straddles the hero's bottom edge, half over the photo, half over the page. */
+/* Highlights band: straddles the hero's bottom edge. */
 :root {
   --hl-h: 72px;
   --hl-gap: 44px;
   --hl-overlap: calc(var(--hl-h) / 2);
 }
-/* Body of the strip: a softly skewed, rounded end with a fine red edge. */
+/* Band body: softly skewed, rounded end with a fine accent edge. */
 @media (max-width: 700px) {
   :root {
     --hl-h: 76px;
@@ -641,7 +592,7 @@ html { -webkit-tap-highlight-color: rgba(11, 35, 66, 0.12); }
   }
 }
 
-/* Motion: a slow settle on the photograph, a calm rise for the title, and a rule that draws in. */
+/* Hero motion: slow settle on the photo, title rise, rule draw-in. */
 @keyframes hv-drift {
   from {
     transform: scale(calc(var(--fx, 1) * 1.07), 1.07);

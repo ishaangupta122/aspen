@@ -6,7 +6,7 @@ import { useHeroCarousel } from "@/hooks/useHeroCarousel";
 
 const AUTOPLAY_MS = 3000;
 
-// Titles carry a "\n" between their two rows; on phones the break is dropped so the text wraps freely.
+// A "\n" in a title splits it into two rows; on phones the break is dropped.
 const rows = (t) =>
   t.split("\n").map((line, i) => (
     <span key={i}>
@@ -16,7 +16,6 @@ const rows = (t) =>
     </span>
   ));
 
-/** Home hero: full-bleed photograph, bold one-line title and pill indicators. Changes only when the visitor chooses. */
 export default function Hero() {
   const { active, warm, still, go } = useHeroCarousel(slides.length);
   const root = useRef(null);
@@ -24,13 +23,11 @@ export default function Hero() {
   const [focused, setFocused] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [offscreen, setOffscreen] = useState(false);
-  // Slides advance on their own, except for visitors who prefer reduced motion, or while the hero is
-  // hovered, focused, off-screen or in a background tab.
   const playing = !still && !hover && !focused && !hidden && !offscreen;
 
   const touch = useRef(null);
   const light = slides[active].tone === "light";
-  // Tell the navbar when the photo behind it is light, so it can switch to dark text.
+  // Lets the navbar switch to dark text over a light photo.
   useEffect(() => {
     document.body.dataset.heroTone = light ? "light" : "dark";
     return () => {
@@ -48,14 +45,12 @@ export default function Hero() {
     };
   }, []);
 
-  // One timer per slide: choosing a slide (or resuming after a pause) starts a fresh interval.
   useEffect(() => {
     if (!playing) return;
     const t = setTimeout(() => go(active + 1), AUTOPLAY_MS);
     return () => clearTimeout(t);
   }, [playing, active, go]);
 
-  // Swipe: a mostly-horizontal drag of 50px or more changes slide.
   const onTouchStart = (e) => {
     const t = e.touches[0];
     touch.current = [t.clientX, t.clientY];
@@ -120,7 +115,7 @@ export default function Hero() {
                 ) : (
                   <h2 className="!font-semibold m-0 max-w-none font-body text-[length:var(--hv-fs)] leading-[1.14] tracking-[-0.012em] [word-spacing:0.08em] text-balance [text-shadow:0_1px_3px_rgba(7,25,47,0.4),0_2px_22px_rgba(7,25,47,0.4)] max-[560px]:tracking-[-0.006em] max-[560px]:[word-spacing:0.05em]">{rows(s.title)}</h2>
                 )}
-                <span className="rounded-[3px] block w-11 h-[3px] mt-3.5 [background:var(--red-on-dark,#cc4a51)] max-[560px]:mt-3 [.hv-slide.on_&]:[transform-origin:left] [.hv-slide.on_&]:[animation:hv-draw_0.8s_cubic-bezier(0.2,0.7,0.2,1)_0.9s_both] motion-reduce:[.hv-slide.on_&]:[animation:none]" aria-hidden="true" />
+                <span className="rounded-[3px] block w-11 h-[3px] mt-3.5 [background:var(--red-on-dark,#66b2ac)] max-[560px]:mt-3 [.hv-slide.on_&]:[transform-origin:left] [.hv-slide.on_&]:[animation:hv-draw_0.8s_cubic-bezier(0.2,0.7,0.2,1)_0.9s_both] motion-reduce:[.hv-slide.on_&]:[animation:none]" aria-hidden="true" />
                 </div>
                 <div className="hv-dots-in gap-[9px] flex items-center pointer-events-auto max-[560px]:hidden [.hv-slide:not(.on)_&]:pointer-events-none [.hv-slide:not(.on)_&]:invisible" role="tablist" aria-label="Choose slide">
                   {slides.map((d, k) => (
