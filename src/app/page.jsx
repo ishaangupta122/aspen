@@ -19,7 +19,7 @@ export default function HomePage() {
       </div>
       <About />
       <TherapeuticAreas />
-      <Portfolio />
+      {/* <Portfolio /> */}
       <Quality />
       <Reach />
       <Sustainability />

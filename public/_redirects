@@ -1,2 +1,0 @@
-# Cloudflare static redirects (served before the Worker). Browsers and crawlers request /favicon.ico directly.
-/favicon.ico /images/favicon.ico 301

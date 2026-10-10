@@ -15,12 +15,12 @@ export const journey = {
     ["Established", "2010"],
     ["Headquarters", "Sahibabad, Ghaziabad, Uttar Pradesh"],
     // ["Focus", `${SPECIALTY_COUNT} medical specialties`],
-    ["Presence", "North India"],
+    ["Presence", "India"],
   ],
   paragraphs: [
-    "founded",
+    "Aspen was established in 2010 with a close understanding of clinical needs and the healthcare market, built on experience in pharmaceutical sales and marketing.",
     "Our progress reflects the dedication of our people, the support of our business partners and the relationships we have built with healthcare professionals.",
-    "Today, Aspen works with established manufacturing partners and its own field and distribution teams to bring its range to healthcare professionals across North India.",
+    "Today, Aspen works with established manufacturing partners and its own field and distribution teams to bring its range to healthcare professionals across India.",
   ],
 };
 
@@ -33,12 +33,12 @@ export const commitments = [
   {
     key: "engagement",
     image: "clinician",
+    pos: "50% 22%",
     alt: "Doctor in consultation",
     title: "Responsible engagement with healthcare professionals",
     paragraphs: [
-      "Healthcare professionals play a vital role in the appropriate use of medicines. Aspen seeks to support their work through professional engagement, clear product communication and responsive service.",
-      "Our approach is guided by respect for clinical judgment and the need for accurate, balanced information. We aim to build long-term relationships through meaningful dialogue and a practical understanding of the challenges faced in everyday clinical practice.",
-      "Patient welfare remains the underlying purpose of these relationships.",
+      "Healthcare professionals play a vital role in the appropriate use of medicines. Aspen supports their work through professional engagement, clear product communication and responsive service.",
+      "Our approach is guided by respect for clinical judgment and the need for accurate, balanced information, with patient welfare as the underlying purpose.",
     ],
   },
   {
@@ -46,18 +46,9 @@ export const commitments = [
     image: "warehouse",
     alt: "Pharmaceutical supply and distribution",
     title: "Our presence and distribution",
-    lead: "Aspen has developed its business presence across:",
-    chips: [
-      "Delhi",
-      "Uttar Pradesh",
-      "Punjab",
-      "Haryana",
-      "Himachal Pradesh",
-      "Uttarakhand",
-      "Rajasthan",
-    ],
     paragraphs: [
-      "Our field teams and distribution partners connect the organisation with healthcare professionals and the pharmaceutical trade. These relationships help us understand local requirements, support product availability and respond to customer needs.",
+      "Our field teams and distribution partners connect the organisation with healthcare professionals and the pharmaceutical trade.",
+      "These relationships help us understand local requirements, support product availability and respond to customer needs.",
     ],
   },
 ];

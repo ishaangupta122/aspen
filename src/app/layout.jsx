@@ -1,10 +1,10 @@
 import "./globals.css";
-import { SITE_NAME, SITE_URL, LEGAL_NAME, SERVED_STATES } from "@/lib/site";
+import { SITE_NAME, SITE_URL, LEGAL_NAME } from "@/lib/site";
 import JsonLd from "@/components/ui/JsonLd";
 import { contact } from "@/data/contact";
 
 const description =
-  "Aspen Pharmaceuticals, established in 2010, serves healthcare professionals across North India with a portfolio of finished dosage forms.";
+  "Aspen Pharmaceuticals, established in 2010, serves healthcare professionals across India with a portfolio of finished dosage forms.";
 const homeTitle =
   "Aspen Pharmaceuticals | Medicines for Healthcare Professionals";
 
@@ -15,8 +15,8 @@ export const metadata = {
   alternates: { canonical: "/" },
   icons: {
     icon: [
-      { url: "/images/favicon.ico", sizes: "48x48" },
-      { url: "/images/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/images/icon.png", type: "image/png", sizes: "192x192" },
     ],
     apple: { url: "/images/apple-icon.png", sizes: "180x180" },
   },
@@ -28,7 +28,7 @@ export const metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Aspen Pharmaceuticals – Serving healthcare across North India",
+        alt: "Aspen Pharmaceuticals – Medicines you can depend on",
       },
     ],
     siteName: SITE_NAME,
@@ -68,7 +68,7 @@ const organization = {
     postalCode: "201007",
     addressCountry: "IN",
   },
-  areaServed: SERVED_STATES.map((name) => ({ "@type": "State", name })),
+  areaServed: { "@type": "Country", name: "India" },
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
@@ -105,22 +105,6 @@ const website = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en-IN" data-scroll-behavior="smooth">
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/dm-sans-latin-wght-normal.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/manrope-latin-wght-normal.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body>
         <JsonLd data={organization} />
         <JsonLd data={website} />

@@ -100,7 +100,7 @@ export default function Hero() {
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${slides.length}`}
               aria-hidden={i !== active}>
-              <div className="gap-11 w-full flex items-start justify-between max-[900px]:gap-6 max-[560px]:gap-4 max-[560px]:flex-col">
+              <div className="gap-11 w-full flex items-start min-[561px]:items-end justify-between max-[900px]:gap-6 max-[560px]:gap-4 max-[560px]:flex-col">
                 <div className="flex flex-col items-start">
                 {i === 0 ? (
                   <h1 className="!font-semibold m-0 max-w-none font-body text-[length:var(--hv-fs)] leading-[1.14] tracking-[-0.012em] [word-spacing:0.08em] text-balance [text-shadow:0_1px_3px_rgba(7,25,47,0.4),0_2px_22px_rgba(7,25,47,0.4)] max-[560px]:tracking-[-0.006em] max-[560px]:[word-spacing:0.05em] [.hv-slide.on_&]:[animation:hv-rise_1s_cubic-bezier(0.2,0.7,0.2,1)_0.35s_both] motion-reduce:[.hv-slide.on_&]:[animation:none]">{s.title}</h1>
@@ -109,7 +109,7 @@ export default function Hero() {
                 )}
                 <span className="rounded-[3px] block w-11 h-[3px] mt-3.5 [background:var(--red-on-dark,#cc4a51)] max-[560px]:mt-3 [.hv-slide.on_&]:[transform-origin:left] [.hv-slide.on_&]:[animation:hv-draw_0.8s_cubic-bezier(0.2,0.7,0.2,1)_0.9s_both] motion-reduce:[.hv-slide.on_&]:[animation:none]" aria-hidden="true" />
                 </div>
-                <div className="hv-dots-in gap-[9px] flex items-center mt-[calc(var(--hv-fs)_*_0.92_-_9px)] pointer-events-auto max-[560px]:mt-0 [.hv-slide:not(.on)_&]:pointer-events-none [.hv-slide:not(.on)_&]:invisible" role="tablist" aria-label="Choose slide">
+                <div className="hv-dots-in gap-[9px] flex items-center pointer-events-auto max-[560px]:hidden [.hv-slide:not(.on)_&]:pointer-events-none [.hv-slide:not(.on)_&]:invisible" role="tablist" aria-label="Choose slide">
                   {slides.map((d, k) => (
                     <button
                       key={d.key}

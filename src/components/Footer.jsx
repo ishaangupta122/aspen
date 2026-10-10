@@ -27,7 +27,7 @@ export default function Footer() {
           <Logo />
           <p className="mx-0 max-w-[34ch] mt-[22px] mb-0 text-[color:var(--ft-text)] text-[15.5px] font-normal leading-[1.7]">
             A pharmaceutical company serving healthcare professionals across
-            North India since 2010.
+            India since 2010.
           </p>
         </div>
 

@@ -16,7 +16,7 @@ export default function Journey() {
                   loading="lazy"
                 />
               </div>
-              <figcaption className="gap-3.5 flex items-center mt-3.5 font-medium text-[13.5px] leading-[1.4] font-body tracking-[.02em] text-[#4a5b6c] before:flex-none before:rounded-full before:[content:''] before:w-6 before:h-0.5 before:[background:var(--red)]">Based in Ghaziabad, Uttar Pradesh</figcaption>
+              <figcaption className="gap-3.5 flex items-center mt-3.5 font-medium text-[13.5px] leading-[1.4] font-body tracking-[.02em] text-[#4a5b6c] before:flex-none before:rounded-full before:[content:''] before:w-6 before:h-0.5 before:[background:var(--red)]">Established 2010</figcaption>
             </figure>
           </RfReveal>
           <RfReveal className="flex flex-col justify-center min-w-0 motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none]">
@@ -24,9 +24,7 @@ export default function Journey() {
             <h2 className="m-0 font-semibold text-[length:clamp(30px,3.2vw,40px)] leading-[1.2] font-body tracking-[-0.012em] [word-spacing:0.06em] text-navy whitespace-normal [overflow-wrap:break-word] max-w-none min-[1025px]:w-auto">{journey.title}</h2>
             <div className="pt-0 mt-[26px] min-[1025px]:self-auto">
               <p className="mx-0 mt-0 mb-[18px] text-[#4a5b6c] text-[16.5px] leading-[1.75] font-normal font-body max-w-none first:text-navy first:text-[18.5px] first:leading-[1.65]">
-                Aspen was founded by <strong className="text-[color:var(--rf-ink)] font-semibold">Anup Goyal</strong>, whose
-                experience in pharmaceutical sales and marketing provided a
-                close understanding of clinical needs and the healthcare market.
+                {journey.paragraphs[0]}
               </p>
               <p className="mx-0 mt-0 mb-[18px] text-[#4a5b6c] text-[16.5px] leading-[1.75] font-normal font-body max-w-none">{journey.paragraphs[1]}</p>
               <p className="last:mb-0 mx-0 mt-0 mb-[18px] text-[#4a5b6c] text-[16.5px] leading-[1.75] font-normal font-body max-w-none">{journey.paragraphs[2]}</p>
