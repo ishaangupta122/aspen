@@ -12,7 +12,7 @@ export default function About() {
             <div className="inset-auto overflow-hidden rounded-[8px] relative object-cover aspect-[5/4] [background:var(--c-surface-tint)] max-[900px]:aspect-[4/3]">
               <img className="block w-full h-full object-cover"
                 src={images.scientist}
-                alt="Two Aspen scientists reviewing laboratory notes"
+                alt="A technician working at a containment isolator in a pharmaceutical cleanroom"
                 loading="lazy"
               />
             </div>
@@ -21,8 +21,8 @@ export default function About() {
         </RfReveal>
         <RfReveal className="rf-about-copy max-[900px]:max-w-[650px] motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none]">
           <RfHeading
-            eyebrow="Who we are"
-            title="Built around the needs of clinicians."
+            eyebrow="About Aspen"
+            title="Driven by Science, Inspired by Life."
           />
           <p className="mx-0 mt-[26px] mb-4 text-[color:var(--c-ink)] text-[18.5px] leading-[1.65] font-normal font-body">
             Aspen Pharmaceuticals is a pharmaceutical company,

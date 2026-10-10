@@ -16,7 +16,7 @@ export default function ProductsPage() {
   return (
     <PageShell>
       <PageBanner
-        title="Medicines across essential specialties"
+        title="Therapeutic Products"
         crumbs={[{ label: "Products" }]}
         path="/products"
       />

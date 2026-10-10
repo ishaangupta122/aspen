@@ -47,7 +47,7 @@ export default function Portfolio() {
           <SectionIntro
             eyebrow="Featured products"
             title="Brands from our portfolio."
-            copy="A selection from our range of 240+ products across therapeutic areas."
+            copy="A selection from our range of 250+ products across therapeutic areas."
           />
           <Link className="ta-all mx-0 px-0 py-2 gap-3 border-b [border-bottom-style:solid] border-b-navy inline-flex items-center mt-0 font-semibold text-[15.5px] leading-[1.2] font-body text-navy [transition:border-color_0.25s_ease] mb-1.5 whitespace-nowrap hover:border-b-red focus-visible:outline-[length:2px] focus-visible:outline focus-visible:outline-[color:var(--c-navy)] focus-visible:outline-offset-[3px]" href="/products">
             Explore complete portfolio <ArrowRight className="text-red [transition:transform_0.25s_ease] [.ta-all:hover_&]:[transform:translateX(4px)]" size={18} />

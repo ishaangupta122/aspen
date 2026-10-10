@@ -1,27 +1,26 @@
+// Photos are pre-flipped where needed (subject on the right, title space on the left) and 1920px wide.
+// A "\n" in a title marks the break between its two rows (ignored on phones, where the text wraps freely).
 // Title-only slides for the home hero. Each slide is a headline and a photograph.
 export const heroSlides = [
   {
     key: "india",
-    title: "Medicines you can depend on",
-    image: "/images/hero-medicines.jpg",
-    alt: "Strips of tablets and capsules in blister packs on a wooden table",
-    pos: "50% 45%",
+    title: "Medicines made with care,\nfor every Indian family",
+    image: "/images/hero-bench.jpg",
+    alt: "A scientist in a white lab coat and blue gloves grinding a sample with a mortar and pestle at a laboratory bench",
+    pos: "50% 14%",
   },
   {
     key: "medicines",
-    title: "A portfolio built for clinical practice",
-    image: "/images/hero-tablets-light.jpg",
-    alt: "White tablets on a bright surface with a brown medicine bottle and green leaves behind",
-    pos: "70% 50%",
-    strongShade: true,
-    tone: "light",
+    title: "More than 250 brands\ntrusted by doctors",
+    image: "/images/hero-formulation.jpg",
+    alt: "Jars of powder, a dish of white tablets and a lab notebook on a laboratory bench",
+    pos: "50% 38%",
   },
   {
     key: "science",
-    title: "Quality checked at every step",
-    image: "/images/hero-quality.jpg",
-    alt: "Laboratory analyst pipetting samples into a test-tube rack",
-    pos: "40% 6%",
-    flip: true,
+    title: "People who turn science\ninto better health",
+    image: "/images/hero-technician.jpg",
+    alt: "A laboratory analyst in a turban and white coat pipetting samples into a tube rack",
+    pos: "50% 0%",
   },
 ];

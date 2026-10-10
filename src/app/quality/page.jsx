@@ -18,7 +18,7 @@ export default function QualityPage() {
   return (
     <PageShell>
       <PageBanner
-        title="Quality at every stage"
+        title="Aspen's Quality"
         crumbs={[{ label: "Quality" }]}
         path="/quality"
       />

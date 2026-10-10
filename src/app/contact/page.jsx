@@ -24,12 +24,7 @@ export default function ContactPage() {
     <PageShell>
       <JsonLd data={schema} />
       <PageBanner
-        title={
-          <>
-            Talk to the <br />
-            Aspen team
-          </>
-        }
+        title="Contact Aspen"
         crumbs={[{ label: "Contact" }]}
         path="/contact"
       />

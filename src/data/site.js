@@ -7,24 +7,12 @@ export const images = {
   clinician: "/images/doctor-stethoscope.jpg",
   about: "/images/lab-pipette-test-tubes.jpg",
   manufacturing: "/images/lab-bench-microscope.jpg",
-  scientist: "/images/aspen-scientist-at-bench.jpg",
+  scientist: "/images/aspen-cleanroom-technician.jpg",
   warehouse: "/images/distribution-warehouse-aisle.jpg",
   capsuleTray: "/images/capsule-tray-lab.jpg",
 };
 
 export const therapeuticAreas = [
-  {
-    name: "General Medicine",
-    href: "/products",
-    detail: "Antibiotics, analgesics, everyday therapy",
-    className: "area-main",
-  },
-  {
-    name: "Cardiology",
-    href: "/products/cardiology",
-    detail: "Antihypertensives and diuretics",
-    className: "area-small",
-  },
   {
     name: "Neurology",
     href: "/products/neurology",
@@ -32,7 +20,13 @@ export const therapeuticAreas = [
     className: "area-small",
   },
   {
-    name: "Gastro & Hepatology",
+    name: "Psychiatry",
+    href: "/products/psychiatry",
+    detail: "Antidepressants and antipsychotics",
+    className: "area-small",
+  },
+  {
+    name: "Gastroenterology & Hepatology",
     href: "/products/gastroenterology-hepatology",
     detail: "Digestive and liver care",
     className: "area-wide",
@@ -44,15 +38,21 @@ export const therapeuticAreas = [
     className: "area-small",
   },
   {
-    name: "Nutraceuticals",
-    href: "/products?q=Nutraceutical",
-    detail: "Vitamins, minerals and supplements",
+    name: "Cardiology",
+    href: "/products/cardiology",
+    detail: "Antihypertensives and diuretics",
     className: "area-small",
   },
   {
-    name: "Psychiatry",
-    href: "/products/psychiatry",
-    detail: "Antidepressants and antipsychotics",
+    name: "General Medicine",
+    href: "/products",
+    detail: "Antibiotics, analgesics, everyday therapy",
+    className: "area-main",
+  },
+  {
+    name: "Nutraceuticals",
+    href: "/products?q=Nutraceutical",
+    detail: "Vitamins, minerals and supplements",
     className: "area-small",
   },
 ];
