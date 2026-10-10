@@ -3,7 +3,6 @@ import Hero from "@/components/hero/Hero";
 import HeroBand from "@/components/hero/HeroBand";
 import About from "@/components/sections/About";
 import TherapeuticAreas from "@/components/sections/TherapeuticAreas";
-import Portfolio from "@/components/sections/Portfolio";
 import Quality from "@/components/sections/Quality";
 import Sustainability from "@/components/sections/Sustainability";
 import Reach from "@/components/sections/Reach";
@@ -17,7 +16,6 @@ export default function HomePage() {
       </div>
       <About />
       <TherapeuticAreas />
-      <Portfolio />
       <Quality />
       <Reach />
       <Sustainability />

@@ -1,30 +1,19 @@
 /** @type {import('next').NextConfig} */
-const securityHeaders = [
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "SAMEORIGIN" },
-  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-  // Tells browsers to always use HTTPS for this domain (ignored on plain-HTTP localhost).
-  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
-];
-
+// Static export: every page is built to plain HTML in out/ and served by Cloudflare assets.
+// Redirects and headers live in public/_redirects and public/_headers.
 const nextConfig = {
+  output: "export",
   reactStrictMode: true,
   poweredByHeader: false,
-  // Hide the dev-only Next.js bubble so review screenshots show the site itself.
   devIndicators: false,
-  async redirects() {
-    // Specialties merged into others or folded into "All products".
-    return [
-      { source: "/products/neurosurgery", destination: "/products/neurology", permanent: true },
-      { source: "/products/sexology", destination: "/products/urology-andrology", permanent: true },
-      { source: "/products/general-medicine", destination: "/products", permanent: true },
-      { source: "/products/haematology", destination: "/products", permanent: true },
-    ];
-  },
-  async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
-  },
+  trailingSlash: false,
+  images: { unoptimized: true },
+  // `next dev` has no /api; forward it to the local Worker (npm run dev:worker). Ignored in the static build.
+  ...(process.env.NODE_ENV === "development" && {
+    async rewrites() {
+      return [{ source: "/api/:path*", destination: "http://localhost:8787/api/:path*" }];
+    },
+  }),
 };
 
 export default nextConfig;

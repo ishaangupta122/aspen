@@ -209,7 +209,6 @@ h2 em {
   .ab-hero,
   .rf-quality,
   .rf-sustain,
-  .final-cta,
   .ft,
   .fx,
   .pq,
@@ -547,7 +546,7 @@ body:has(.lg-body), body:has(.nf) {
   --focus-ring: #0b2342;
   --focus-ring-on-dark: #ffffff;
 }
-:where(.hv, .hl-band, .rn-quality, .rn-dosage, .cb, .nf, .mg-head, .pq, .fx, .mf-commit, .ab-direction, .final-cta, .pb-banner, .site-header, .ft) {
+:where(.hv, .hl-band, .rn-quality, .rn-dosage, .cb, .nf, .mg-head, .pq, .fx, .mf-commit, .ab-direction, .pb-banner, .site-header, .ft) {
   --focus-ring: var(--focus-ring-on-dark);
 }
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {

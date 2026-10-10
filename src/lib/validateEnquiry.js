@@ -1,4 +1,4 @@
-import { enquiryTypes } from "@/data/contact";
+import { enquiryTypes } from "../data/contact";
 
 export function validateEnquiry(v) {
   const e = {};
