@@ -3,9 +3,7 @@
 import { useEffect } from "react";
 import { prefersReducedMotion } from "@/lib/motion";
 
-// Scroll reveal for every `.rf-reveal` block. Progressive enhancement: blocks stay fully visible
-// until this runs, and only blocks that start below the fold are hidden (then eased in as they
-// approach the viewport). No JS, reduced motion or an old browser = content is simply shown.
+// Progressive enhancement: content stays visible without JS or with reduced motion; only blocks below the fold are hidden, then eased in.
 export default function ScrollReveal() {
   useEffect(() => {
     if (prefersReducedMotion() || !("IntersectionObserver" in window)) return;
@@ -20,7 +18,6 @@ export default function ScrollReveal() {
         let n = 0;
         entries.forEach((e) => {
           if (!e.isIntersecting) return;
-          // Items entering together are staggered slightly (max 240ms) for a calmer rhythm.
           e.target.style.transitionDelay = `${Math.min(n++, 3) * 80}ms`;
           e.target.classList.add("rf-in");
           io.unobserve(e.target);

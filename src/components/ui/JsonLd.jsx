@@ -1,4 +1,3 @@
-/** Renders a JSON-LD structured-data block. */
 export default function JsonLd({ data }) {
   return (
     <script

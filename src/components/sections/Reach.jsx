@@ -34,7 +34,7 @@ export default function Reach() {
               className="gap-3.5 flex items-center py-3 border-b [border-bottom-style:solid] border-b-navy/10 last:border-b-0"
               key={state}
             >
-              <i className="shrink-0 rounded-[50%] border-2 border-solid border-white block w-2.5 h-2.5 [background:var(--red)] [box-shadow:0_0_0_4px_rgba(187,48,57,0.14)]" />
+              <i className="shrink-0 rounded-[50%] border-2 border-solid border-white block w-2.5 h-2.5 [background:var(--red)] [box-shadow:0_0_0_4px_rgba(43,122,120,0.14)]" />
               <div className="font-body">
                 <span className="block text-navy text-[16px] font-semibold leading-[1.25]">{state}</span>
                 <span className="block mt-0.5 text-[#5b6b7c] text-[13.5px] leading-[1.4]">{note}</span>

@@ -14,7 +14,6 @@ export const journey = {
   facts: [
     ["Established", "2010"],
     ["Headquarters", "Sahibabad, Ghaziabad, Uttar Pradesh"],
-    // ["Focus", `${SPECIALTY_COUNT} medical specialties`],
     ["Presence", "India"],
   ],
   paragraphs: [

@@ -13,8 +13,7 @@ const routes = [
   "/privacy",
 ];
 
-// lastModified is omitted on purpose: a build-time "now" date would change on every
-// deploy and teach search engines to ignore the field. Add real dates per route if tracked.
+// lastModified is omitted on purpose: a build-time date would change on every deploy and teach search engines to ignore it.
 export default function sitemap() {
   return routes.map((path) => ({ url: `${SITE_URL}${path}` }));
 }

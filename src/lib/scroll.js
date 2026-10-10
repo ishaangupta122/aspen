@@ -1,6 +1,5 @@
 import { prefersReducedMotion } from "@/lib/motion";
 
-// Slow, eased scroll (the browser's built-in smooth scroll is too quick to follow).
 export function smoothScrollTo(target, duration) {
   if (prefersReducedMotion()) return window.scrollTo(0, target);
   const start = window.scrollY;

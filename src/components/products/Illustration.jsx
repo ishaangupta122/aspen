@@ -1,5 +1,4 @@
-// Flat, theme-coloured illustrations used as card imagery. Swap any of them for a real
-// photo by setting an `image` URL on the item in src/data/catalogue.js.
+// Flat illustrations used as card imagery. Set an `image` URL on an item in catalogue.js to use a photo instead.
 
 const C = {
   navy: "#0a1a30",

@@ -3,11 +3,7 @@
 import { useEffect } from "react";
 import { smoothScrollTo } from "@/lib/scroll";
 
-/**
- * Clicking a link to the page you are already on (logo, active nav item, footer link...) does nothing
- * in Next.js. This scrolls such links back to the top instead. Hash links and links that change the
- * query string (e.g. specialty filters) keep their normal behaviour.
- */
+/** Scrolls links to the current page back to the top (Next.js does nothing for them). Hash links and query changes behave normally. */
 export default function SamePageScrollTop() {
   useEffect(() => {
     const onClick = (event) => {

@@ -3,9 +3,7 @@ import { ChevronRight } from "lucide-react";
 import JsonLd from "@/components/ui/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
-// Breadcrumb trail shown under inner-page titles (Home › …).
 export default function Breadcrumbs({ crumbs = [], path }) {
-  // Structured data mirrors the visible trail; the last crumb is the current page.
   const trail = crumbs
     .map((c, i) => [c.label, c.href || (i === crumbs.length - 1 ? path : null)])
     .filter(([, p]) => p);

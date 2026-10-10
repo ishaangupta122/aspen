@@ -2,7 +2,6 @@ import Link from "@/components/ui/SiteLink";
 import { ArrowRight } from "lucide-react";
 import RfReveal from "@/components/ui/RfReveal";
 
-/** Shared navy closing band: heading on the left, message, action and contact line on the right. */
 export default function ClosingBand({
   id,
   eyebrow,

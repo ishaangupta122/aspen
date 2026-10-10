@@ -1,6 +1,5 @@
-// Photos are pre-flipped where needed (subject on the right, title space on the left) and 1920px wide.
-// A "\n" in a title marks the break between its two rows (ignored on phones, where the text wraps freely).
-// Title-only slides for the home hero. Each slide is a headline and a photograph.
+// Photos are pre-flipped (subject on the right, room for the title on the left) and 1920px wide.
+// A "\n" in a title marks the break between its two rows.
 export const heroSlides = [
   {
     key: "india",

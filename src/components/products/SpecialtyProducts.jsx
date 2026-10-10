@@ -3,7 +3,6 @@
 import { useState } from "react";
 import ProductList from "@/components/products/ProductList";
 
-/** Search + monograph product list for one specialty page. */
 export default function SpecialtyProducts({ name, products }) {
   const [query, setQuery] = useState("");
   const n = products.length;

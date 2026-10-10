@@ -1,6 +1,5 @@
 import Link from "@/components/ui/SiteLink";
 
-/** Solid (`primary`) or outline (`light`) call-to-action link. No decorative arrow: the label is the CTA. */
 export default function ButtonLink({
   children,
   to = "#",

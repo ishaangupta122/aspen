@@ -5,8 +5,6 @@ import { FileText, Search } from "lucide-react";
 import { INITIAL_VISIBLE } from "@/data/catalogue";
 import Monograph from "@/components/products/Monograph";
 
-/** Search bar, product table (with monograph button) and "show more" paging.
- *  Shared by the main catalogue and each specialty page. */
 export default function ProductList({
   products,
   query,
@@ -51,9 +49,7 @@ export default function ProductList({
 
         <div className="pr-table rounded-[var(--radius-md)] border border-solid border-[color:var(--c-line)] overflow-x-auto overflow-y-hidden [background:var(--c-white)] [-webkit-overflow-scrolling:touch] [box-shadow:none] max-[860px]:overflow-visible max-[860px]:border-0 max-[860px]:border-none max-[860px]:border-current max-[860px]:[background:transparent]" role="table">
           <div className="min-w-[900px] max-[860px]:gap-3 max-[860px]:min-w-0 max-[860px]:grid min-[640px]:max-[860px]:grid-cols-[1fr_1fr] min-[640px]:max-[860px]:[align-items:start]">
-            {/* ARIA table roles (not <table>) because rows are CSS grids that also
-              scroll horizontally on small screens; native table semantics are
-              not reliably kept once table elements get display: grid. */}
+            {/* ARIA table roles instead of <table>: rows are CSS grids, which break native table semantics. */}
             <div className="px-7 py-[17px] gap-6 grid grid-cols-[1.1fr_1.7fr_1.2fr_1fr_150px] items-center [background:var(--c-navy)] text-white font-semibold text-[13px] leading-[normal] font-heading tracking-[0.12em] uppercase max-[860px]:m-[-1px] max-[860px]:p-0 max-[860px]:overflow-hidden max-[860px]:border-0 max-[860px]:border-none max-[860px]:border-current max-[860px]:absolute max-[860px]:w-px max-[860px]:h-px max-[860px]:[clip:rect(0_0_0_0)] max-[860px]:whitespace-nowrap" role="row">
               <span role="columnheader">Brand</span>
               <span role="columnheader">Composition</span>

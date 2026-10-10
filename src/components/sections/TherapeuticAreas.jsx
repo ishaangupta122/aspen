@@ -2,8 +2,7 @@ import Link from "@/components/ui/SiteLink";
 import { ArrowRight } from "lucide-react";
 import { therapeuticAreas } from "@/data/site";
 
-/** Compact index: heading on the left, the areas as a plain two-column list on the right. */
-// Home shows six areas (Nutraceuticals is left out); the full list stays in the data and on the products page.
+// The home page shows six areas; Nutraceuticals is left out.
 const shown = therapeuticAreas.filter((a) => a.name !== "Nutraceuticals");
 
 export default function TherapeuticAreas() {
