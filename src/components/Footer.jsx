@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import Logo from "@/components/Logo";
 import EmployeeLoginLink from "@/components/EmployeeLoginLink";
 import { contact } from "@/data/contact";

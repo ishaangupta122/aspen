@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { ArrowRight } from "lucide-react";
 import { SPECIALTY_COUNT, therapeuticAreas } from "@/data/site";
 

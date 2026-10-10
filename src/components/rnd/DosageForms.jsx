@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import RfReveal from "@/components/ui/RfReveal";
 import { dosageForms } from "@/data/rnd";
 

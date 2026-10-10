@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import ProductThumb from "@/components/products/ProductThumb";
 

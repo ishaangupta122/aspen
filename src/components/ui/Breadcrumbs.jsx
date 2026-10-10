@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 import { ChevronRight } from "lucide-react";
 import JsonLd from "@/components/ui/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/SiteLink";
 
 export default function Logo({ variant = "dark" }) {
   return (
