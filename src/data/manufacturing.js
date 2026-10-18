@@ -12,11 +12,11 @@ export const process = {
 };
 
 export const partners = [
-  { name: "Akums Drugs & Pharmaceuticals Ltd.", image: "/images/akums-drugs.jpg" },
-  { name: "Gentech Healthcare Pvt. Ltd.", image: "/images/gentech-healthcare.jpg" },
-  { name: "Enrico Pharmaceuticals", image: "/images/enrico-pharmaceuticals.jpg" },
-  { name: "Ekanthika Pharmaceuticals", image: "/images/ekanthika-pharmaceuticals.jpg" },
-  { name: "Medicef Pharma Ltd.", image: "/images/medicef-pharma.jpg" },
+  { name: "Akums Drugs & Pharmaceuticals Ltd.", image: "/images/akums-drugs.webp" },
+  { name: "Gentech Healthcare Pvt. Ltd.", image: "/images/gentech-healthcare.webp" },
+  { name: "Enrico Pharmaceuticals", image: "/images/enrico-pharmaceuticals.webp" },
+  { name: "Ekanthika Pharmaceuticals", image: "/images/ekanthika-pharmaceuticals.webp" },
+  { name: "Medicef Pharma Ltd.", image: "/images/medicef-pharma.webp" },
   { name: "Antibiotic India" },
 ];
 
@@ -26,10 +26,10 @@ export const facilities = {
   copy: "Clean-room production and automated packing at the plants that make Aspen products.",
   note: "Representative images of partner facilities.",
   items: [
-    { caption: "Akums manufacturing campus, Haridwar (aerial view)", image: "/images/akums-haridwar-aerial.jpg" },
-    { caption: "Medicef manufacturing facility", image: "/images/medicef-facility.jpg" },
-    { caption: "Automated filling line in a clean-room area", image: "/images/cleanroom-filling-line.jpg" },
-    { caption: "Automatic sachet packing machine", image: "/images/sachet-packing-machine.jpg" },
+    { caption: "Akums manufacturing campus, Haridwar (aerial view)", image: "/images/akums-haridwar-aerial.webp" },
+    { caption: "Medicef manufacturing facility", image: "/images/medicef-facility.webp" },
+    { caption: "Automated filling line in a clean-room area", image: "/images/cleanroom-filling-line.webp" },
+    { caption: "Automatic sachet packing machine", image: "/images/sachet-packing-machine.webp" },
   ],
 };
 
@@ -118,7 +118,7 @@ export const qcqa = {
 
 export const commitment = {
   title: "Responsibility across the product lifecycle",
-  image: "/images/hero-lab-rotary-evaporator.jpg",
+  image: "/images/hero-lab-rotary-evaporator.webp",
   imageAlt: "Gloved hands adjusting laboratory process equipment",
   text: "Quality is a responsibility carried from material selection to delivery. Our focus is on scientifically sound evaluation, clear documentation and accountable quality decisions that support confidence in the medicines we supply.",
   tagline: "Aspen Pharmaceuticals Pvt. Ltd.",

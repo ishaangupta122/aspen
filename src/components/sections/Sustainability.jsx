@@ -2,7 +2,7 @@ import { Leaf } from "lucide-react";
 import RfHeading from "@/components/ui/RfHeading";
 import RfReveal from "@/components/ui/RfReveal";
 
-const image = "/images/sustainability-forest-aerial.jpg";
+const image = "/images/sustainability-forest-aerial.webp";
 
 export default function Sustainability() {
   return (

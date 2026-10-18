@@ -2,12 +2,12 @@
 export const SPECIALTY_COUNT = 16;
 
 export const images = {
-  clinician: "/images/doctor-stethoscope.jpg",
-  about: "/images/lab-pipette-test-tubes.jpg",
-  manufacturing: "/images/lab-bench-microscope.jpg",
-  scientist: "/images/aspen-cleanroom-technician.jpg",
-  warehouse: "/images/distribution-warehouse-aisle.jpg",
-  capsuleTray: "/images/capsule-tray-lab.jpg",
+  clinician: "/images/doctor-stethoscope.webp",
+  about: "/images/lab-pipette-test-tubes.webp",
+  manufacturing: "/images/lab-bench-microscope.webp",
+  scientist: "/images/aspen-cleanroom-technician.webp",
+  warehouse: "/images/distribution-warehouse-aisle.webp",
+  capsuleTray: "/images/capsule-tray-lab.webp",
 };
 
 export const therapeuticAreas = [
