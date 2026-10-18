@@ -19,11 +19,10 @@ const rows = (t) =>
 export default function Hero() {
   const { active, warm, still, go } = useHeroCarousel(slides.length);
   const root = useRef(null);
-  const [hover, setHover] = useState(false);
   const [focused, setFocused] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [offscreen, setOffscreen] = useState(false);
-  const playing = !still && !hover && !focused && !hidden && !offscreen;
+  const playing = !still && !focused && !hidden && !offscreen;
 
   const touch = useRef(null);
   const light = slides[active].tone === "light";
@@ -69,8 +68,6 @@ export default function Hero() {
       ref={root}
       className={`overflow-hidden relative h-[clamp(440px,90svh,800px)] min-h-[440px] text-[#f3f0ea] [background:var(--c-navy-deep,#07192f)] font-body max-[700px]:h-[clamp(420px,70svh,580px)] hv ${light ? " hv-light" : ""}${playing ? " is-playing" : ""}`}
       style={{ "--hv-dur": `${AUTOPLAY_MS}ms` }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}
       aria-roledescription="carousel"
@@ -83,7 +80,7 @@ export default function Hero() {
             key={s.key}
             className={`inset-0 absolute w-full h-full object-cover opacity-0 [transform:scaleX(var(--fx,1))] [transition:opacity_0.8s_ease] motion-reduce:[transition:none] [&.on]:opacity-100 [&.on]:[animation:hv-drift_7s_cubic-bezier(0.22,0.61,0.36,1)_both] motion-reduce:[&.on]:[animation:none]${i === active ? " on" : ""}`}
             src={s.image}
-            srcSet={`${s.image.replace(".jpg", "-960.jpg")} 960w, ${s.image} 1920w`}
+            srcSet={`${s.image.replace(".webp", "-960.webp")} 960w, ${s.image} 1920w`}
             sizes="100vw"
             alt={i === active ? s.alt : ""}
             aria-hidden={i !== active}

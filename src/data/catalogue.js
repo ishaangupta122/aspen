@@ -1,12 +1,12 @@
 // Product catalogue built from products-data.js. Monographs load from /public/monographs.
 
 export const dosageForms = [
-  { tag: "Oral solids", title: "Tablets", short: "Immediate & modified release", text: "Immediate, sustained and modified-release tablets, including film-coated and orally dispersible formats.", art: "tablets", image: "/images/dosage-tablets-white-closeup.jpg" },
-  { tag: "Oral solids", title: "Capsules", short: "Hard gelatin & soft-gel", text: "Hard gelatin, HPMC and soft-gel capsules for faster absorption and better patient compliance.", art: "capsules", image: "/images/dosage-capsules-assorted.jpg" },
-  { tag: "Sterile", title: "Injectables", short: "Vials & ampoules", text: "Vials, ampoules and dry powder injections made under controlled sterile conditions.", art: "injectables", image: "/images/dosage-injectable-ampoules.jpg" },
-  { tag: "Liquids", title: "Oral liquids", short: "Syrups & suspensions", text: "Syrups, suspensions and dry-syrup formulations designed for paediatric and geriatric care.", art: "liquids", image: "/images/dosage-oral-liquid-medicine-bottles.jpg" },
-  { tag: "Topicals", title: "Creams & ointments", short: "Creams, gels & ointments", text: "Dermatological creams, gels and ointments for skin, wound and pain management.", art: "topicals", image: "/images/dosage-cream-ointment-jar.jpg" },
-  { tag: "Wellness", title: "Nutraceuticals", short: "Vitamins & minerals", text: "Vitamins, minerals and nutritional supplements for everyday health and recovery.", art: "wellness", image: "/images/dosage-nutraceutical-vitamin-bottle.jpg" },
+  { tag: "Oral solids", title: "Tablets", short: "Immediate & modified release", text: "Immediate, sustained and modified-release tablets, including film-coated and orally dispersible formats.", art: "tablets", image: "/images/dosage-tablets-white-closeup.webp" },
+  { tag: "Oral solids", title: "Capsules", short: "Hard gelatin & soft-gel", text: "Hard gelatin, HPMC and soft-gel capsules for faster absorption and better patient compliance.", art: "capsules", image: "/images/dosage-capsules-assorted.webp" },
+  { tag: "Sterile", title: "Injectables", short: "Vials & ampoules", text: "Vials, ampoules and dry powder injections made under controlled sterile conditions.", art: "injectables", image: "/images/dosage-injectable-ampoules.webp" },
+  { tag: "Liquids", title: "Oral liquids", short: "Syrups & suspensions", text: "Syrups, suspensions and dry-syrup formulations designed for paediatric and geriatric care.", art: "liquids", image: "/images/dosage-oral-liquid-medicine-bottles.webp" },
+  { tag: "Topicals", title: "Creams & ointments", short: "Creams, gels & ointments", text: "Dermatological creams, gels and ointments for skin, wound and pain management.", art: "topicals", image: "/images/dosage-cream-ointment-jar.webp" },
+  { tag: "Wellness", title: "Nutraceuticals", short: "Vitamins & minerals", text: "Vitamins, minerals and nutritional supplements for everyday health and recovery.", art: "wellness", image: "/images/dosage-nutraceutical-vitamin-bottle.webp" },
 ];
 
 
