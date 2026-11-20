@@ -22,7 +22,7 @@ export default function ContactSection() {
           </RfReveal>
 
           <RfReveal className="flex-1 flex motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none] max-[1024px]:[grid-column:1] max-[1024px]:[grid-row:auto]">
-            <div className="p-0 rounded-none border-0 border-none border-current w-full [background:transparent] mt-6">
+            <div className="p-0 rounded-none border-0 border-none border-current w-full [background:transparent] mt-4">
               <EnquiryForm />
             </div>
           </RfReveal>
@@ -46,8 +46,8 @@ export default function ContactSection() {
             </div>
           </RfReveal>
 
-          <RfReveal className="flex mt-6 motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none] max-[1024px]:[grid-column:1] max-[1024px]:[grid-row:auto]">
-            <div className="px-0 border-t-2 border-l-0 [border-top-style:solid] [border-left-style:none] border-t-navy border-l-current w-full pt-5 pb-0 text-[16px] leading-[1.7] font-normal font-body text-[#4a5b6c]">
+          <RfReveal className="flex mt-4 motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none] max-[1024px]:[grid-column:1] max-[1024px]:[grid-row:auto]">
+            <div className="px-0 w-full pt-0 pb-0 text-[16px] leading-[1.7] font-normal font-body text-[#4a5b6c]">
               <strong className="block mb-1.5 font-semibold text-[18px] leading-[1.35] font-body tracking-[0] text-navy">Aspen Pharmaceuticals — Head Office</strong>
               <address className="not-italic">
                 {address.map((line) => (
@@ -55,19 +55,19 @@ export default function ContactSection() {
                 ))}
               </address>
               <dl className="mx-0 gap-0 border-t-0 [border-top-style:none] border-t-current mt-3 mb-0 pt-0 grid">
-                <div className="px-0 py-[9px] gap-3 border-t [border-top-style:solid] border-t-[color:var(--c-line)] grid grid-cols-[64px_minmax(0,1fr)] items-baseline">
+                <div className="px-0 py-1.5 last:pb-0 gap-3 grid grid-cols-[64px_minmax(0,1fr)] items-baseline">
                   <dt className="flex-none w-auto text-red text-[13px] font-bold leading-[1.4] font-body tracking-[.14em] uppercase">Tel</dt>
                   <dd className="m-0 font-medium text-[15.5px] leading-normal font-body text-navy">
                     <a className="hover:text-red [&[href^='tel:']]:py-[9px] [&[href^='tel:']]:inline-block min-[901px]:[&[href^='tel:']]:py-0 text-navy" href={contact.phoneHref}>{contact.phone}</a>
                   </dd>
                 </div>
-                <div className="px-0 py-[9px] gap-3 border-t [border-top-style:solid] border-t-[color:var(--c-line)] grid grid-cols-[64px_minmax(0,1fr)] items-baseline">
+                <div className="px-0 py-1.5 last:pb-0 gap-3 grid grid-cols-[64px_minmax(0,1fr)] items-baseline">
                   <dt className="flex-none w-auto text-red text-[13px] font-bold leading-[1.4] font-body tracking-[.14em] uppercase">Email</dt>
                   <dd className="m-0 font-medium text-[15.5px] leading-normal font-body text-navy">
                     <a className="hover:text-red [&[href^='mailto:']]:py-[9px] [&[href^='mailto:']]:inline-block min-[901px]:[&[href^='mailto:']]:py-0 text-navy" href={`mailto:${contact.email}`}>{contact.email}</a>
                   </dd>
                 </div>
-                <div className="px-0 py-[9px] gap-3 border-t [border-top-style:solid] border-t-[color:var(--c-line)] grid grid-cols-[64px_minmax(0,1fr)] items-baseline">
+                <div className="px-0 py-1.5 last:pb-0 gap-3 grid grid-cols-[64px_minmax(0,1fr)] items-baseline">
                   <dt className="flex-none w-auto text-red text-[13px] font-bold leading-[1.4] font-body tracking-[.14em] uppercase">Hours</dt>
                   <dd className="m-0 font-medium text-[15.5px] leading-normal font-body text-navy">{contact.hours}</dd>
                 </div>
@@ -77,7 +77,7 @@ export default function ContactSection() {
         </div>
       </div>
       <div className="mx-auto w-[min(var(--page-max),calc(100%_-_2_*_var(--page-gutter)))]">
-        <p className="mx-0 border-t [border-top-style:solid] border-t-[color:var(--c-line)] mt-10 mb-0 text-[#4a5b6c] text-[14px] leading-[1.6] font-normal font-body pt-5 max-w-none">
+        <p className="mx-0 mt-6 mb-0 text-[#4a5b6c] text-[14px] leading-[1.6] font-normal font-body max-w-none">
           We use your details only to respond to your enquiry. See our{" "}
           <Link className="py-0 text-navy underline decoration-red underline-offset-[3px] inline hover:text-red" href="/privacy">privacy policy</Link>.
         </p>

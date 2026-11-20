@@ -14,13 +14,11 @@ export default function Sustainability() {
             title="Environment & sustainability"
           />
           <p className="mx-0 mt-6 mb-0 max-w-[480px] text-white/80 text-[16.5px] leading-[1.7] font-normal font-body">
-            Better healthcare should not come at the cost of the environment. We
-            work with responsible manufacturing partners and aim to keep
-            material use, wastage and transport efficiency in view.
+            Our focus is practical: using materials carefully, cutting wastage and
+            moving stock efficiently.
           </p>
-          <p className="mx-0 mt-4 mb-0 max-w-[480px] text-white/80 text-[16.5px] leading-[1.7] font-normal font-body">We approach this step by step, improving as our business grows.</p>
         </RfReveal>
-        <RfReveal className="relative h-[360px] max-w-[420px] [justify-self:end] w-full max-[1024px]:h-[300px] max-[1024px]:max-w-none max-[1024px]:[justify-self:stretch] motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none]">
+        <RfReveal className="relative h-[240px] max-w-[420px] [justify-self:end] w-full max-[1024px]:h-[220px] max-[1024px]:max-w-none max-[1024px]:[justify-self:stretch] motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none]">
           <img className="rounded-[8px] block w-full h-full object-cover [box-shadow:none] [filter:none]"
             src={image}
             alt="Aerial view of a lush green forest"

@@ -46,7 +46,7 @@ function Blocks({ blocks }) {
         out.push(
           <dl className="mx-0 mt-0 mb-3" key={out.length}>
             {run.map((r, k) => (
-              <div className="px-0 py-[9px] gap-5 border-b [border-bottom-style:solid] border-[#dfe6ee] grid grid-cols-[minmax(130px,200px)_1fr] text-[14px] leading-[1.55] max-[900px]:gap-0.5 max-[900px]:grid-cols-[1fr] max-[600px]:gap-0.5 max-[600px]:grid-cols-[1fr] first:border-t first:[border-top-style:solid] first:border-t-[color:var(--rf-line)]" key={k}>
+              <div className="px-0 py-[9px] gap-5 grid grid-cols-[minmax(130px,200px)_1fr] text-[14px] leading-[1.55] max-[900px]:gap-0.5 max-[900px]:grid-cols-[1fr] max-[600px]:gap-0.5 max-[600px]:grid-cols-[1fr]" key={k}>
                 <dt className="text-[#5d6e80]">{r[1]}</dt>
                 <dd className="m-0 text-[color:var(--rf-ink)] [overflow-wrap:anywhere] leading-[1.7] max-[600px]:text-[14.5px]">{r[2]}</dd>
               </div>
@@ -73,7 +73,7 @@ function Blocks({ blocks }) {
         );
       continue;
     }
-    if (t === "h") out.push(<h4 className="mx-0 mt-5 mb-2 text-navy font-semibold text-[14px] leading-[normal] font-body" key={out.length}>{b[1]}</h4>);
+    if (t === "h") out.push(<h4 className="mx-0 mt-6 mb-2 text-navy font-semibold text-[15px] leading-[normal] font-body" key={out.length}>{b[1]}</h4>);
     else out.push(<Para key={out.length} text={b[1]} />);
     i++;
   }
@@ -83,10 +83,12 @@ function Blocks({ blocks }) {
 export default function Monograph({ product, onClose }) {
   const closeRef = useRef(null);
   const bodyRef = useRef(null);
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(false);
+  const [res, setRes] = useState({ mono: null, data: null, error: false });
+  const data = res.mono === product.mono ? res.data : null;
+  const error = res.mono === product.mono ? res.error : false;
   const [active, setActive] = useState(0);
-  const lockRef = useRef(0);
+  const lockRef = useRef(false);
+  const lockTimer = useRef(0);
 
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -102,14 +104,13 @@ export default function Monograph({ product, onClose }) {
 
   useEffect(() => {
     let live = true;
-    setData(null);
-    setError(false);
     fetch(`/monographs/${product.mono}.json`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((d) => live && setData(d))
-      .catch(() => live && setError(true));
+      .then((d) => live && setRes({ mono: product.mono, data: d, error: false }))
+      .catch(() => live && setRes({ mono: product.mono, data: null, error: true }));
     return () => {
       live = false;
+      clearTimeout(lockTimer.current);
     };
   }, [product.mono]);
 
@@ -119,7 +120,7 @@ export default function Monograph({ product, onClose }) {
     const root = bodyRef.current;
     if (!root || !sections.length) return;
     const onScroll = () => {
-      if (Date.now() < lockRef.current) return;
+      if (lockRef.current) return;
       const top = root.getBoundingClientRect().top + 40;
       let cur = 0;
       root.querySelectorAll("[data-sec]").forEach((el, i) => {
@@ -153,9 +154,13 @@ export default function Monograph({ product, onClose }) {
     const root = bodyRef.current;
     const el = root?.querySelector(`[data-sec="${i}"]`);
     if (!el) return;
-    lockRef.current = Date.now() + 900;
+    lockRef.current = true;
+    clearTimeout(lockTimer.current);
+    lockTimer.current = setTimeout(() => {
+      lockRef.current = false;
+    }, 900);
     root.scrollTo({
-      top: el.offsetTop + 12,
+      top: Math.max(0, el.offsetTop - 14),
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "auto"
         : "smooth",
@@ -183,7 +188,7 @@ export default function Monograph({ product, onClose }) {
           <X size={18} />
         </button>
 
-        <header className="mg-head flex-none border-b-[3px] [border-bottom-style:solid] border-b-red pt-[26px] pr-16 pb-[22px] pl-9 [background:var(--c-navy)] relative max-[600px]:pt-[18px] max-[600px]:pr-14 max-[600px]:pb-3.5 max-[600px]:pl-[18px]">
+        <header className="mg-head flex-none pt-[22px] pr-16 pb-[18px] pl-9 [background:var(--c-navy)] relative max-[600px]:pt-[18px] max-[600px]:pr-14 max-[600px]:pb-3.5 max-[600px]:pl-[18px]">
           <span className="block text-[#b4c4d4] font-semibold text-[11.5px] leading-[1.4] font-body tracking-[.16em] uppercase">
             Monograph{data ? ` ${data.no}` : ""} · {product.category}
           </span>
@@ -202,7 +207,7 @@ export default function Monograph({ product, onClose }) {
 
         {data && (
           <div className="flex-1 min-h-0 grid grid-cols-[332px_1fr] max-[900px]:grid-cols-[1fr] max-[900px]:grid-rows-[auto_minmax(0,1fr)] max-[600px]:grid-cols-[1fr] max-[600px]:grid-rows-[auto_minmax(0,1fr)] min-[901px]:overflow-hidden min-[901px]:grow-0 min-[901px]:basis-auto">
-            <nav className="mg-toc border-r [border-right-style:solid] border-r-[#dfe6ee] relative overflow-y-auto pt-5 pr-1 pb-6 pl-4 [background:#f4f7fa] [scrollbar-width:thin] max-[900px]:px-3 max-[900px]:py-0 max-[900px]:border-b max-[900px]:[border-bottom-style:solid] max-[900px]:border-b-[color:var(--rf-line)] max-[900px]:overflow-y-hidden max-[900px]:[scrollbar-width:none] max-[900px]:overflow-x-auto max-[900px]:[-webkit-mask-image:linear-gradient(_90deg,#000_0,#000_calc(100%_-_28px),transparent_100%_)] max-[900px]:[mask-image:linear-gradient(_90deg,#000_0,#000_calc(100%_-_28px),transparent_100%_)] max-[600px]:px-3 max-[600px]:py-0 max-[600px]:border-b max-[600px]:[border-bottom-style:solid] max-[600px]:border-b-[color:var(--rf-line)] max-[600px]:overflow-y-hidden max-[600px]:[scrollbar-width:none] max-[600px]:overflow-x-auto" ref={tocRef} aria-label="Monograph sections">
+            <nav className="mg-toc relative overflow-y-auto pt-5 pr-1 pb-6 pl-4 [background:#f4f7fa] [scrollbar-width:thin] max-[900px]:px-3 max-[900px]:py-0 max-[900px]:border-b max-[900px]:[border-bottom-style:solid] max-[900px]:border-b-[color:var(--rf-line)] max-[900px]:overflow-y-hidden max-[900px]:[scrollbar-width:none] max-[900px]:overflow-x-auto max-[900px]:[-webkit-mask-image:linear-gradient(_90deg,#000_0,#000_calc(100%_-_28px),transparent_100%_)] max-[900px]:[mask-image:linear-gradient(_90deg,#000_0,#000_calc(100%_-_28px),transparent_100%_)] max-[600px]:px-3 max-[600px]:py-0 max-[600px]:border-b max-[600px]:[border-bottom-style:solid] max-[600px]:border-b-[color:var(--rf-line)] max-[600px]:overflow-y-hidden max-[600px]:[scrollbar-width:none] max-[600px]:overflow-x-auto" ref={tocRef} aria-label="Monograph sections">
               <ol className="m-0 p-0 [list-style:none] max-[900px]:flex max-[600px]:flex">
                 {sections.map(([title], i) => (
                   <li className="[.mg-toc_li+&]:mt-0.5" key={i}>
@@ -220,8 +225,8 @@ export default function Monograph({ product, onClose }) {
               </ol>
             </nav>
 
-            <div className="px-10 relative overflow-y-auto pt-7 pb-9 [scrollbar-width:thin] max-[900px]:px-7 max-[900px]:pt-6 max-[900px]:pb-8 max-[600px]:px-[18px] max-[600px]:pt-[18px] max-[600px]:pb-8 min-[901px]:[contain:size] focus-visible:outline-offset-[-3px]" ref={bodyRef} tabIndex={0}>
-              <dl className="m-0 px-[22px] py-5 rounded-tl-none rounded-tr-none rounded-br-[4px] rounded-bl-[4px] border-x border-t-2 border-b border-solid border-x-[#dfe6ee] border-t-navy border-b-[#dfe6ee] grid grid-cols-[repeat(auto-fill,minmax(190px,1fr))] gap-y-[18px] gap-x-7 [background:#f4f7fa] max-[600px]:grid-cols-[1fr]">
+            <div className="px-10 relative overflow-y-auto pt-7 pb-[min(40vh,320px)] [scrollbar-width:thin] max-[900px]:px-7 max-[900px]:pt-6 max-[900px]:pb-[min(40vh,320px)] max-[600px]:px-[18px] max-[600px]:pt-[18px] max-[600px]:pb-[min(40vh,320px)] min-[901px]:[contain:size] focus-visible:outline-offset-[-3px]" ref={bodyRef} tabIndex={0}>
+              <dl className="m-0 px-[22px] py-5 rounded-[6px] grid grid-cols-[repeat(auto-fill,minmax(190px,1fr))] gap-y-[18px] gap-x-7 [background:#f4f7fa] max-[600px]:grid-cols-[1fr]">
                 {facts.map(([k, v]) => (
                   <div key={k}>
                     <dt className="text-[#5d6e80] font-semibold text-[11px] leading-[1.4] font-body tracking-[.12em] uppercase">{k}</dt>
@@ -238,16 +243,15 @@ export default function Monograph({ product, onClose }) {
               )}
 
               {sections.map(([title, blocks], i) => (
-                <section className="border-t [border-top-style:solid] border-t-[#dfe6ee] mt-[30px] pt-[26px]" data-sec={i} key={i}>
-                  <h3 className="mx-0 grid grid-cols-[32px_1fr] items-baseline mt-0 mb-3.5 text-navy font-semibold text-[19px] leading-[1.3] font-body tracking-[-0.005em] max-[600px]:grid-cols-[28px_1fr]">
-                    <span className="text-red font-semibold text-[13px] leading-[normal] font-body tabular-nums">{i + 1}</span>
+                <section className="mt-12" data-sec={i} key={i}>
+                  <h3 className="mx-0 mt-0 mb-4 text-navy font-semibold text-[19px] leading-[1.3] font-body tracking-[-0.005em]">
                     {title}
                   </h3>
                   <Blocks blocks={blocks} />
                 </section>
               ))}
 
-              <p className="mx-0 px-[18px] py-4 rounded-tl-none rounded-tr-[4px] rounded-br-[4px] rounded-bl-none border-y border-r border-l-[3px] border-solid border-y-[#dfe6ee] border-r-[#dfe6ee] border-l-red mt-8 mb-0 text-[#4a5b6c] text-[13px] leading-[1.6] [background:#f4f7fa]">
+              <p className="mx-0 px-[18px] py-4 rounded-tl-none rounded-tr-[6px] rounded-br-[6px] rounded-bl-none border-l-[3px] border-solid border-l-red mt-8 mb-0 text-[#4a5b6c] text-[13px] leading-[1.6] [background:#f4f7fa]">
                 <strong className="block mb-1 text-navy font-semibold text-[11.5px] leading-[1.4] font-body tracking-[.12em] uppercase">Prescription medicine</strong>
                 {data.disclaimer}
               </p>

@@ -9,7 +9,7 @@ export default function QualityCommitment() {
       id="commitment"
     >
       <div className="mx-auto w-[min(var(--page-max),calc(100%_-_2_*_var(--page-gutter)))]">
-        <RfReveal className="ab-direction mf-commit p-0 gap-[clamp(32px,6vw,88px)] overflow-visible rounded-none border-0 border-none border-current relative grid grid-cols-[minmax(0,5fr)_minmax(0,7fr)] text-navy [background:transparent] items-center motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none] max-[900px]:grid-cols-[1fr] before:rounded-[50%] before:border before:border-solid before:border-[rgba(126,178,173,0.2)] before:[content:''] before:absolute before:right-[-120px] before:top-[-140px] before:w-[440px] before:h-[440px] before:hidden [&::after]:hidden">
+        <RfReveal className="ab-direction mf-commit p-0 gap-[clamp(32px,6vw,88px)] overflow-visible rounded-none border-0 border-none border-current relative grid grid-cols-[minmax(0,5fr)_minmax(0,7fr)] text-navy [background:transparent] items-stretch motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none] max-[900px]:grid-cols-[1fr] before:rounded-[50%] before:border before:border-solid before:border-[rgba(141,180,176,0.2)] before:[content:''] before:absolute before:right-[-120px] before:top-[-140px] before:w-[440px] before:h-[440px] before:hidden [&::after]:hidden">
           <div className="p-0 relative">
             <span className="mx-0 block mb-4 text-red uppercase mt-0 leading-[1.4] font-body !text-[14px] !font-bold !tracking-[0.12em]">Quality commitment</span>
             <div className="relative max-w-[680px]">
@@ -22,11 +22,11 @@ export default function QualityCommitment() {
                 </Link>
                 .
               </p>
-              <p className="!mt-7 !text-navy !text-[14px] !leading-[1.4] !font-medium !font-body mx-0 gap-3.5 border-t [border-top-style:solid] border-t-white/15 mb-4 pt-[26px] max-w-[56ch] flex items-center tracking-[0] before:flex-none before:rounded-[2px] before:[content:''] before:w-6 before:h-0.5 before:[background:var(--red)]">{commitment.tagline}</p>
+              <p className="!mt-7 !text-navy !text-[14px] !leading-[1.4] !font-medium !font-body mx-0 gap-3.5 mb-0 pt-0 max-w-[56ch] flex items-center tracking-[0] before:flex-none before:rounded-[2px] before:[content:''] before:w-6 before:h-0.5 before:[background:var(--red)]">{commitment.tagline}</p>
             </div>
           </div>
           {commitment.image && (
-            <div className="overflow-hidden rounded-[6px] relative min-h-0 aspect-[3/2] max-[1024px]:order-[-1] after:inset-0 after:[content:''] after:absolute after:[background:linear-gradient(90deg,rgba(11,35,66,0.4),transparent_38%)] after:hidden max-[1024px]:after:[background:linear-gradient(0deg,rgba(11,35,66,0.5),transparent_50%)]">
+            <div className="overflow-hidden rounded-[6px] relative min-h-[320px] max-[900px]:min-h-0 max-[900px]:aspect-[4/3] max-[1024px]:order-[-1] after:inset-0 after:[content:''] after:absolute after:[background:linear-gradient(90deg,rgba(11,35,66,0.4),transparent_38%)] after:hidden max-[1024px]:after:[background:linear-gradient(0deg,rgba(11,35,66,0.5),transparent_50%)]">
               <img className="inset-0 block w-full absolute h-full object-cover"
                 src={commitment.image}
                 alt={commitment.imageAlt}
