@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Pause, Play } from "lucide-react";
 import { process } from "@/data/manufacturing";
 
 /** Line-art animation of the tablet line. Plays while on screen, can be paused, and shows a static frame under reduced motion. */
@@ -27,8 +28,18 @@ export default function ProductionLine() {
 
         <div
           ref={ref}
-          className={`pl mt-12 max-[900px]:mt-9 overflow-hidden rounded-[var(--radius-lg)] border border-solid border-[color:var(--c-line)] [background:linear-gradient(180deg,#fff_0%,var(--c-surface)_100%)] px-[clamp(12px,3vw,40px)] pt-[clamp(20px,3vw,36px)] pb-[clamp(16px,2.4vw,28px)]${inView ? " is-in" : ""}${paused ? " is-paused" : ""}`}
+          className={`pl relative mt-12 max-[900px]:mt-9 overflow-hidden rounded-[var(--radius-lg)] border border-solid border-[color:var(--c-line)] [background:linear-gradient(180deg,#fff_0%,var(--c-surface)_100%)] px-[clamp(12px,3vw,40px)] pt-[clamp(20px,3vw,36px)] pb-[clamp(16px,2.4vw,28px)]${inView ? " is-in" : ""}${paused ? " is-paused" : ""}`}
         >
+          <button
+            type="button"
+            onClick={() => setPaused((v) => !v)}
+            aria-pressed={paused}
+            aria-label={paused ? "Play animation" : "Pause animation"}
+            title={paused ? "Play animation" : "Pause animation"}
+            className="motion-reduce:hidden absolute top-3 right-3 z-[1] inline-flex h-8 w-8 items-center justify-center rounded-[var(--radius-sm)] text-[#5b6b7c] [transition:color_0.2s_ease,background_0.2s_ease] hover:text-navy hover:[background:rgba(11,35,66,0.06)] focus-visible:outline-[length:2px] focus-visible:outline focus-visible:outline-[color:var(--c-navy)] focus-visible:outline-offset-[2px]"
+          >
+            {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
+          </button>
           <svg className="pl-anim block w-full h-auto" viewBox="0 0 1200 270" role="img" aria-label="Animated overview of a tablet production line: compression, coating, blister packing and cartoning">
             <g stroke="#d6e0df" strokeWidth="1.5" strokeDasharray="3 7" fill="none">
               <line x1="300" y1="14" x2="300" y2="236" />
@@ -75,7 +86,7 @@ export default function ProductionLine() {
                 <ellipse className="pl-tab pl-drum-tab" cx="16" cy="-28" rx="8" ry="4.5" />
               </g></g>
               <path d="M62 30 L92 6" stroke="#07192f" strokeWidth="7" strokeLinecap="round" />
-              <g stroke="#28746e" strokeWidth="2.5" strokeLinecap="round">
+              <g stroke="#3d6f6c" strokeWidth="2.5" strokeLinecap="round">
                 <line className="pl-spray" x1="62" y1="44" x2="48" y2="56" />
                 <line className="pl-spray" x1="56" y1="38" x2="40" y2="46" />
                 <line className="pl-spray" x1="68" y1="52" x2="56" y2="66" />
@@ -125,18 +136,6 @@ export default function ProductionLine() {
               </li>
             ))}
           </ol>
-        </div>
-
-        <div className="mt-6 flex items-center justify-between gap-4 flex-wrap">
-          <p className="mx-0 gap-3.5 flex items-center my-0 font-medium text-[13.5px] leading-[1.4] font-body text-[#4a5b6c] before:rounded-[2px] before:[content:''] before:w-6 before:h-0.5 before:[background:var(--red)]">{process.caption}</p>
-          <button
-            type="button"
-            onClick={() => setPaused((v) => !v)}
-            aria-pressed={paused}
-            className="motion-reduce:hidden cursor-pointer rounded-[var(--radius-sm)] border border-solid border-[color:var(--c-line)] [background:#fff] px-3.5 py-1.5 font-body font-medium text-[13px] text-navy hover:border-navy [transition:border-color_0.25s_ease] focus-visible:outline-[length:2px] focus-visible:outline focus-visible:outline-[color:var(--c-navy)] focus-visible:outline-offset-[3px]"
-          >
-            {paused ? "Play animation" : "Pause animation"}
-          </button>
         </div>
       </div>
     </section>

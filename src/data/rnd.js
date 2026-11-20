@@ -1,76 +1,61 @@
-import { SPECIALTY_COUNT } from "@/data/site";
-import {
-  Activity,
-  GlassWater,
-  Hand,
-  Leaf,
-  Pill,
-  Syringe,
-} from "lucide-react";
-
 export const hero = {
   eyebrow: "Research & Development",
   title: "Formulation development",
-  tagline: "Science-led innovation. Patient-focused design.",
+  tagline: "Science-led, patient-focused",
   paragraphs: [
-    "Aspen’s formulation development brings together pharmaceutical science and practical patient needs. We aim to develop dosage forms that address drug delivery, stability, palatability and ease of administration, with quality guiding every stage.",
-    "From conventional formulations to complex delivery platforms, our priorities centre on translating therapeutic requirements into well-designed products.",
+    "Aspen’s formulation development brings pharmaceutical science together with practical patient needs, addressing drug delivery, stability, palatability and ease of administration.",
   ],
-  highlights: [
-    ["250+", "Products in our range"],
-    [String(SPECIALTY_COUNT), "Medical specialties"],
-    ["6", "Dosage form categories"],
-  ],
+  note: "Quality guides every stage, from concept to evidence",
 };
 
 export const focusAreas = [
   {
     title: "Novel drug delivery systems",
-    text: "Exploring delivery approaches that optimise how an active ingredient is released, according to its properties and intended use.",
+    text: "Delivery approaches that optimise how an active ingredient is released.",
   },
   {
     title: "Taste-masking technologies",
-    text: "Addressing unpleasant taste through suitable formulation techniques, especially for oral liquids and dispersible preparations.",
+    text: "Masking unpleasant taste, especially in oral liquids and dispersible preparations.",
   },
   {
     title: "Solubility and dissolution enhancement",
-    text: "Improving the solubility and dissolution of poorly soluble active ingredients to support product performance.",
+    text: "Improving how poorly soluble active ingredients dissolve.",
   },
   {
     title: "Modified-release formulations",
-    text: "Sustained, extended or delayed-release strategies, guided by the active ingredient and the intended dosing profile.",
+    text: "Sustained, extended or delayed release, guided by the intended dosing profile.",
   },
   {
     title: "Bioequivalence and clinical evaluation",
-    text: "Planning evidence-generation pathways, including bioequivalence studies and clinical trials where required, with qualified research partners and subject to regulatory requirements.",
+    text: "Bioequivalence studies and clinical trials where required, with qualified research partners.",
   },
 ];
 
 export const dosageForms = [
-  { name: "Oral solids", icon: Pill, focus: "Tablets, capsules, dispersible formulations and modified-release preparations." },
-  { name: "Oral liquids", icon: GlassWater, focus: "Solutions, suspensions and emulsions, with attention to palatability and physical stability." },
-  { name: "Sterile injectables", icon: Syringe, focus: "Formulation considerations for injectable products, including compatibility, stability and suitability for sterile processing." },
-  { name: "Topical preparations", icon: Hand, focus: "Creams, ointments and gels, with attention to consistency, application and drug release." },
-  { name: "Hormonal formulations", icon: Activity, focus: "Product-specific considerations for dose uniformity, stability and appropriate manufacturing controls." },
-  { name: "Nutraceuticals", icon: Leaf, focus: "Formulations designed around ingredient compatibility, stability and convenient administration." },
+  { name: "Oral solids", image: "/images/dosage-tablets-white-closeup.webp", focus: "Tablets, capsules and modified-release preparations." },
+  { name: "Oral liquids", image: "/images/dosage-oral-liquid-medicine-bottles.webp", focus: "Solutions, suspensions and emulsions for oral use." },
+  { name: "Sterile injectables", image: "/images/dosage-injectable-ampoules.webp", focus: "Injectable products formulated for sterile processing." },
+  { name: "Topical preparations", image: "/images/dosage-cream-ointment-jar.webp", focus: "Creams, ointments and gels for topical application." },
+  { name: "Hormonal formulations", image: "/images/dosage-capsules-assorted.webp", focus: "Formulations built for dose uniformity and stability." },
+  { name: "Nutraceuticals", image: "/images/dosage-nutraceutical-vitamin-bottle.webp", focus: "Vitamin and mineral formulations built for stability." },
 ];
 
 export const tablets = {
   intro:
-    "Our development priorities also include advanced tablet architectures. The choice of platform is guided by scientific feasibility and the needs of the intended product.",
+    "Platforms chosen by scientific feasibility and the needs of the product.",
   items: [
-    { key: "bilayer", image: "/images/rd-bilayer-tablet.webp", imageAlt: "Two bilayer tablets showing separate layers", title: "Bilayer tablets", text: "Separate layers that can accommodate different ingredients or release profiles." },
-    { key: "nested", image: "/images/rd-tablet-in-tablet.webp", imageAlt: "A broken tablet-in-tablet showing the core inside the outer tablet", title: "Tablet-in-tablet systems", text: "A core tablet within an outer tablet, enabling ingredient separation or tailored release." },
-    { key: "combo", image: "/images/rd-combination-formulation.webp", imageAlt: "Analyst handling a combination formulation sample beside a bottle", title: "Combination formulations", text: "Multiple active ingredients developed with attention to compatibility, stability and dosage requirements." },
+    { key: "bilayer", image: "/images/rd-bilayer-tablet.webp", imageAlt: "Two bilayer tablets showing separate layers", title: "Bilayer tablets", text: "Separate layers for different ingredients or release profiles." },
+    { key: "nested", image: "/images/rd-tablet-in-tablet.webp", imageAlt: "A broken tablet-in-tablet showing the core inside the outer tablet", title: "Tablet-in-tablet systems", text: "A core within an outer tablet for separation or tailored release." },
+    { key: "combo", image: "/images/rd-combination-formulation.webp", imageAlt: "Analyst handling a combination formulation sample beside a bottle", title: "Combination formulations", text: "Multiple active ingredients formulated for compatibility and stability." },
   ],
 };
 
 export const stages = [
-  { title: "Understand the product", text: "Evaluate the active ingredient, intended dosage form, patient needs and target product characteristics." },
-  { title: "Design the formulation", text: "Select suitable excipients and explore formulation options through structured development trials." },
-  { title: "Evaluate performance", text: "Assess relevant attributes such as dissolution, release behaviour, uniformity, compatibility and stability." },
-  { title: "Prepare for scale-up", text: "Consider process reproducibility, manufacturing suitability and technology-transfer requirements." },
-  { title: "Build the evidence", text: "Define the analytical, stability and study requirements needed to support the applicable development and regulatory pathway." },
+  { title: "Understand the product", text: "Evaluate the active ingredient, dosage form and patient needs." },
+  { title: "Design the formulation", text: "Select excipients and explore options through structured trials." },
+  { title: "Evaluate performance", text: "Assess dissolution, release, uniformity, compatibility and stability." },
+  { title: "Prepare for scale-up", text: "Check process reproducibility and manufacturing suitability." },
+  { title: "Build the evidence", text: "Define the analytical, stability and study requirements for the regulatory pathway." },
 ];
 
 export const quality = {

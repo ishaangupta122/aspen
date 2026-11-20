@@ -43,7 +43,7 @@ export default function NotFound() {
               <Link
                 href={href}
                 key={href}
-                className="text-white underline decoration-white/35 underline-offset-4 transition-[text-decoration-color] duration-[var(--dur-fast)] ease-[ease] hover:text-white hover:decoration-red-on-dark">
+                className="text-white transition-colors duration-[var(--dur-fast)] ease-[ease] hover:text-red-on-dark">
                 {label}
               </Link>
             ))}

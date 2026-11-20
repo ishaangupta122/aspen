@@ -1,25 +1,25 @@
 import { SPECIALTY_COUNT } from "@/data/site";
 
 export const intro = {
-  title: "Driven by science, inspired by life.",
-  lead: "Aspen Pharmaceuticals Pvt. Ltd. is an Indian pharmaceutical company established in 2010, serving healthcare professionals through a relevant therapeutic portfolio and responsive service.",
+  title: "Driven by science, inspired by life",
+  lead: "Aspen Pharmaceuticals Pvt. Ltd. is an Indian pharmaceutical company serving healthcare professionals with a relevant therapeutic portfolio and responsive service.",
   foundation: [
-    "Our foundation lies in a practical understanding of pharmaceutical care: the needs of clinicians, the importance of medicine availability and the responsibilities that come with serving patients.",
-    "We believe that sustainable growth in healthcare depends on trust. At Aspen, we seek to earn that trust through consistent engagement, transparent communication and a continuing commitment to improvement.",
+    "We start with a practical understanding of pharmaceutical care: what clinicians need, why medicines must be available, and what serving patients demands.",
+    "We believe lasting growth in healthcare depends on trust, and we earn it through consistent engagement, clear communication and steady improvement.",
   ],
 };
 
 export const journey = {
-  title: "From entrepreneurial venture to growing organisation",
+  title: "Built from the field up",
   facts: [
     ["Established", "2010"],
     ["Headquarters", "Sahibabad, Ghaziabad, Uttar Pradesh"],
     ["Presence", "India"],
   ],
   paragraphs: [
-    "Aspen was established in 2010 with a close understanding of clinical needs and the healthcare market, built on experience in pharmaceutical sales and marketing.",
-    "Our progress reflects the dedication of our people, the support of our business partners and the relationships we have built with healthcare professionals.",
-    "Today, Aspen works with established manufacturing partners and its own field and distribution teams to bring its range to healthcare professionals across India.",
+    "We started in 2010 with first-hand knowledge of the clinical market, gained in pharmaceutical sales and marketing.",
+    "Since then, we have built our range around the therapeutic areas doctors prescribe in, and chosen established manufacturing partners to make it.",
+    "Today our own field and distribution teams bring that range to healthcare professionals across India.",
   ],
 };
 
@@ -32,12 +32,12 @@ export const commitments = [
   {
     key: "engagement",
     image: "clinician",
-    pos: "50% 22%",
+    pos: "50% 8%",
     alt: "Doctor in consultation",
     title: "Responsible engagement with healthcare professionals",
     paragraphs: [
-      "Healthcare professionals play a vital role in the appropriate use of medicines. Aspen supports their work through professional engagement, clear product communication and responsive service.",
-      "Our approach is guided by respect for clinical judgment and the need for accurate, balanced information, with patient welfare as the underlying purpose.",
+      "Healthcare professionals guide the appropriate use of medicines, so we support them with clear, accurate product information and responsive service.",
+      "We respect their clinical judgment, and patient welfare is always the purpose.",
     ],
   },
   {
@@ -46,8 +46,8 @@ export const commitments = [
     alt: "Pharmaceutical supply and distribution",
     title: "Our presence and distribution",
     paragraphs: [
-      "Our field teams and distribution partners connect the organisation with healthcare professionals and the pharmaceutical trade.",
-      "These relationships help us understand local requirements, support product availability and respond to customer needs.",
+      "Our field teams and distribution partners connect Aspen with healthcare professionals and the pharmaceutical trade.",
+      "These relationships help us understand local needs and keep medicines available.",
     ],
   },
 ];
@@ -56,29 +56,29 @@ export const values = [
   {
     title: "Patient focus",
     alt: "Two scientists discussing results in the laboratory",
-    text: "We weigh the needs of patients and the responsibilities of healthcare in every business decision we make.",
+    text: "We weigh patient needs and healthcare responsibilities in every decision.",
   },
   {
     title: "Quality commitment",
     alt: "Tablets in blister packs",
-    text: "We give quality due importance across our products, partnerships and operational processes.",
+    text: "We give quality due importance across products, partnerships and processes.",
   },
   {
     title: "Integrity",
     alt: "Analyst reviewing test results at the bench",
-    text: "We act honestly, communicate clearly and uphold responsible business conduct.",
+    text: "We act honestly, communicate clearly and uphold responsible conduct.",
   },
   {
     title: "Accountability",
     alt: "Quality analyst measuring a tablet",
-    text: "We take ownership of our work and keep improving how we deliver on our commitments.",
+    text: "We take ownership of our work and keep improving how we deliver.",
   },
 ];
 
 export const direction = {
   paragraphs: [
-    "Aspen’s next phase of growth is centred on strengthening its therapeutic portfolio, developing its people, improving operational capability and extending its reach responsibly.",
-    "We remain committed to building a pharmaceutical business that combines commercial discipline with an understanding of its role in healthcare. Our ambition is to create lasting value for the professionals, partners and communities we serve.",
+    "Our next phase is about strengthening our therapeutic portfolio, developing our people, improving how we operate and extending our reach responsibly.",
+    "We want to build a pharmaceutical business that pairs commercial discipline with a clear sense of its role in healthcare, creating lasting value for the professionals, partners and communities we serve.",
   ],
   signature: "Aspen Pharmaceuticals Pvt. Ltd.",
   tagline: "Serving healthcare since 2010",

@@ -1,5 +1,3 @@
-import { SPECIALTY_COUNT } from "./site";
-
 export const contact = {
   address: [
     "Aspen Pharmaceuticals Pvt. Ltd.",
@@ -28,20 +26,6 @@ export const enquiryTypes = [
 
 export const careers = {
   eyebrow: "Careers",
-  title: "Want to work with Aspen?",
-  copy: "If you would like to be part of the team, tell us about yourself. When your profile matches an opening, our team will get in touch.",
-  reasons: [
-    {
-      title: "Work that reaches patients",
-      text: `Our range supports healthcare professionals across ${SPECIALTY_COUNT} medical specialties. Whatever your role, your work helps reliable medicines reach the people who need them.`,
-    },
-    {
-      title: "Exposure across the product lifecycle",
-      text: "From quality review and regulatory documentation to distribution and field engagement, you work close to every stage of a product’s journey.",
-    },
-    {
-      title: "A team that values your contribution",
-      text: "Since 2010, we have served healthcare professionals across India. Our teams are close-knit, so your work is seen and your ideas are heard.",
-    },
-  ],
+  title: "Work with Aspen",
+  copy: "To join the team, choose Careers as the enquiry type in the form below. When your profile matches an opening, we will get in touch.",
 };

@@ -9,8 +9,8 @@ export default function Commitments() {
         {commitments.map((item) => (
           <RfReveal className="ab-commit-card p-0 rounded-none border-0 border-none border-current h-full [background:transparent] [box-shadow:none] motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none]" key={item.key}>
             {item.image && (
-              <div className="ab-commit-image mx-0 overflow-hidden rounded-[6px] h-[250px] mb-6 mt-0">
-                <img className="block w-full h-60 object-cover max-[560px]:h-[200px] [.ab-commit-card:nth-child(2)_.ab-commit-image_&]:[filter:saturate(.25)_contrast(.95)]" style={{ objectPosition: item.pos || "50% 50%" }} src={images[item.image]} alt={item.alt} loading="lazy" />
+              <div className="ab-commit-image mx-0 overflow-hidden rounded-[6px] aspect-[16/9] mb-6 mt-0">
+                <img className="block w-full h-full object-cover [.ab-commit-card:nth-child(2)_.ab-commit-image_&]:[filter:saturate(.25)_contrast(.95)]" style={{ objectPosition: item.pos || "50% 50%" }} src={images[item.image]} alt={item.alt} loading="lazy" />
               </div>
             )}
             <h3 className="[&:not(.ab-commit-image)]:!mx-0 [&:not(.ab-commit-image)]:!px-0 mx-0 mt-0 mb-3.5 font-semibold text-[22px] leading-[1.3] font-body tracking-[-0.005em] [word-spacing:0.06em] text-navy">{item.title}</h3>

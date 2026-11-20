@@ -11,7 +11,6 @@ export default function Facilities() {
             <span className="block mb-[22px] text-red-on-dark uppercase leading-[1.4] font-body !text-[14px] !font-bold !tracking-[0.12em]">{facilities.eyebrow}</span>
             <h2 className="mx-0 mt-3 mb-0 max-w-[640px] text-white font-semibold text-[length:clamp(30px,3.2vw,40px)] leading-[1.2] font-body tracking-[-0.012em] [word-spacing:0.06em]">{facilities.title}</h2>
           </div>
-          <p className="m-0 max-w-[380px] text-white/80 text-[16.5px] leading-[1.7] font-normal font-body">{facilities.copy}</p>
         </RfReveal>
         <div className="grid grid-cols-[1fr_1fr] grid-rows-[none] gap-y-10 gap-x-7 [grid-auto-rows:auto] max-[900px]:grid-cols-[1fr] max-[600px]:gap-y-8 max-[600px]:gap-x-0">
           {facilities.items.map((item, i) => (
@@ -19,14 +18,10 @@ export default function Facilities() {
               <div className="relative overflow-hidden rounded-[6px] after:absolute after:inset-0 after:pointer-events-none after:rounded-[6px] after:[background:linear-gradient(180deg,rgba(11,35,66,0.08)_0%,rgba(11,35,66,0.26)_100%)] after:[box-shadow:inset_0_0_0_1px_rgba(255,255,255,0.08)]">
                 <img className="inset-0 rounded-[6px] block w-full static h-auto object-cover [transition:transform_var(--dur-reveal)] aspect-[16/9] [filter:saturate(0.88)_contrast(0.96)_brightness(0.97)] [.fx-item:hover_&]:[transform:none]" src={item.image} alt={item.caption} loading="lazy" />
               </div>
-              <div className="inset-x-[22px] border-t [border-top-style:solid] border-t-white/[0.14] static z-[1] bottom-5 grid items-baseline gap-y-3.5 gap-x-2.5 mt-3.5 pt-3.5 grid-cols-[28px_minmax(0,1fr)]">
-                <span className="text-red-on-dark leading-none font-body !font-bold !text-[14px] !tracking-[0.12em]">0{i + 1}</span>
-                <p className="m-0 text-white/[0.88] text-[15px] leading-[1.45] font-medium font-body [overflow-wrap:break-word] max-[600px]:text-[14.5px]">{item.caption}</p>
-              </div>
+              <p className="m-0 mt-4 gap-3.5 flex items-center justify-end font-medium text-[13.5px] leading-[1.4] font-body tracking-[0.02em] text-white/[0.72] before:flex-none before:rounded-full before:[content:''] before:w-6 before:h-0.5 before:[background:var(--red-on-dark)] max-[600px]:text-[13px]">{item.caption}</p>
             </RfReveal>
           ))}
         </div>
-        <p className="mx-0 mt-[22px] mb-0 text-white/[0.62] text-[13.5px] font-normal leading-normal font-body">{facilities.note}</p>
       </div>
     </section>
   );

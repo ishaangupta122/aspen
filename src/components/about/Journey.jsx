@@ -9,14 +9,13 @@ export default function Journey() {
         <div className="gap-[clamp(40px,6vw,88px)] grid grid-cols-[minmax(0,5fr)_minmax(0,6fr)] items-stretch max-[900px]:grid-cols-[1fr]">
           <RfReveal className="pt-0 flex motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none]">
             <figure className="m-0 flex flex-col w-full">
-              <div className="overflow-hidden flex-1 rounded-[8px] [background:#e6edf3] aspect-[auto] min-h-[400px] max-[900px]:flex-none max-[900px]:aspect-[4/3] max-[900px]:min-h-0">
-                <img className="block w-full h-full object-cover"
+              <div className="relative overflow-hidden flex-1 rounded-[8px] [background:#e6edf3] max-[900px]:flex-none max-[900px]:aspect-[4/3]">
+                <img className="absolute inset-0 block w-full h-full object-cover"
                   src={images.about}
                   alt="Pipette dispensing into laboratory test tubes"
                   loading="lazy"
                 />
               </div>
-              <figcaption className="gap-3.5 flex items-center mt-3.5 font-medium text-[13.5px] leading-[1.4] font-body tracking-[.02em] text-[#4a5b6c] before:flex-none before:rounded-full before:[content:''] before:w-6 before:h-0.5 before:[background:var(--red)]">Established 2010</figcaption>
             </figure>
           </RfReveal>
           <RfReveal className="flex flex-col justify-center min-w-0 motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none]">

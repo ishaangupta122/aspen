@@ -14,10 +14,9 @@ export default function Practices() {
         </RfReveal>
         <div className="pq-side">
           <RfReveal className="pb-[18px] text-white/70 font-semibold text-[12.5px] leading-[1.4] font-body tracking-[.14em] uppercase motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none]">{qcqa.title}</RfReveal>
-          <div className="border-t [border-top-style:solid] border-t-white/[0.14]">
-            {qcqa.cards.map(([title, text], i) => (
-              <RfReveal className="px-0 py-7 gap-5 border-b [border-bottom-style:solid] border-b-white/10 grid grid-cols-[44px_1fr] motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none] max-[600px]:gap-3 max-[600px]:grid-cols-[32px_1fr]" key={title}>
-                <span className="text-red-on-dark leading-none font-body pt-1.5 !font-bold !text-[14px] !tracking-[0.12em]">{String(i + 1).padStart(2, "0")}</span>
+          <div>
+            {qcqa.cards.map(([title, text]) => (
+              <RfReveal className="px-0 pb-7 motion-reduce:opacity-100 motion-reduce:[transform:none] motion-reduce:[transition:none]" key={title}>
                 <div>
                   <h3 className="mx-0 mt-0 mb-2 text-white font-semibold text-[20px] leading-[1.3] font-body tracking-[0]">{title}</h3>
                   <p className="m-0 text-[#b4c4d4] text-[15.5px] leading-[1.7] font-normal font-body">{text}</p>

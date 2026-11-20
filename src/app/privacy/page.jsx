@@ -16,7 +16,7 @@ const UPDATED = "October 2026";
 
 const body = "mb-4";
 const lead = "mb-4 font-body text-[19px] font-medium leading-[1.65] text-navy";
-const h2 = "mb-3 mt-11 border-t border-solid border-t-[#dfe6ee] pt-7 font-body text-[22px] font-semibold leading-[1.3] tracking-[-0.008em] text-navy";
+const h2 = "mb-3 mt-12 font-body text-[22px] font-semibold leading-[1.3] tracking-[-0.008em] text-navy";
 const list = "mb-4 list-disc pl-[22px]";
 const item = "mb-1 marker:text-red";
 const link = "text-navy underline decoration-red decoration-1 underline-offset-[3px] hover:text-red";
@@ -30,8 +30,8 @@ export default function PrivacyPage() {
         path="/privacy"
       />
       <section className="rf bg-white py-[var(--section-y)] px-0 py-[var(--section-y)] text-[color:var(--rf-ink)]">
-        <div className="rf-reveal lg-body max-w-none font-body text-[16.5px] font-normal leading-[1.75] text-[#4a5b6c] mx-auto w-[min(var(--page-max),calc(100%_-_2_*_var(--page-gutter)))]">
-          <p className="mb-4 border-b border-solid border-b-[#dfe6ee] pb-[18px] font-body text-[14px] font-bold uppercase leading-[1.4] tracking-[0.12em] text-red">Last updated: {UPDATED}</p>
+        <div className="rf-reveal lg-body max-w-none [&>*]:max-w-[72ch] font-body text-[16.5px] font-normal leading-[1.75] text-[#4a5b6c] mx-auto w-[min(var(--page-max),calc(100%_-_2_*_var(--page-gutter)))]">
+          <p className="mb-6 font-body text-[14px] font-bold uppercase leading-[1.4] tracking-[0.12em] text-red">Last updated: {UPDATED}</p>
           <p className={lead}>
             This policy explains what information {LEGAL_NAME} (“Aspen”, “we”,
             “us”) collects through this website, how we use it, and the choices
